@@ -246,6 +246,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/24/Zip明文破解/" itemprop="url">
+                  zip明文破解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T21:27:07+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/24/Zip明文破解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/Zip明文破解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/10/24/Zip明文破解/" class="leancloud_visitors" data-flag-title="zip明文破解">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用-Advanced-Archive-Zip-Password-Recovery-明文破解-Known-plaintext-attackf-Zip-详细过程"><a href="#使用-Advanced-Archive-Zip-Password-Recovery-明文破解-Known-plaintext-attackf-Zip-详细过程" class="headerlink" title="使用 Advanced Archive/Zip Password Recovery 明文破解(Known plaintext attackf) Zip 详细过程"></a>使用 Advanced Archive/Zip Password Recovery 明文破解(Known plaintext attackf) Zip 详细过程</h1><p>条件： 拥有zip包内一个或以上的文件。</p>
+<p>下载安装Advanced Archive/Zip Password Recovery ，程序自行搜索。</p>
+<p>使用 windows 平台的 7zip (或者其它，实测 Linux下压缩的不行，估计编码不同的原因)压缩一个已知文件为<strong>不加密的 zip</strong>。</p>
+<p>U<img src="http://i.imgur.com/uy9IgZJ.png" alt="UI-Settings"></p>
+<p>如图，加密的zip文件选择你要解密的目标zip，</p>
+<p>攻击类型选择明文/plaintext（如果已知文件是二进制文件，勾选允许使用二进制文件作为明文 zip 档案文件），</p>
+<p>明文文件路径选择 已知文件压缩的 zip 文件。</p>
+<p>然后，点击 start/开始（如果报错程序则重新压缩打开文件）,,等待 5-10 分钟，点击 stop/停止（程序得到口令才停止，然而我们只需要文件），</p>
+<p><img src="http://i.imgur.com/B8OLJGe.png" alt="UI-Stop"></p>
+<p>然后在其弹出窗口中，点击<strong>确定</strong>，，会弹出窗口保存一个 file-name_decrypted.zip（如果没有，请重来，多等待..），你选择目录保存<br>，保存成功后会弹出 “文档成功解密”的通知。</p>
+<p><img src="http://i.imgur.com/cBcpRoa.png" alt="UI-Succeed">  </p>
+<p>此 file-name_decrypted.zip 是未加密的，可以直接打开，取得其中的文件。<br>至于 口令/密码，有了内容还要它？</p>
+<p>速度非常快，实测两三分钟（搜索秘钥完成,进度超过0%,4710MQ）即可，比起暴力破解强到哪里去了，密码是接近20位，可惜不能用于 rar,郁。</p>
+<p>至于原理，感兴趣的自己搜索即可。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/29/hello-world/" itemprop="url">
                   准确的来说这才是我的第一篇博客
                 </a>
@@ -421,7 +545,7 @@
       
         
           
-            <p><em>作者: wspsxing @ <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#98;&#105;&#108;&#117;&#x6f;&#x68;&#99;&#64;&#x6f;&#117;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#109;">&#98;&#105;&#108;&#117;&#x6f;&#x68;&#99;&#64;&#x6f;&#117;&#x74;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#109;</a></em><br><br><em>原贴地址: <a href="http://tieba.baidu.com/p/4245902487" target="_blank" rel="external">http://tieba.baidu.com/p/4245902487</a></em><br><br><em>update_log-v1.3: 改善排版,修复细节,更多有待发现. —2016.03.24</em><br>由<strong> wspsxing</strong> 最后编辑于<em> 2016.03.24 </em>。</p>
+            <p><em>作者: wspsxing @ <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x62;&#105;&#x6c;&#117;&#111;&#x68;&#99;&#x40;&#111;&#117;&#x74;&#x6c;&#111;&#111;&#107;&#46;&#99;&#111;&#109;">&#x62;&#105;&#x6c;&#117;&#111;&#x68;&#99;&#x40;&#111;&#117;&#x74;&#x6c;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</a></em><br><br><em>原贴地址: <a href="http://tieba.baidu.com/p/4245902487" target="_blank" rel="external">http://tieba.baidu.com/p/4245902487</a></em><br><br><em>update_log-v1.3: 改善排版,修复细节,更多有待发现. —2016.03.24</em><br>由<strong> wspsxing</strong> 最后编辑于<em> 2016.03.24 </em>。</p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h2><p>从Win 转 Linux 已经大半年,期间用过众多发行版,也感受过各种桌面环境,最终选用 <strong>openSUSE+GNOME3</strong>。<br><br>依稀记得,刚转过来时,遇到不少坑,故写个笔记，供小白们参考。</p>
 <p>桌面镇楼:</p>
 <p><img src="https://c3.staticflickr.com/9/8566/28027857274_188b124712_b.jpg" alt="" title="desktop"></p>
@@ -718,7 +842,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -728,7 +852,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
