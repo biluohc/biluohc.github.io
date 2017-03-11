@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zip破解 on Wspsxing&#39;s blog</title>
+    <link>https://biluohc.github.io/tags/zip%E7%A0%B4%E8%A7%A3/index.xml</link>
+    <description>Recent content in Zip破解 on Wspsxing&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2016. All rights reserved.</copyright>
+    <atom:link href="https://biluohc.github.io/tags/zip%E7%A0%B4%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>zip明文破解</title>
+      <link>https://biluohc.github.io/post/Zip%E6%98%8E%E6%96%87%E7%A0%B4%E8%A7%A3/</link>
+      <pubDate>Mon, 24 Oct 2016 21:27:07 +0000</pubDate>
+      
+      <guid>https://biluohc.github.io/post/Zip%E6%98%8E%E6%96%87%E7%A0%B4%E8%A7%A3/</guid>
+      <description>
+
+&lt;h1 id=&#34;使用-advanced-archive-zip-password-recovery-明文破解-known-plaintext-attackf-zip-详细过程&#34;&gt;使用 Advanced Archive/Zip Password Recovery 明文破解(Known plaintext attackf) Zip 详细过程&lt;/h1&gt;
+
+&lt;p&gt;条件： 拥有zip包内一个或以上的文件。&lt;/p&gt;
+
+&lt;p&gt;下载安装Advanced Archive/Zip Password Recovery ，程序自行搜索。&lt;/p&gt;
+
+&lt;p&gt;使用 windows 平台的 7zip (或者其它，实测 Linux下压缩的不行，估计编码不同的原因)压缩一个已知文件为&lt;strong&gt;不加密的 zip&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;U&lt;img src=&#34;http://i.imgur.com/uy9IgZJ.png&#34; alt=&#34;UI-Settings&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如图，加密的zip文件选择你要解密的目标zip，&lt;/p&gt;
+
+&lt;p&gt;攻击类型选择明文/plaintext（如果已知文件是二进制文件，勾选允许使用二进制文件作为明文 zip 档案文件），&lt;/p&gt;
+
+&lt;p&gt;明文文件路径选择 已知文件压缩的 zip 文件。&lt;/p&gt;
+
+&lt;p&gt;然后，点击 start/开始（如果报错程序则重新压缩打开文件）,,等待 5-10 分钟，点击 stop/停止（程序得到口令才停止，然而我们只需要文件），&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/B8OLJGe.png&#34; alt=&#34;UI-Stop&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后在其弹出窗口中，点击&lt;strong&gt;确定&lt;/strong&gt;，，会弹出窗口保存一个 file-name_decrypted.zip（如果没有，请重来，多等待..），你选择目录保存
+，保存成功后会弹出 &amp;ldquo;文档成功解密&amp;rdquo;的通知。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://i.imgur.com/cBcpRoa.png&#34; alt=&#34;UI-Succeed&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此 file-name_decrypted.zip 是未加密的，可以直接打开，取得其中的文件。
+至于 口令/密码，有了内容还要它？&lt;/p&gt;
+
+&lt;p&gt;速度非常快，实测两三分钟（搜索秘钥完成,进度超过0%,4710MQ）即可，比起暴力破解强到哪里去了，密码是接近20位，可惜不能用于 rar,郁。&lt;/p&gt;
+
+&lt;p&gt;至于原理，感兴趣的自己搜索即可。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
