@@ -162,7 +162,7 @@ git clone git://github.com/getpelican/pelican-plugins.git    <span class="c1"># 
 </pre></div>
 
 
-<p>把上面的保存到 <code>content/MyFistReview.md</code>, 再运行 <code>pelican</code> 就会在 <code>output</code>文件夹生成html等. 
+<p>把上面的保存到 <code>content/MyFistReview.md</code>, 再运行 <code>pelican</code> 就会在 <code>output</code>文件夹生成html等.<br>
 现在就可以启动个http服务器, 就能在 http://127.0.0.1:8080/ 看到博客了.</p>
 <p>比如Py3自带的, 注意一定要以<code>output</code>为根目录, 否则js, css等资源加载不到, 就是html元素堆成一团浆糊.</p>
 <div class="highlight"><pre><span></span> D/c/bg <span class="nb">cd</span> output/
@@ -172,7 +172,7 @@ Serving HTTP on <span class="m">0</span>.0.0.0 port <span class="m">8080</span> 
 
 
 <h2>Pelican所需的信息</h2>
-<p>如下按顺序为标题, 创建日期, 修改日期, 分类, 标签, 链接, 作者, 摘要, 其中标题,日期不可缺. 
+<p>如下按顺序为标题, 创建日期, 修改日期, 分类, 标签, 链接, 作者, 摘要, 其中标题,日期不可缺.<br>
 draft/published/hidden 可以控制是否发布.</p>
 <div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="kd">super</span> <span class="n">title</span>
 <span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
@@ -186,37 +186,22 @@ draft/published/hidden 可以控制是否发布.</p>
 </pre></div>
             </div>
             <!-- /.entry-content -->
-    <hr/>
-    <section class="comments" id="comments">
-        <h2>Comments</h2>
-
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'biluohc'; // required: replace example with your forum shortname
-
-                    var disqus_identifier = 'zhuan-yi-dao-pelican-bootstrap3';
-                var disqus_url = '/articles/zhuan-yi-dao-pelican-bootstrap3.html';
-
-            var disqus_config = function () {
-                this.language = "en";
-            };
-
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function () {
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    </section>
         </article>
+        <div id="container"></div>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script>
+            var gitment = new Gitment({
+                // id: '', // 可选。默认为 location.href
+                owner: 'biluohc',
+                repo: 'biluohc.github.io',
+                oauth: {
+                    client_id: 'c8ce4b3e0a529dc6f156',
+                    client_secret: '01ea647c97776f1cb19cb069670887777c57b358',
+                },
+            })
+            gitment.render('container')
+        </script>
     </section>
 
         </div>
@@ -247,6 +232,9 @@ draft/published/hidden 可以控制是否发布.</p>
       <a href="/tag/bo-ke.html">博客</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="/tag/kai-shi.html">开始</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="/tag/opensuse.html">openSUSE</a>
     </li>
     <li class="list-group-item tag-4">
@@ -256,19 +244,16 @@ draft/published/hidden 可以控制是否发布.</p>
       <a href="/tag/linux.html">Linux</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/pelican.html">Pelican</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/kai-shi.html">开始</a>
-    </li>
-    <li class="list-group-item tag-4">
       <a href="/tag/ri-chang.html">日常</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/gnome.html">GNOME</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/zipbao-po.html">zip爆破</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/gnome.html">GNOME</a>
+      <a href="/tag/pelican.html">Pelican</a>
     </li>
   </ul>
 </li>
@@ -348,21 +333,6 @@ $(document).ready(function () {
 </script>
 <script src="/theme/js/github.js" type="text/javascript"></script>
 <!-- End GitHub JS Code -->
-    <!-- Disqus -->
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'biluohc'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-    </script>
-    <!-- End Disqus Code -->
 
 
 </body>
