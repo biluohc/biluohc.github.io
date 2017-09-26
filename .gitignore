@@ -1,3 +1,6 @@
+*.o
 *.bk
-public/
-themes/
+output
+__pycache__
+pelican-plugins
+pelican-themes
