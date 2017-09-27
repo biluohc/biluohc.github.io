@@ -37,6 +37,7 @@
     <link href="/theme/css/pygments/native.css" rel="stylesheet">
     <link href="/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
     <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/static/codeline.css" rel="stylesheet">
 
 
 
@@ -120,69 +121,69 @@
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <h1>安装</h1>
-<div class="highlight"><pre><span></span>pip install pelican markdown
+<div class="highlight"><pre><span class="code-line"><span></span>pip install pelican markdown</span>
 </pre></div>
 
 
 <h3>解析md必须要python的markdown库, 否则不会识别md文件(又不报错).</h3>
-<div class="highlight"><pre><span></span>D/c/bg pelican
-WARNING: No valid files found in content.
-Done: Processed <span class="m">0</span> articles, <span class="m">0</span> drafts, <span class="m">0</span> pages and <span class="m">0</span> hidden pages in <span class="m">0</span>.05 seconds.
+<div class="highlight"><pre><span class="code-line"><span></span>D/c/bg pelican</span>
+<span class="code-line">WARNING: No valid files found in content.</span>
+<span class="code-line">Done: Processed <span class="m">0</span> articles, <span class="m">0</span> drafts, <span class="m">0</span> pages and <span class="m">0</span> hidden pages in <span class="m">0</span>.05 seconds.</span>
 </pre></div>
 
 
 <h2>快速开始</h2>
 <p>新建目录用于放置站点文件,终端进入前面创建的目录运行<code>pelican-quickstart</code>后按提示操作, 那些配置也可以不管,后期再改配置文件.</p>
 <h2>安装主题与插件</h2>
-<div class="highlight"><pre><span></span>git clone https://github.com/getpelican/pelican-themes.git   <span class="c1"># 主题</span>
-git clone git://github.com/getpelican/pelican-plugins.git    <span class="c1"># 插件</span>
+<div class="highlight"><pre><span class="code-line"><span></span>git clone https://github.com/getpelican/pelican-themes.git   <span class="c1"># 主题</span></span>
+<span class="code-line">git clone git://github.com/getpelican/pelican-plugins.git    <span class="c1"># 插件</span></span>
 </pre></div>
 
 
 <h2>修改配置文件(<code>pelicanconf.py</code>)</h2>
-<div class="highlight"><pre><span></span><span class="c1"># 添加这些</span>
-
-<span class="c1"># 主题路径</span>
-<span class="n">THEME</span> <span class="o">=</span> <span class="s2">&quot;pelican-themes/pelican-bootstrap3&quot;</span>
-<span class="c1"># 上面那个主题的需要.</span>
-<span class="n">JINJA_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;jinja2.ext.i18n&#39;</span><span class="p">]}</span>
-
-<span class="c1">#插件路径,启用的插件</span>
-<span class="n">PLUGIN_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pelican-plugins&#39;</span><span class="p">]</span> 
-<span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i18n_subsites&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="c1"># 添加这些</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="c1"># 主题路径</span></span>
+<span class="code-line"><span class="n">THEME</span> <span class="o">=</span> <span class="s2">&quot;pelican-themes/pelican-bootstrap3&quot;</span></span>
+<span class="code-line"><span class="c1"># 上面那个主题的需要.</span></span>
+<span class="code-line"><span class="n">JINJA_ENVIRONMENT</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;extensions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;jinja2.ext.i18n&#39;</span><span class="p">]}</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="c1">#插件路径,启用的插件</span></span>
+<span class="code-line"><span class="n">PLUGIN_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pelican-plugins&#39;</span><span class="p">]</span> </span>
+<span class="code-line"><span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i18n_subsites&#39;</span><span class="p">]</span></span>
 </pre></div>
 
 
 <h2>生成html</h2>
-<div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="n">First</span> <span class="n">Review</span>
-<span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
-<span class="n">Category</span><span class="o">:</span> <span class="n">Review</span>
-
-<span class="n">Following</span> <span class="k">is</span> <span class="n">a</span> <span class="n">review</span> <span class="n">of</span> <span class="n">my</span> <span class="n">favorite</span> <span class="n">mechanical</span> <span class="n">keyboard</span><span class="o">.</span>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="n">First</span> <span class="n">Review</span></span>
+<span class="code-line"><span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span></span>
+<span class="code-line"><span class="n">Category</span><span class="o">:</span> <span class="n">Review</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="n">Following</span> <span class="k">is</span> <span class="n">a</span> <span class="n">review</span> <span class="n">of</span> <span class="n">my</span> <span class="n">favorite</span> <span class="n">mechanical</span> <span class="n">keyboard</span><span class="o">.</span></span>
 </pre></div>
 
 
 <p>把上面的保存到 <code>content/MyFistReview.md</code>, 再运行 <code>pelican</code> 就会在 <code>output</code>文件夹生成html等.<br>
 现在就可以启动个http服务器, 就能在 http://127.0.0.1:8080/ 看到博客了.</p>
 <p>比如Py3自带的, 注意一定要以<code>output</code>为根目录, 否则js, css等资源加载不到, 就是html元素堆成一团浆糊.</p>
-<div class="highlight"><pre><span></span> D/c/bg <span class="nb">cd</span> output/
- D/c/b/output python3 -m http.server <span class="m">8080</span>
-Serving HTTP on <span class="m">0</span>.0.0.0 port <span class="m">8080</span> ...
+<div class="highlight"><pre><span class="code-line"><span></span> D/c/bg <span class="nb">cd</span> output/</span>
+<span class="code-line"> D/c/b/output python3 -m http.server <span class="m">8080</span></span>
+<span class="code-line">Serving HTTP on <span class="m">0</span>.0.0.0 port <span class="m">8080</span> ...</span>
 </pre></div>
 
 
 <h2>Pelican所需的信息</h2>
-<p>如下按顺序为标题, 创建日期, 修改日期, 分类, 标签, 链接, 作者, 摘要, 其中标题,日期不可缺.<br>
-draft/published/hidden 可以控制是否发布.</p>
-<div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="kd">super</span> <span class="n">title</span>
-<span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
-<span class="n">Modified</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span> <span class="mi">19</span><span class="o">:</span><span class="mi">30</span>
-<span class="n">Category</span><span class="o">:</span> <span class="n">Python</span>
-<span class="n">Tags</span><span class="o">:</span> <span class="n">pelican</span><span class="o">,</span> <span class="n">publishing</span>
-<span class="n">Slug</span><span class="o">:</span> <span class="n">my</span><span class="o">-</span><span class="kd">super</span><span class="o">-</span><span class="n">post</span>
-<span class="n">Author</span><span class="o">:</span> <span class="n">Alexis</span> <span class="n">Metaireau</span>
-<span class="n">Summary</span><span class="o">:</span> <span class="n">Short</span> <span class="n">version</span> <span class="k">for</span> <span class="n">index</span> <span class="n">and</span> <span class="n">feeds</span>
-<span class="n">Status</span><span class="o">:</span> <span class="n">published</span>
+<p>如下按顺序为标题, 创建日期, 修改日期, 分类, 标签, 链接, 作者, 摘要, 其中标题,日期不可缺.  </p>
+<p>Status的 draft/published/hidden 可以控制是否发布.</p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="kd">super</span> <span class="n">title</span></span>
+<span class="code-line"><span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span></span>
+<span class="code-line"><span class="n">Modified</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span> <span class="mi">19</span><span class="o">:</span><span class="mi">30</span></span>
+<span class="code-line"><span class="n">Category</span><span class="o">:</span> <span class="n">Python</span></span>
+<span class="code-line"><span class="n">Tags</span><span class="o">:</span> <span class="n">pelican</span><span class="o">,</span> <span class="n">publishing</span></span>
+<span class="code-line"><span class="n">Slug</span><span class="o">:</span> <span class="n">my</span><span class="o">-</span><span class="kd">super</span><span class="o">-</span><span class="n">post</span></span>
+<span class="code-line"><span class="n">Author</span><span class="o">:</span> <span class="n">Alexis</span> <span class="n">Metaireau</span></span>
+<span class="code-line"><span class="n">Summary</span><span class="o">:</span> <span class="n">Short</span> <span class="n">version</span> <span class="k">for</span> <span class="n">index</span> <span class="n">and</span> <span class="n">feeds</span></span>
+<span class="code-line"><span class="n">Status</span><span class="o">:</span> <span class="n">published</span></span>
 </pre></div>
             </div>
             <!-- /.entry-content -->
@@ -232,25 +233,25 @@ draft/published/hidden 可以控制是否发布.</p>
       <a href="/tag/bo-ke.html">博客</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/kai-shi.html">开始</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/opensuse.html">openSUSE</a>
+      <a href="/tag/linux.html">Linux</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/python.html">Python</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/linux.html">Linux</a>
+      <a href="/tag/zipbao-po.html">zip爆破</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/opensuse.html">openSUSE</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/kai-shi.html">开始</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/ri-chang.html">日常</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/gnome.html">GNOME</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/zipbao-po.html">zip爆破</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/pelican.html">Pelican</a>
