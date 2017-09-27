@@ -47,7 +47,6 @@ MENUITEMS = (("分类", "/categories.html"),)
 STATIC_PATHS = ['static']
 FAVICON = 'static/images/favicon.ico'
 AVATAR = "static/images/logo.png"
-ABOUT_PAGE = "pages/about.html"
 ABOUT_ME = """<h3 style="text-align:center">
 至虚极, 守静笃。
 </h3>
@@ -68,6 +67,7 @@ ARTICLE_SAVE_AS = ARTICLE_URL
 # 分页
 PAGE_URL = '{slug}.html'
 PAGE_SAVE_AS = PAGE_URL
+ABOUT_PAGE = "about.html"
 # 分类
 CATEGORY_URL = '{slug}/index.html'
 CATEGORY_SAVE_AS = CATEGORY_URL
@@ -83,8 +83,7 @@ MD_EXTENSIONS = [
     ]
 CUSTOM_CSS = 'static/codeline.css'
 
-# 关于评论, Gitment的那一块代码被我插到article.html模板的文章内容后面了.
-# </article>
+# 关于评论, Gitment的那一块代码被我插到article.html和page.html模板的文章内容后面了.
 # <div id="container"></div>
 # <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
 # <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
