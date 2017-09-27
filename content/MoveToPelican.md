@@ -58,7 +58,8 @@ Serving HTTP on 0.0.0.0 port 8080 ...
 ## Pelican所需的信息
 
 如下按顺序为标题, 创建日期, 修改日期, 分类, 标签, 链接, 作者, 摘要, 其中标题,日期不可缺.  
-draft/published/hidden 可以控制是否发布.
+
+Status的 draft/published/hidden 可以控制是否发布.
 ```
 Title: My super title
 Date: 2010-12-03 10:20

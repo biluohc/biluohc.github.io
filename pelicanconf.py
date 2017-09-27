@@ -12,7 +12,7 @@ PATH = 'content'
 TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'en'
-DEFAULT_PAGINATION = 6
+DEFAULT_PAGINATION = 8
 SHOW_DATE_MODIFIED = True
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -36,8 +36,8 @@ THEME = "pelican-bootstrap3"
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['i18n_subsites', 'tipue_search',
-           'neighbors',"neighbors", "series", "tag_cloud", "sitemap"]
+PLUGINS = ['i18n_subsites', 'tipue_search', "better_codeblock_line_numbering",
+            "render_math", 'neighbors', "neighbors", "series", "tag_cloud", "sitemap"]
 SITEMAP = {
     'format': 'xml',
 }
@@ -75,6 +75,13 @@ CATEGORY_SAVE_AS = CATEGORY_URL
 TAG_URL = 'tag/{slug}.html'
 TAG_SAVE_AS = TAG_URL
 TAGS_SAVE_AS = 'tag/index.html'
+
+# 代码不自动换行, 并且标上行号
+MD_EXTENSIONS = [
+    'codehilite(css_class=highlight,linenums=False)',
+    'extra'
+    ]
+CUSTOM_CSS = 'static/codeline.css'
 
 # 关于评论, Gitment的那一块代码被我插到article.html模板的文章内容后面了.
 # </article>
