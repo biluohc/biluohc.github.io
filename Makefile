@@ -65,9 +65,12 @@ html:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS) 
 
 clean:
-	[ ! -d $(OUTPUTDIR) ] || ./clean.sh
+	[ ! -d $(OUTPUTDIR) ] || cd $(OUTPUTDIR) && rm -rf *
+
 build:
 	make clean && make html
+b:
+	make build
 
 regenerate:
 	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
