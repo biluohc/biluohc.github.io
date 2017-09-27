@@ -10,16 +10,13 @@
 
     <link href="/static/images/favicon.ico" rel="icon">
 
-<link rel="canonical" href="/you-lian.html">
-
-        <meta name="author" content="Wspsxing" />
-
-    <meta property="og:site_name" content="江山雪" />
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="友链"/>
-    <meta property="og:url" content="/you-lian.html"/>
-    <meta property="og:description" content="" />
-
+<link rel="canonical" href="/you-lian.html"> 
+ <meta name="author" content="Wspsxing" />  <meta name="description" content="有意加友链的可以流言" />  
+ <meta property="og:site_name" content="江山雪" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="友链" />
+<meta property="og:url" content="/you-lian.html" />
+<meta property="og:description" content="有意加友链的可以流言" />  
 
 
     <!-- Bootstrap -->
@@ -79,19 +76,34 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-    <section id="content" class="body">
-        <h1 class="entry-title">友链</h1>
-        
-        <div class="entry-content">
-            
-        </div>
-    </section>
+  <section id="content" class="body">
+    <h1 class="entry-title">友链</h1>
+       <div class="entry-content">
+        <h2>有意加友链的可以流言</h2>         <div id="container"></div>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script>
+            var gitment = new Gitment({
+                // id: '', // 可选。默认为 location.href
+                owner: 'biluohc',
+                repo: 'biluohc.github.io',
+                oauth: {
+                    client_id: 'c8ce4b3e0a529dc6f156',
+                    client_secret: '01ea647c97776f1cb19cb069670887777c57b358',
+                },
+            })
+            gitment.render('container')
+        </script>
+    </div>
+</section>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
 <div id="aboutme">
      <p>
-        <img width="100%" class="img-thumbnail" src="/static/images/logo.png" />
+        <a href="/pages/about.html">
+            <img width="100%" class="img-thumbnail" src="/static/images/logo.png" />
+        </a>
     </p>
     <p style="text-align:center">
         <strong> Wspsxing</strong>
@@ -117,13 +129,13 @@
       <a href="/tag/linux.html">Linux</a>
     </li>
     <li class="list-group-item tag-4">
+      <a href="/tag/opensuse.html">openSUSE</a>
+    </li>
+    <li class="list-group-item tag-4">
       <a href="/tag/python.html">Python</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/zipbao-po.html">zip爆破</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/opensuse.html">openSUSE</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/kai-shi.html">开始</a>
@@ -132,10 +144,10 @@
       <a href="/tag/ri-chang.html">日常</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/gnome.html">GNOME</a>
+      <a href="/tag/pelican.html">Pelican</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/pelican.html">Pelican</a>
+      <a href="/tag/gnome.html">GNOME</a>
     </li>
   </ul>
 </li>
