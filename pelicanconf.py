@@ -15,8 +15,8 @@ DEFAULT_LANG = 'en'
 DEFAULT_PAGINATION = 8
 SHOW_DATE_MODIFIED = True
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
+FEED_ATOM = 'feeds/atom.xml'
+FEED_RSS = 'feeds/rss.xml'
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
