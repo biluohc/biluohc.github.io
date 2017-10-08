@@ -11,8 +11,13 @@ PATH = 'content'
 
 TIMEZONE = 'Asia/Shanghai'
 
+# 最新文档地址 http://docs.getpelican.com/en/stable/
+
+# 创建文章的摘要长度, 太长可能包括多张图片, 影响排版.
+SUMMARY_MAX_LENGTH = 10
 DEFAULT_LANG = 'en'
-DEFAULT_PAGINATION = 8
+# 每页人容纳多少文章
+DEFAULT_PAGINATION = 10
 SHOW_DATE_MODIFIED = True
 # Feed generation is usually not desired when developing
 FEED_ATOM = 'feeds/atom.xml'

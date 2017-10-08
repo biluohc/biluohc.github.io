@@ -3,9 +3,9 @@ date: 2017-10-08 18:27:07
 tags: Rust, cargo, rustup
 Category: articles
 
-## Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 
+Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 
 
-## 首先访问[Rust官网](https://www.rust-lang.org/zh-CN/install.html)的install页面, 它会根据你的UA显示不同的内容.
+首先访问[Rust官网](https://www.rust-lang.org/zh-CN/install.html)的install页面, 它会根据你的UA显示不同的内容.
 
 ## Windows平台
 我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.  
