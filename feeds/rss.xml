@@ -1,51 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>江山雪</title><link>/</link><description></description><lastBuildDate>Sun, 08 Oct 2017 18:27:07 +0800</lastBuildDate><item><title>Rust的安装与配置</title><link>/articles/rustde-an-zhuang-yu-pei-zhi.html</link><description>&lt;h2&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。&lt;/h2&gt;
-&lt;h2&gt;首先访问&lt;a href="https://www.rust-lang.org/zh-CN/install.html"&gt;Rust官网&lt;/a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;/h2&gt;
-&lt;h2&gt;Windows平台&lt;/h2&gt;
-&lt;p&gt;我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.&lt;br&gt;
-&lt;img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png"&gt;&lt;/p&gt;
-&lt;p&gt;Windows下载rustup‑init.exe点击运行如图:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png"&gt;&lt;/p&gt;
-&lt;p&gt;它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
-但我的建议是安装nightly工具链, 上面你输入&lt;code&gt;2&lt;/code&gt;回车, &lt;br&gt;
-接下来它问你第一个&lt;code&gt;Default host triple?&lt;/code&gt;, 这是些平台信息, 不用管它, 回车即可,&lt;br&gt;
-第二个是&lt;code&gt;Default toolchain?(stable,beta,nightly)&lt;/code&gt;, 即安装的工具链版本, 这里你输入nightly回车即可,&lt;br&gt;
-第三个是&lt;code&gt;Modify PATH variable? (y/n)&lt;/code&gt;, 即修改环境变量, 输入&lt;code&gt;y …&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Sun, 08 Oct 2017 18:27:07 +0800</pubDate><guid isPermaLink="false">tag:None,2017-10-08:/articles/rustde-an-zhuang-yu-pei-zhi.html</guid><category>Rust</category><category>cargo</category><category>rustup</category></item><item><title>转移到 pelican-bootstrap3</title><link>/articles/zhuan-yi-dao-pelican-bootstrap3.html</link><description>&lt;h1&gt;安装&lt;/h1&gt;
+<rss version="2.0"><channel><title>江山雪</title><link>/</link><description></description><lastBuildDate>Sun, 08 Oct 2017 18:27:07 +0800</lastBuildDate><item><title>Rust的安装与配置</title><link>/articles/rustde-an-zhuang-yu-pei-zhi.html</link><description>&lt;p&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 &lt;/p&gt;
+&lt;p&gt;首先访问&lt;a href="https://www.rust-lang.org/zh-CN/install.html"&gt;Rust官网&lt;/a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;/p&gt;
+&lt;h2&gt;Windows平台 …&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Sun, 08 Oct 2017 18:27:07 +0800</pubDate><guid isPermaLink="false">tag:None,2017-10-08:/articles/rustde-an-zhuang-yu-pei-zhi.html</guid><category>Rust</category><category>cargo</category><category>rustup</category></item><item><title>转移到 pelican-bootstrap3</title><link>/articles/zhuan-yi-dao-pelican-bootstrap3.html</link><description>&lt;h1&gt;安装&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;解析md必须要python的markdown库, 否则不会识别md文件(又不报错).&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;D/c/bg pelican&lt;/span&gt;
-&lt;span class="code-line"&gt;WARNING: No valid files found in content.&lt;/span&gt;
-&lt;span class="code-line"&gt;Done: Processed &lt;span class="m"&gt;0&lt;/span&gt; articles, &lt;span class="m"&gt;0&lt;/span&gt; drafts, &lt;span class="m"&gt;0&lt;/span&gt; pages and &lt;span class="m"&gt;0&lt;/span&gt; hidden pages in &lt;span class="m"&gt;0&lt;/span&gt;.05 seconds.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h2&gt;快速开始&lt;/h2&gt;
-&lt;p&gt;新建目录用于放置站点文件,终端进入前面创建的目录运行&lt;code&gt;pelican-quickstart&lt;/code&gt;后按提示操作, 那些配置也可以不管,后期再改配置文件.&lt;/p&gt;
-&lt;h2&gt;安装主题与插件&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;git clone https://github.com/getpelican/pelican-themes …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Tue, 26 Sep 2017 13:25:38 +0800</pubDate><guid isPermaLink="false">tag:None,2017-09-26:/articles/zhuan-yi-dao-pelican-bootstrap3.html</guid><category>Python</category><category>Pelican</category><category>博客</category></item><item><title>Zip明文爆破</title><link>/articles/zipming-wen-bao-po.html</link><description>&lt;h2&gt;使用 Advanced Archive/Zip Password Recovery 明文破解(Known plaintext attackf) Zip 详细过程&lt;/h2&gt;
-&lt;p&gt;条件： 拥有zip包内一个或以上的文件。&lt;/p&gt;
-&lt;p&gt;下载安装Advanced Archive/Zip Password Recovery ，程序自行搜索。&lt;/p&gt;
-&lt;p&gt;使用 windows 平台的 7zip (或者其它，实测 Linux下压缩的不行，估计编码不同的原因)压缩一个已知文件为&lt;strong&gt;不加密的 zip&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;U&lt;img alt="UI-Settings" src="http://i.imgur.com/uy9IgZJ.png"&gt;&lt;/p&gt;
-&lt;p&gt;如图，加密的zip文件选择你要解密的目标zip，&lt;/p&gt;
-&lt;p&gt;攻击类型选择明文/plaintext（如果已知文件是二进制文件，勾选允许使用二进制文件作为明文 zip 档案文件），&lt;/p&gt;
-&lt;p&gt;明文文件路径选择 已知文件压缩的 zip 文件。&lt;/p&gt;
-&lt;p&gt;然后，点击 start/开始（如果报错程序则重新压缩打开文件）,,等待 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Mon, 24 Oct 2016 21:27:07 +0800</pubDate><guid isPermaLink="false">tag:None,2016-10-24:/articles/zipming-wen-bao-po.html</guid><category>zip爆破</category></item><item><title>准确的来说这才是我的第一篇博客</title><link>/articles/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke.html</link><description>&lt;p&gt;上一篇是几个月前写的markown,顺便挂上来,第一次折腾静态博客,花费差不多一天时间,遇到的坑好多,其实是阅读Hexo和next主题的说明不认真的原因,匿...&lt;/p&gt;
-&lt;p&gt;以后会写一些日常吧,这应该是个充满希望的开始,期待未来变得美好。&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="https://c2.staticflickr.com/9/8761/28028919073_5dd6a9207c_h.jpg"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;最后更新于2016-07-29.&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Fri, 29 Jul 2016 11:30:07 +0800</pubDate><guid isPermaLink="false">tag:None,2016-07-29:/articles/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke.html</guid><category>博客</category><category>开始</category><category>日常</category></item><item><title>写给入坑大蜥蜴且选择GNOME的小白</title><link>/articles/xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai.html</link><description>&lt;p&gt;&lt;em&gt;作者: wspsxing @ &lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#98;&amp;#105;&amp;#108;&amp;#117;&amp;#111;&amp;#104;&amp;#99;&amp;#64;&amp;#111;&amp;#117;&amp;#116;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;&amp;#98;&amp;#105;&amp;#108;&amp;#117;&amp;#111;&amp;#104;&amp;#99;&amp;#64;&amp;#111;&amp;#117;&amp;#116;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;原贴地址: &lt;a href="http://tieba.baidu.com/p/4245902487"&gt;http://tieba.baidu.com/p/4245902487&lt;/a&gt;&lt;/em&gt;&lt;br&gt;
-&lt;em&gt;update_log-v1.3: 改善排版,修复细节,更多有待发现. ---2016.03.24&lt;/em&gt;
-由&lt;strong&gt; wspsxing&lt;/strong&gt; 最后编辑于&lt;em&gt; 2016.03.24 &lt;/em&gt;。&lt;/p&gt;
-&lt;h2&gt;前言:&lt;/h2&gt;
-&lt;p&gt;从Win 转 Linux 已经大半年,期间用过众多发行版,也感受过各种桌面环境,最终选用 &lt;strong&gt;openSUSE+GNOME3&lt;/strong&gt;。&lt;br&gt;
-依稀记得,刚转过来时,遇到不少坑,故写个笔记，供小白们参考。&lt;/p&gt;
-&lt;p&gt;桌面镇楼:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="https://c3.staticflickr.com/9/8566/28027857274_188b124712_b.jpg" title="desktop"&gt;&lt;/p&gt;
-&lt;p&gt;ps,仅供小白参考,大神请轻喷.&lt;/p&gt;
-&lt;p&gt;这张图发上来玩玩:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="https://c7.staticflickr.com/8/7586/28612610566_f9e4861dc8_b.jpg" title="desktop"&gt;&lt;/p&gt;
-&lt;h2&gt;一： GNOME3 第一坑,联网 …&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Thu, 24 Mar 2016 15:35:07 +0800</pubDate><guid isPermaLink="false">tag:None,2016-03-24:/articles/xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai.html</guid><category>openSUSE</category><category>GNOME</category><category>Linux</category></item></channel></rss>
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;D/c …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Tue, 26 Sep 2017 13:25:38 +0800</pubDate><guid isPermaLink="false">tag:None,2017-09-26:/articles/zhuan-yi-dao-pelican-bootstrap3.html</guid><category>Python</category><category>Pelican</category><category>博客</category></item><item><title>Zip明文爆破</title><link>/articles/zipming-wen-bao-po.html</link><description>&lt;h2&gt;使用 Advanced Archive/Zip Password Recovery 明文破解(Known plaintext attackf …&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Mon, 24 Oct 2016 21:27:07 +0800</pubDate><guid isPermaLink="false">tag:None,2016-10-24:/articles/zipming-wen-bao-po.html</guid><category>zip爆破</category></item><item><title>准确的来说这才是我的第一篇博客</title><link>/articles/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke.html</link><description>&lt;p&gt;上一篇是几个月前写的markown,顺便挂上来,第一次折腾静态博客,花费差不多一天时间,遇到的坑好多,其实是阅读Hexo和next主题的说明不认真的原因,匿...&lt;/p&gt;
+&lt;p&gt;以后会写一些日常吧,这应该是个充满希望的开始,期待未来变得美好 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Fri, 29 Jul 2016 11:30:07 +0800</pubDate><guid isPermaLink="false">tag:None,2016-07-29:/articles/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke.html</guid><category>博客</category><category>开始</category><category>日常</category></item><item><title>写给入坑大蜥蜴且选择GNOME的小白</title><link>/articles/xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai.html</link><description>&lt;p&gt;&lt;em&gt;作者: wspsxing @ &lt;a href="&amp;#109;&amp;#97;&amp;#105;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#98;&amp;#105;&amp;#108;&amp;#117;&amp;#111;&amp;#104;&amp;#99;&amp;#64;&amp;#111;&amp;#117;&amp;#116;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#111;&amp;#109;"&gt;&amp;#98;&amp;#105;&amp;#108;&amp;#117;&amp;#111;&amp;#104;&amp;#99;&amp;#64;&amp;#111;&amp;#117;&amp;#116;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;&lt;/em&gt;&lt;br&gt;
+&lt;em&gt;原贴地址: &lt;a href="http://tieba.baidu.com/p/4245902487"&gt;http://tieba.baidu.com …&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Thu, 24 Mar 2016 15:35:07 +0800</pubDate><guid isPermaLink="false">tag:None,2016-03-24:/articles/xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai.html</guid><category>openSUSE</category><category>GNOME</category><category>Linux</category></item></channel></rss>
