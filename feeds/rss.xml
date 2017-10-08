@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>江山雪</title><link>/</link><description></description><lastBuildDate>Tue, 26 Sep 2017 13:25:38 +0800</lastBuildDate><item><title>转移到 pelican-bootstrap3</title><link>/articles/zhuan-yi-dao-pelican-bootstrap3.html</link><description>&lt;h1&gt;安装&lt;/h1&gt;
+<rss version="2.0"><channel><title>江山雪</title><link>/</link><description></description><lastBuildDate>Sun, 08 Oct 2017 18:27:07 +0800</lastBuildDate><item><title>Rust的安装与配置</title><link>/articles/rustde-an-zhuang-yu-pei-zhi.html</link><description>&lt;h2&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。&lt;/h2&gt;
+&lt;h2&gt;首先访问&lt;a href="https://www.rust-lang.org/zh-CN/install.html"&gt;Rust官网&lt;/a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;/h2&gt;
+&lt;h2&gt;Windows平台&lt;/h2&gt;
+&lt;p&gt;我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.&lt;br&gt;
+&lt;img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png"&gt;&lt;/p&gt;
+&lt;p&gt;Windows下载rustup‑init.exe点击运行如图:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png"&gt;&lt;/p&gt;
+&lt;p&gt;它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
+但我的建议是安装nightly工具链, 上面你输入&lt;code&gt;2&lt;/code&gt;回车, &lt;br&gt;
+接下来它问你第一个&lt;code&gt;Default host triple?&lt;/code&gt;, 这是些平台信息, 不用管它, 回车即可,&lt;br&gt;
+第二个是&lt;code&gt;Default toolchain?(stable,beta,nightly)&lt;/code&gt;, 即安装的工具链版本, 这里你输入nightly回车即可,&lt;br&gt;
+第三个是&lt;code&gt;Modify PATH variable? (y/n)&lt;/code&gt;, 即修改环境变量, 输入&lt;code&gt;y …&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wspsxing</dc:creator><pubDate>Sun, 08 Oct 2017 18:27:07 +0800</pubDate><guid isPermaLink="false">tag:None,2017-10-08:/articles/rustde-an-zhuang-yu-pei-zhi.html</guid><category>Rust</category><category>cargo</category><category>rustup</category></item><item><title>转移到 pelican-bootstrap3</title><link>/articles/zhuan-yi-dao-pelican-bootstrap3.html</link><description>&lt;h1&gt;安装&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 

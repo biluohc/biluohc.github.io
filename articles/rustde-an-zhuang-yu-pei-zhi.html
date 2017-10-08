@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Rust的安装与配置 - 江山雪</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="/static/images/favicon.ico" rel="icon">
+
+<link rel="canonical" href="/articles/rustde-an-zhuang-yu-pei-zhi.html">
+
+        <meta name="author" content="Wspsxing" />
+        <meta name="keywords" content="Rust,cargo,rustup" />
+        <meta name="description" content="Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 首先访问Rust官网的install页面, 它会根据你的UA显示不同的内容. Windows平台 我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox. Windows下载rustup‑init.exe点击运行如图: 它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版 但我的建议是安装nightly工具链, 上面你输入2回车, 接下来它问你第一个Default host triple?, 这是些平台信息, 不用管它, 回车即可, 第二个是Default toolchain?(stable,beta,nightly), 即安装的工具链版本, 这里你输入nightly回车即可, 第三个是Modify PATH variable? (y/n), 即修改环境变量, 输入y …" />
+
+        <meta property="og:site_name" content="江山雪" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Rust的安装与配置"/>
+        <meta property="og:url" content="/articles/rustde-an-zhuang-yu-pei-zhi.html"/>
+        <meta property="og:description" content="Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 首先访问Rust官网的install页面, 它会根据你的UA显示不同的内容. Windows平台 我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox. Windows下载rustup‑init.exe点击运行如图: 它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版 但我的建议是安装nightly工具链, 上面你输入2回车, 接下来它问你第一个Default host triple?, 这是些平台信息, 不用管它, 回车即可, 第二个是Default toolchain?(stable,beta,nightly), 即安装的工具链版本, 这里你输入nightly回车即可, 第三个是Modify PATH variable? (y/n), 即修改环境变量, 输入y …"/>
+        <meta property="article:published_time" content="2017-10-08" />
+            <meta property="article:section" content="articles" />
+            <meta property="article:tag" content="Rust" />
+            <meta property="article:tag" content="cargo" />
+            <meta property="article:tag" content="rustup" />
+            <meta property="article:author" content="Wspsxing" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link href="/theme/tipuesearch/tipuesearch.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+        <link href="/static/codeline.css" rel="stylesheet">
+
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="江山雪 ATOM Feed"/>
+
+
+
+        <link href="/feeds/articles.atom.xml" type="application/atom+xml" rel="alternate"
+              title="江山雪 articles ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+江山雪            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/categories.html">分类</a></li>
+                         <li><a href="/about.html">
+                             About
+                          </a></li>
+                         <li><a href="/you-lian.html">
+                             友链
+                          </a></li>
+                        <li class="active">
+                            <a href="/articles/index.html">Articles</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><span>
+                <form class="navbar-search" action="/search.html">
+                  <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input" required>
+                </form></span>
+              </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/articles/rustde-an-zhuang-yu-pei-zhi.html"
+                       rel="bookmark"
+                       title="Permalink to Rust的安装与配置">
+                        Rust的安装与配置
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-10-08T18:27:07+08:00"> 日 08 十月 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/rust.html">Rust</a>
+        /
+	<a href="/tag/cargo.html">cargo</a>
+        /
+	<a href="/tag/rustup.html">rustup</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h2>Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。</h2>
+<h2>首先访问<a href="https://www.rust-lang.org/zh-CN/install.html">Rust官网</a>的install页面, 它会根据你的UA显示不同的内容.</h2>
+<h2>Windows平台</h2>
+<p>我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.<br>
+<img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png"></p>
+<p>Windows下载rustup‑init.exe点击运行如图:</p>
+<p><img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png"></p>
+<p>它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
+但我的建议是安装nightly工具链, 上面你输入<code>2</code>回车, <br>
+接下来它问你第一个<code>Default host triple?</code>, 这是些平台信息, 不用管它, 回车即可,<br>
+第二个是<code>Default toolchain?(stable,beta,nightly)</code>, 即安装的工具链版本, 这里你输入nightly回车即可,<br>
+第三个是<code>Modify PATH variable? (y/n)</code>, 即修改环境变量, 输入<code>y</code>表示同意回车即可,<br>
+然后它弹出一个安装清单<code>current installation options</code>, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),<br>
+然后回车即可, 安装结束的画面如下图.</p>
+<p><img alt="win8.1_rust_install_finished.png" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rust_install_finished.png"></p>
+<h3>如果不出意外, 命令行输入<code>rustup</code>, <code>cargo</code>, <code>rustc</code>等就会输出它们的帮助信息.</h3>
+<p>Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, 包括:</p>
+<ul>
+<li>.cargo    包含了你的cargo的配置, 默认的工具链, 通过cargo安装的小工具等等</li>
+<li>.rustup   包含了实际的工具链以及从<a href="https://crates.io/crates/">crates.io</a>或GitHub下载的包等</li>
+<li>.multirust  是.rustup的一个软链接, 据说是为了兼容, 不用管它</li>
+</ul>
+<p>如果出了意外,<br>
+首先看看家目录里有没有那些目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了).<br>
+有就去看看系统环境变量里有没有<code>C:\Users\你的用户名\.cargo\bin</code>这个路径, 没有就添加环境变量.</p>
+<h3>HelloWorld</h3>
+<p>使用<code>cargo new app --bin</code>新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).<br>
+然后cd进入那个app目录, <code>cargo run</code>即可Debug模式运行HelloWorld, <code>cargo run --release</code>以release模式运行, 此时对于目录下已经生成可执行文件 .<br>
+注: 默认生成的可执行文件在项目的target的目录, debug下的是debug模式下产生的(<code>cargo build</code>), release下的是release模式产生的(<code>cargo build --release</code>).</p>
+<div class="highlight"><pre><span class="code-line"><span></span>PS C:<span class="se">\U</span>sers<span class="se">\m</span>xo<span class="se">\D</span>esktop<span class="se">\a</span>p&gt; cargo new app --bin</span>
+<span class="code-line">     Created binary <span class="o">(</span>application<span class="o">)</span> <span class="sb">`</span>app<span class="sb">`</span> project</span>
+<span class="code-line">PS C:<span class="se">\U</span>sers<span class="se">\m</span>xo<span class="se">\D</span>esktop<span class="se">\a</span>p&gt; <span class="nb">cd</span> app</span>
+<span class="code-line">PS C:<span class="se">\U</span>sers<span class="se">\m</span>xo<span class="se">\D</span>esktop<span class="se">\a</span>p<span class="se">\a</span>pp&gt; cargo run</span>
+<span class="code-line">   Compiling app v0.1.0 <span class="o">(</span>file:///C:/Users/mxo/Desktop/ap/app<span class="o">)</span></span>
+<span class="code-line">    Finished dev <span class="o">[</span>unoptimized + debuginfo<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> in <span class="m">0</span>.82 secs</span>
+<span class="code-line">     Running <span class="sb">`</span>target<span class="se">\d</span>ebug<span class="se">\a</span>pp.exe<span class="sb">`</span></span>
+<span class="code-line">Hello, world!</span>
+</pre></div>
+
+
+<h3>关于link.exe(Linux/Unix不用管这个)</h3>
+<p>这样安装的是<code>MSVC</code>版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去<a href="http://landinghub.visualstudio.com/visual-cpp-build-tools">visual-cpp-build-tools</a>安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.</p>
+<h2>Linux/Unix平台</h2>
+<p><img alt="unix_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Linux_Rust_Home.png"></p>
+<p>Linux的安装和windows的大同小异, 主要是第一步运行 <code>curl https://sh.rustup.rs -sSf | sh</code>, 然后跟着提示走就行(参考上面的windows部分).</p>
+<p>装好后检查 rustc, cargo , rustup 能否在命令行调用. </p>
+<p>如果没有就确认环境变量里有没有 <code>~/.cargo/bin</code>, 没有就自己加.  </p>
+<p>检查家目录里有没有那三个目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了). </p>
+<p>HelloWorld和windows一样的.</p>
+<h2>关于RLS或racer的高亮, 补全, 定义跳转, 语法检查, 代码格式化什么的</h2>
+<p>ide, 编辑器添加rust扩展(或者说插件?)后可以调用RLS或racer.</p>
+<p>RLS的分析速度比racer快很多, 所以推荐RLS</p>
+<p>目前的RLS还在预览版, 只支持 nightly , <code>--toolchain nightly</code>指定的工具链, 日后稳定了应该可以把 --preview去掉.</p>
+<div class="highlight"><pre><span class="code-line"><span></span>rustup component add rls-preview --toolchain nightly</span>
+</pre></div>
+
+
+<p>rust-analysis RLS分析需要它</p>
+<div class="highlight"><pre><span class="code-line"><span></span>rustup component add rust-analysis</span>
+</pre></div>
+
+
+<p>rust-src 源码跳转需要源码</p>
+<div class="highlight"><pre><span class="code-line"><span></span>rustup component add rust-src</span>
+</pre></div>
+
+
+<p>rustfmt 如果你没有安装RLS, 也可以用rustfmt<br>
+注: 你可以自己调用(<code>cargo fmt</code>).</p>
+<div class="highlight"><pre><span class="code-line"><span></span>cargo install rustfmt</span>
+</pre></div>
+
+
+<p>clippy 它会提醒你某些代码的更好的写法, 可以纠正些你的错误, 是初学者一个很好的老师.<br>
+注: 需要自己调用(<code>cargo clippy</code>).</p>
+<div class="highlight"><pre><span class="code-line"><span></span>cargo install clippy</span>
+</pre></div>
+
+
+<p>安装完上面这些, 然后再打开VSocde安装Rust扩展, 然后再随便打开个.rs后缀的文本文件, VScode就会问你用哪个, 选RLS就行.</p>
+<p>另外这是racer的安装</p>
+<div class="highlight"><pre><span class="code-line"><span></span>cargo install racer</span>
+</pre></div>
+
+
+<h2>关于第三方库从<a href="https://crates.io/crates/">crates.io</a>或Github/GitLab下载缓慢的问题</h2>
+<h3>使用USTC镜像</h3>
+<p><a href="http://mirrors.ustc.edu.cn/help/rust-crates.html">ustc-rust-crates</a>
+USTC的帮助里说的很清楚, 在$HOME/.cargo/config 中添加内容就行(如果没有就新建), 它的不足就是更新的可能不是很及时(多少小时同步一次来着).</p>
+<h3>使用代理</h3>
+<p>在$HOME/.cargo/config添加下面三行, 其中<code>127.0.0.1:1080</code>是你代理的地址和端口, timeout是超时时间.<br>
+官方文档在这里 <a href="http://doc.crates.io/config.html">config.html</a>. </p>
+<div class="highlight"><pre><span class="code-line"><span></span><span class="k">[http]</span></span>
+<span class="code-line"><span class="na">proxy</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1:1080&quot;</span></span>
+<span class="code-line"><span class="na">timeout</span> <span class="o">=</span> <span class="s">60000</span></span>
+</pre></div>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+        <div id="container"></div>
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+        <script>
+            var gitment = new Gitment({
+                // id: '', // 可选。默认为 location.href
+                owner: 'biluohc',
+                repo: 'biluohc.github.io',
+                oauth: {
+                    client_id: 'c8ce4b3e0a529dc6f156',
+                    client_secret: '01ea647c97776f1cb19cb069670887777c57b358',
+                },
+            })
+            gitment.render('container')
+        </script>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+     <p>
+        <a href="/about.html">
+            <img width="100%" class="img-thumbnail" src="/static/images/logo.png" />
+        </a>
+    </p>
+    <p style="text-align:center">
+        <a href="/about.html"><strong> Wspsxing</strong></a>
+    </p>
+    <p>
+        <strong> <h3 style="text-align:center">
+至虚极, 守静笃。
+</h3>
+</strong>
+    </p>
+</div><!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="/tag/bo-ke.html">博客</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/ri-chang.html">日常</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/linux.html">Linux</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/pelican.html">Pelican</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/kai-shi.html">开始</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/rustup.html">rustup</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/cargo.html">cargo</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/gnome.html">GNOME</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/python.html">Python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/opensuse.html">openSUSE</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/rust.html">Rust</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/zipbao-po.html">zip爆破</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+
+<!-- Sidebar/Github -->
+<li class="list-group-item">
+  <h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+  <div id="gh_repos">
+    <p class="list-group-item">Status updating...</p>
+  </div>
+</li>
+<!-- End Sidebar/Github -->
+
+<!-- Sidebar/Links -->
+<li class="list-group-item">
+  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+  <ul class="list-group" id="links">
+    <li class="list-group-item">
+      <a href="https://www.rust-lang.org" target="_blank">Rust</a>
+    </li>
+    <li class="list-group-item">
+      <a href="http://python.org/" target="_blank">Python</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Links -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Wspsxing
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+<!-- GitHub JS Code -->
+<script type="text/javascript">
+$(document).ready(function () {
+  if (!window.jXHR) {
+    var jxhr = document.createElement('script');
+    jxhr.type = 'text/javascript';
+    jxhr.src = '/theme/js/jXHR.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(jxhr, s);
+  }
+
+  github.showRepos({
+    user: 'biluohc',
+    count: 5,
+    skip_forks: false,
+    target: '#gh_repos'
+  });
+});
+</script>
+<script src="/theme/js/github.js" type="text/javascript"></script>
+<!-- End GitHub JS Code -->
+
+
+</body>
+</html>

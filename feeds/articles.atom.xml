@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>江山雪 - articles</title><link href="/" rel="alternate"></link><link href="/feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2017-09-26T13:25:38+08:00</updated><entry><title>转移到 pelican-bootstrap3</title><link href="/articles/zhuan-yi-dao-pelican-bootstrap3.html" rel="alternate"></link><published>2017-09-26T13:25:38+08:00</published><updated>2017-09-26T13:25:38+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-09-26:/articles/zhuan-yi-dao-pelican-bootstrap3.html</id><summary type="html">&lt;h1&gt;安装&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>江山雪 - articles</title><link href="/" rel="alternate"></link><link href="/feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2017-10-08T18:27:07+08:00</updated><entry><title>Rust的安装与配置</title><link href="/articles/rustde-an-zhuang-yu-pei-zhi.html" rel="alternate"></link><published>2017-10-08T18:27:07+08:00</published><updated>2017-10-08T18:27:07+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-10-08:/articles/rustde-an-zhuang-yu-pei-zhi.html</id><summary type="html">&lt;h2&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。&lt;/h2&gt;
+&lt;h2&gt;首先访问&lt;a href="https://www.rust-lang.org/zh-CN/install.html"&gt;Rust官网&lt;/a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;/h2&gt;
+&lt;h2&gt;Windows平台&lt;/h2&gt;
+&lt;p&gt;我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.&lt;br&gt;
+&lt;img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png"&gt;&lt;/p&gt;
+&lt;p&gt;Windows下载rustup‑init.exe点击运行如图:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png"&gt;&lt;/p&gt;
+&lt;p&gt;它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
+但我的建议是安装nightly工具链, 上面你输入&lt;code&gt;2&lt;/code&gt;回车, &lt;br&gt;
+接下来它问你第一个&lt;code&gt;Default host triple?&lt;/code&gt;, 这是些平台信息, 不用管它, 回车即可,&lt;br&gt;
+第二个是&lt;code&gt;Default toolchain?(stable,beta,nightly)&lt;/code&gt;, 即安装的工具链版本, 这里你输入nightly回车即可,&lt;br&gt;
+第三个是&lt;code&gt;Modify PATH variable? (y/n)&lt;/code&gt;, 即修改环境变量, 输入&lt;code&gt;y …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。&lt;/h2&gt;
+&lt;h2&gt;首先访问&lt;a href="https://www.rust-lang.org/zh-CN/install.html"&gt;Rust官网&lt;/a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;/h2&gt;
+&lt;h2&gt;Windows平台&lt;/h2&gt;
+&lt;p&gt;我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.&lt;br&gt;
+&lt;img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png"&gt;&lt;/p&gt;
+&lt;p&gt;Windows下载rustup‑init.exe点击运行如图:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png"&gt;&lt;/p&gt;
+&lt;p&gt;它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
+但我的建议是安装nightly工具链, 上面你输入&lt;code&gt;2&lt;/code&gt;回车, &lt;br&gt;
+接下来它问你第一个&lt;code&gt;Default host triple?&lt;/code&gt;, 这是些平台信息, 不用管它, 回车即可,&lt;br&gt;
+第二个是&lt;code&gt;Default toolchain?(stable,beta,nightly)&lt;/code&gt;, 即安装的工具链版本, 这里你输入nightly回车即可,&lt;br&gt;
+第三个是&lt;code&gt;Modify PATH variable? (y/n)&lt;/code&gt;, 即修改环境变量, 输入&lt;code&gt;y&lt;/code&gt;表示同意回车即可,&lt;br&gt;
+然后它弹出一个安装清单&lt;code&gt;current installation options&lt;/code&gt;, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),&lt;br&gt;
+然后回车即可, 安装结束的画面如下图.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="win8.1_rust_install_finished.png" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rust_install_finished.png"&gt;&lt;/p&gt;
+&lt;h3&gt;如果不出意外, 命令行输入&lt;code&gt;rustup&lt;/code&gt;, &lt;code&gt;cargo&lt;/code&gt;, &lt;code&gt;rustc&lt;/code&gt;等就会输出它们的帮助信息.&lt;/h3&gt;
+&lt;p&gt;Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, 包括:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;.cargo    包含了你的cargo的配置, 默认的工具链, 通过cargo安装的小工具等等&lt;/li&gt;
+&lt;li&gt;.rustup   包含了实际的工具链以及从&lt;a href="https://crates.io/crates/"&gt;crates.io&lt;/a&gt;或GitHub下载的包等&lt;/li&gt;
+&lt;li&gt;.multirust  是.rustup的一个软链接, 据说是为了兼容, 不用管它&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果出了意外,&lt;br&gt;
+首先看看家目录里有没有那些目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了).&lt;br&gt;
+有就去看看系统环境变量里有没有&lt;code&gt;C:\Users\你的用户名\.cargo\bin&lt;/code&gt;这个路径, 没有就添加环境变量.&lt;/p&gt;
+&lt;h3&gt;HelloWorld&lt;/h3&gt;
+&lt;p&gt;使用&lt;code&gt;cargo new app --bin&lt;/code&gt;新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).&lt;br&gt;
+然后cd进入那个app目录, &lt;code&gt;cargo run&lt;/code&gt;即可Debug模式运行HelloWorld, &lt;code&gt;cargo run --release&lt;/code&gt;以release模式运行, 此时对于目录下已经生成可执行文件 .&lt;br&gt;
+注: 默认生成的可执行文件在项目的target的目录, debug下的是debug模式下产生的(&lt;code&gt;cargo build&lt;/code&gt;), release下的是release模式产生的(&lt;code&gt;cargo build --release&lt;/code&gt;).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;PS C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\m&lt;/span&gt;xo&lt;span class="se"&gt;\D&lt;/span&gt;esktop&lt;span class="se"&gt;\a&lt;/span&gt;p&amp;gt; cargo new app --bin&lt;/span&gt;
+&lt;span class="code-line"&gt;     Created binary &lt;span class="o"&gt;(&lt;/span&gt;application&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;app&lt;span class="sb"&gt;`&lt;/span&gt; project&lt;/span&gt;
+&lt;span class="code-line"&gt;PS C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\m&lt;/span&gt;xo&lt;span class="se"&gt;\D&lt;/span&gt;esktop&lt;span class="se"&gt;\a&lt;/span&gt;p&amp;gt; &lt;span class="nb"&gt;cd&lt;/span&gt; app&lt;/span&gt;
+&lt;span class="code-line"&gt;PS C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\m&lt;/span&gt;xo&lt;span class="se"&gt;\D&lt;/span&gt;esktop&lt;span class="se"&gt;\a&lt;/span&gt;p&lt;span class="se"&gt;\a&lt;/span&gt;pp&amp;gt; cargo run&lt;/span&gt;
+&lt;span class="code-line"&gt;   Compiling app v0.1.0 &lt;span class="o"&gt;(&lt;/span&gt;file:///C:/Users/mxo/Desktop/ap/app&lt;span class="o"&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;    Finished dev &lt;span class="o"&gt;[&lt;/span&gt;unoptimized + debuginfo&lt;span class="o"&gt;]&lt;/span&gt; target&lt;span class="o"&gt;(&lt;/span&gt;s&lt;span class="o"&gt;)&lt;/span&gt; in &lt;span class="m"&gt;0&lt;/span&gt;.82 secs&lt;/span&gt;
+&lt;span class="code-line"&gt;     Running &lt;span class="sb"&gt;`&lt;/span&gt;target&lt;span class="se"&gt;\d&lt;/span&gt;ebug&lt;span class="se"&gt;\a&lt;/span&gt;pp.exe&lt;span class="sb"&gt;`&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;Hello, world!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;关于link.exe(Linux/Unix不用管这个)&lt;/h3&gt;
+&lt;p&gt;这样安装的是&lt;code&gt;MSVC&lt;/code&gt;版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去&lt;a href="http://landinghub.visualstudio.com/visual-cpp-build-tools"&gt;visual-cpp-build-tools&lt;/a&gt;安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.&lt;/p&gt;
+&lt;h2&gt;Linux/Unix平台&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="unix_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Linux_Rust_Home.png"&gt;&lt;/p&gt;
+&lt;p&gt;Linux的安装和windows的大同小异, 主要是第一步运行 &lt;code&gt;curl https://sh.rustup.rs -sSf | sh&lt;/code&gt;, 然后跟着提示走就行(参考上面的windows部分).&lt;/p&gt;
+&lt;p&gt;装好后检查 rustc, cargo , rustup 能否在命令行调用. &lt;/p&gt;
+&lt;p&gt;如果没有就确认环境变量里有没有 &lt;code&gt;~/.cargo/bin&lt;/code&gt;, 没有就自己加.  &lt;/p&gt;
+&lt;p&gt;检查家目录里有没有那三个目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了). &lt;/p&gt;
+&lt;p&gt;HelloWorld和windows一样的.&lt;/p&gt;
+&lt;h2&gt;关于RLS或racer的高亮, 补全, 定义跳转, 语法检查, 代码格式化什么的&lt;/h2&gt;
+&lt;p&gt;ide, 编辑器添加rust扩展(或者说插件?)后可以调用RLS或racer.&lt;/p&gt;
+&lt;p&gt;RLS的分析速度比racer快很多, 所以推荐RLS&lt;/p&gt;
+&lt;p&gt;目前的RLS还在预览版, 只支持 nightly , &lt;code&gt;--toolchain nightly&lt;/code&gt;指定的工具链, 日后稳定了应该可以把 --preview去掉.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;rustup component add rls-preview --toolchain nightly&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;rust-analysis RLS分析需要它&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;rustup component add rust-analysis&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;rust-src 源码跳转需要源码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;rustup component add rust-src&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;rustfmt 如果你没有安装RLS, 也可以用rustfmt&lt;br&gt;
+注: 你可以自己调用(&lt;code&gt;cargo fmt&lt;/code&gt;).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;cargo install rustfmt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;clippy 它会提醒你某些代码的更好的写法, 可以纠正些你的错误, 是初学者一个很好的老师.&lt;br&gt;
+注: 需要自己调用(&lt;code&gt;cargo clippy&lt;/code&gt;).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;cargo install clippy&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装完上面这些, 然后再打开VSocde安装Rust扩展, 然后再随便打开个.rs后缀的文本文件, VScode就会问你用哪个, 选RLS就行.&lt;/p&gt;
+&lt;p&gt;另外这是racer的安装&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;cargo install racer&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;关于第三方库从&lt;a href="https://crates.io/crates/"&gt;crates.io&lt;/a&gt;或Github/GitLab下载缓慢的问题&lt;/h2&gt;
+&lt;h3&gt;使用USTC镜像&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://mirrors.ustc.edu.cn/help/rust-crates.html"&gt;ustc-rust-crates&lt;/a&gt;
+USTC的帮助里说的很清楚, 在$HOME/.cargo/config 中添加内容就行(如果没有就新建), 它的不足就是更新的可能不是很及时(多少小时同步一次来着).&lt;/p&gt;
+&lt;h3&gt;使用代理&lt;/h3&gt;
+&lt;p&gt;在$HOME/.cargo/config添加下面三行, 其中&lt;code&gt;127.0.0.1:1080&lt;/code&gt;是你代理的地址和端口, timeout是超时时间.&lt;br&gt;
+官方文档在这里 &lt;a href="http://doc.crates.io/config.html"&gt;config.html&lt;/a&gt;. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[http]&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;proxy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;127.0.0.1:1080&amp;quot;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;timeout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;60000&lt;/span&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Rust"></category><category term="cargo"></category><category term="rustup"></category></entry><entry><title>转移到 pelican-bootstrap3</title><link href="/articles/zhuan-yi-dao-pelican-bootstrap3.html" rel="alternate"></link><published>2017-09-26T13:25:38+08:00</published><updated>2017-09-26T13:25:38+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-09-26:/articles/zhuan-yi-dao-pelican-bootstrap3.html</id><summary type="html">&lt;h1&gt;安装&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
