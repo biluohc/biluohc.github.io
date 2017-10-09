@@ -128,9 +128,9 @@
 <p>首先访问<a href="https://www.rust-lang.org/zh-CN/install.html">Rust官网</a>的install页面, 它会根据你的UA显示不同的内容.</p>
 <h2>Windows平台</h2>
 <p>我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.<br>
-<img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png"></p>
+<img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_Rust_Home.png"></p>
 <p>Windows下载rustup‑init.exe点击运行如图:</p>
-<p><img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png"></p>
+<p><img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_rustup_running.png"></p>
 <p>它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
 但我的建议是安装nightly工具链, 上面你输入<code>2</code>回车, <br>
 接下来它问你第一个<code>Default host triple?</code>, 这是些平台信息, 不用管它, 回车即可,<br>
@@ -138,7 +138,7 @@
 第三个是<code>Modify PATH variable? (y/n)</code>, 即修改环境变量, 输入<code>y</code>表示同意回车即可,<br>
 然后它弹出一个安装清单<code>current installation options</code>, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),<br>
 然后回车即可, 安装结束的画面如下图.</p>
-<p><img alt="win8.1_rust_install_finished.png" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rust_install_finished.png"></p>
+<p><img alt="win8.1_rust_install_finished.png" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_rust_install_finished.png"></p>
 <h3>如果不出意外, 命令行输入<code>rustup</code>, <code>cargo</code>, <code>rustc</code>等就会输出它们的帮助信息.</h3>
 <p>Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, 包括:</p>
 <ul>
@@ -152,7 +152,7 @@
 <h3>HelloWorld</h3>
 <p>使用<code>cargo new app --bin</code>新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).<br>
 然后cd进入那个app目录, <code>cargo run</code>即可Debug模式运行HelloWorld, <code>cargo run --release</code>以release模式运行, 此时对于目录下已经生成可执行文件 .<br>
-注: 默认生成的可执行文件在项目的target的目录, debug下的是debug模式下产生的(<code>cargo build</code>), release下的是release模式产生的(<code>cargo build --release</code>).</p>
+注: 默认生成的可执行文件在项目的target目录, debug下的是debug模式下产生的(<code>cargo build</code>), release下的是release模式产生的(<code>cargo build --release</code>).</p>
 <div class="highlight"><pre><span class="code-line"><span></span>PS C:<span class="se">\U</span>sers<span class="se">\m</span>xo<span class="se">\D</span>esktop<span class="se">\a</span>p&gt; cargo new app --bin</span>
 <span class="code-line">     Created binary <span class="o">(</span>application<span class="o">)</span> <span class="sb">`</span>app<span class="sb">`</span> project</span>
 <span class="code-line">PS C:<span class="se">\U</span>sers<span class="se">\m</span>xo<span class="se">\D</span>esktop<span class="se">\a</span>p&gt; <span class="nb">cd</span> app</span>
@@ -167,7 +167,7 @@
 <h3>关于link.exe(Linux/Unix不用管这个)</h3>
 <p>这样安装的是<code>MSVC</code>版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去<a href="http://landinghub.visualstudio.com/visual-cpp-build-tools">visual-cpp-build-tools</a>安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.</p>
 <h2>Linux/Unix平台</h2>
-<p><img alt="unix_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Linux_Rust_Home.png"></p>
+<p><img alt="unix_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/Linux_Rust_Home.png"></p>
 <p>Linux的安装和windows的大同小异, 主要是第一步运行 <code>curl https://sh.rustup.rs -sSf | sh</code>, 然后跟着提示走就行(参考上面的windows部分).</p>
 <p>装好后检查 rustc, cargo , rustup 能否在命令行调用. </p>
 <p>如果没有就确认环境变量里有没有 <code>~/.cargo/bin</code>, 没有就自己加.  </p>
@@ -269,14 +269,41 @@ USTC的帮助里说的很清楚, 在$HOME/.cargo/config 中添加内容就行(�
     <li class="list-group-item tag-1">
       <a href="/tag/bo-ke.html">博客</a>
     </li>
+    <li class="list-group-item tag-1">
+      <a href="/tag/opensuse.html">OpenSUSE</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="/tag/linux.html">Linux</a>
+    </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/zipbao-po.html">zip爆破</a>
+      <a href="/tag/liu-lan-qi.html">浏览器</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/gnome.html">GNOME</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/python.html">Python</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/kai-shi.html">开始</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/proxy.html">Proxy</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/nightly.html">Nightly</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/rust.html">Rust</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/pelican.html">Pelican</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/linux.html">Linux</a>
+      <a href="/tag/ri-chang.html">日常</a>
+    </li>
+    <li class="list-group-item tag-4">
+      <a href="/tag/zipbao-po.html">zip爆破</a>
     </li>
     <li class="list-group-item tag-4">
       <a href="/tag/rustup.html">rustup</a>
@@ -285,22 +312,7 @@ USTC的帮助里说的很清楚, 在$HOME/.cargo/config 中添加内容就行(�
       <a href="/tag/cargo.html">cargo</a>
     </li>
     <li class="list-group-item tag-4">
-      <a href="/tag/python.html">Python</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/rust.html">Rust</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/ri-chang.html">日常</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/gnome.html">GNOME</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/opensuse.html">openSUSE</a>
-    </li>
-    <li class="list-group-item tag-4">
-      <a href="/tag/kai-shi.html">开始</a>
+      <a href="/tag/firefox.html">Firefox</a>
     </li>
   </ul>
 </li>

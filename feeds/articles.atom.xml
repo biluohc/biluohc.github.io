@@ -1,13 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>江山雪 - articles</title><link href="/" rel="alternate"></link><link href="/feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2017-10-08T18:27:07+08:00</updated><entry><title>Rust的安装与配置</title><link href="/articles/rustde-an-zhuang-yu-pei-zhi.html" rel="alternate"></link><published>2017-10-08T18:27:07+08:00</published><updated>2017-10-08T18:27:07+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-10-08:/articles/rustde-an-zhuang-yu-pei-zhi.html</id><summary type="html">&lt;p&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>江山雪 - articles</title><link href="/" rel="alternate"></link><link href="/feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2017-10-08T23:33:07+08:00</updated><entry><title>记录Linux上Firefox58的安装与配置</title><link href="/articles/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi.html" rel="alternate"></link><published>2017-10-08T23:33:07+08:00</published><updated>2017-10-08T23:33:07+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-10-08:/articles/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi.html</id><summary type="html">&lt;p&gt;由于用的OpenSUSE, 源里的Fiefox一直是Stable版, 目前才52, 但是我已经习惯了新版的速度.  &lt;/p&gt;
+&lt;p&gt;新版无论是启动速度还是页面打开速度都和52不是一个时代的, 多窗口多标签下也流畅了太多, 毕竟是由原来的多线程变成现在的多进程, Stylo并行加载CSS.&lt;/p&gt;
+&lt;h2&gt;下载&lt;/h2&gt;
+&lt;p&gt;从 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;由于用的OpenSUSE, 源里的Fiefox一直是Stable版, 目前才52, 但是我已经习惯了新版的速度.  &lt;/p&gt;
+&lt;p&gt;新版无论是启动速度还是页面打开速度都和52不是一个时代的, 多窗口多标签下也流畅了太多, 毕竟是由原来的多线程变成现在的多进程, Stylo并行加载CSS.&lt;/p&gt;
+&lt;h2&gt;下载&lt;/h2&gt;
+&lt;p&gt;从&lt;a href="https://www.mozilla.org/zh-CN/firefox/nightly/all/"&gt;Firefox Nightly&lt;/a&gt;下载简体中文版的二进制版压缩包, 解压到本地点击可执行文件就能用.&lt;/p&gt;
+&lt;h2&gt;图标&lt;/h2&gt;
+&lt;p&gt;然后在本地新建个.desktop文件, 路径 &lt;code&gt;~/.local/share/applications/Firefox.desktop&lt;/code&gt;, 你需要把里面的&lt;code&gt;Exec=/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox&lt;/code&gt; 换成你自己的路径. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[Desktop Entry]&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Nightly&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;GenericName&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Web Browser&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;GenericName[zh_CN]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;网络浏览器&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Comment&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Browse the World Wide Web&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Comment[zh_CN]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;浏览互联网&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Exec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox %u&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Terminal&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Application&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Icon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;firefox-nightly&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Categories&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Network;WebBrowser;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;MimeType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;StartupNotify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Actions&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;NewTab;NewWindow;NewPrivateWindow;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name[zh_CN]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Nightly&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="k"&gt;[Desktop Action NewTab]&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Open new tab&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name[zh_CN]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;打开新标签页&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Exec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox -new-tab&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="k"&gt;[Desktop Action NewWindow]&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;Open new window&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name[zh_CN]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;打开新窗口&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Exec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox -new-window&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="k"&gt;[Desktop Action NewPrivateWindow]&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;New private window&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Name[zh_CN]&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;新建隐私浏览窗口&lt;/span&gt;&lt;/span&gt;
+&lt;span class="code-line"&gt;&lt;span class="na"&gt;Exec&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox -private-window&lt;/span&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注: 这里的可执行文件路径一定要和原文件相同, 我原来自做聪明用了一个软链接, 结果新建的窗口的图标不归属于原图标, 由于系统里还有个Stable版的Firefox, 就归属到它的图标上去了,233.&lt;/p&gt;
+&lt;h2&gt;扩展&lt;/h2&gt;
+&lt;p&gt;我使用的扩展
+&lt;img alt="扩展0" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/记录Linux上Firefox58的安装与配置/扩展0.png"&gt;
+&lt;img alt="扩展1" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/记录Linux上Firefox58的安装与配置/扩展1.png"&gt;&lt;/p&gt;
+&lt;p&gt;由于57以来Firefox彻底废除XUL, 迁移到WebExtension, 所以最近新扩展的出现和扩展的更新都比较频繁, 可以多关注下, 也许日后就得到了满意的呢.&lt;/p&gt;
+&lt;p&gt;原来纠结于没有好的Proxy扩展可以用, 最后发现&lt;code&gt;SwitchyOmega&lt;/code&gt;测试版在Nightly上可用了.
+由于好久没用过它, 还去找了找教程...&lt;/p&gt;
+&lt;p&gt;先是情景模式的proxy里选择你的代理协议,地址,端口.
+&lt;img alt="SwitchyOmegaProxy" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/记录Linux上Firefox58的安装与配置/SwitchyOmegaProxy.png"&gt;&lt;/p&gt;
+&lt;p&gt;然后在auto switch勾上规则列表规则, 后面的情景模式选择proxy(符合规则的就是被Q了的网站), 下一行的默认情景模式选择直接连接(没被Q的网站).&lt;br&gt;
+规则列表设置里选 AutoProxy, 
+网址填 &lt;code&gt;https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="SwitchyOmegaAutoSwitch" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/记录Linux上Firefox58的安装与配置/SwitchyOmegaAutoSwitch.png"&gt;&lt;/p&gt;
+&lt;p&gt;最后点击左侧的应用选项即可.&lt;/p&gt;
+&lt;h2&gt;最后附上两张内存占用&lt;/h2&gt;
+&lt;p&gt;单窗口几个标签页
+&lt;img alt="内存占用" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/记录Linux上Firefox58的安装与配置/mem.png"&gt;&lt;/p&gt;
+&lt;p&gt;三窗口一堆图片/视频标签页
+&lt;img alt="内存占用" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/记录Linux上Firefox58的安装与配置/mem3windows.png"&gt;&lt;/p&gt;
+&lt;p&gt;你可能需要的:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://zhuanlan.zhihu.com/ilovefirefox"&gt;Firefox 信仰充值中心&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://tieba.baidu.com/f?kw=firefox&amp;amp;fr=home"&gt;狐吧&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Firefox"></category><category term="Nightly"></category><category term="OpenSUSE"></category><category term="Linux"></category><category term="浏览器"></category><category term="Proxy"></category></entry><entry><title>Rust的安装与配置</title><link href="/articles/rustde-an-zhuang-yu-pei-zhi.html" rel="alternate"></link><published>2017-10-08T18:27:07+08:00</published><updated>2017-10-08T18:27:07+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-10-08:/articles/rustde-an-zhuang-yu-pei-zhi.html</id><summary type="html">&lt;p&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 &lt;/p&gt;
 &lt;p&gt;首先访问&lt;a href="https://www.rust-lang.org/zh-CN/install.html"&gt;Rust官网&lt;/a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;/p&gt;
 &lt;h2&gt;Windows平台 …&lt;/h2&gt;</summary><content type="html">&lt;p&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 &lt;/p&gt;
 &lt;p&gt;首先访问&lt;a href="https://www.rust-lang.org/zh-CN/install.html"&gt;Rust官网&lt;/a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;/p&gt;
 &lt;h2&gt;Windows平台&lt;/h2&gt;
 &lt;p&gt;我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.&lt;br&gt;
-&lt;img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png"&gt;&lt;/p&gt;
+&lt;img alt="windows_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_Rust_Home.png"&gt;&lt;/p&gt;
 &lt;p&gt;Windows下载rustup‑init.exe点击运行如图:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="windows_rustup_running" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_rustup_running.png"&gt;&lt;/p&gt;
 &lt;p&gt;它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
 但我的建议是安装nightly工具链, 上面你输入&lt;code&gt;2&lt;/code&gt;回车, &lt;br&gt;
 接下来它问你第一个&lt;code&gt;Default host triple?&lt;/code&gt;, 这是些平台信息, 不用管它, 回车即可,&lt;br&gt;
@@ -15,7 +86,7 @@
 第三个是&lt;code&gt;Modify PATH variable? (y/n)&lt;/code&gt;, 即修改环境变量, 输入&lt;code&gt;y&lt;/code&gt;表示同意回车即可,&lt;br&gt;
 然后它弹出一个安装清单&lt;code&gt;current installation options&lt;/code&gt;, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),&lt;br&gt;
 然后回车即可, 安装结束的画面如下图.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="win8.1_rust_install_finished.png" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rust_install_finished.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="win8.1_rust_install_finished.png" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_rust_install_finished.png"&gt;&lt;/p&gt;
 &lt;h3&gt;如果不出意外, 命令行输入&lt;code&gt;rustup&lt;/code&gt;, &lt;code&gt;cargo&lt;/code&gt;, &lt;code&gt;rustc&lt;/code&gt;等就会输出它们的帮助信息.&lt;/h3&gt;
 &lt;p&gt;Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, 包括:&lt;/p&gt;
 &lt;ul&gt;
@@ -29,7 +100,7 @@
 &lt;h3&gt;HelloWorld&lt;/h3&gt;
 &lt;p&gt;使用&lt;code&gt;cargo new app --bin&lt;/code&gt;新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).&lt;br&gt;
 然后cd进入那个app目录, &lt;code&gt;cargo run&lt;/code&gt;即可Debug模式运行HelloWorld, &lt;code&gt;cargo run --release&lt;/code&gt;以release模式运行, 此时对于目录下已经生成可执行文件 .&lt;br&gt;
-注: 默认生成的可执行文件在项目的target的目录, debug下的是debug模式下产生的(&lt;code&gt;cargo build&lt;/code&gt;), release下的是release模式产生的(&lt;code&gt;cargo build --release&lt;/code&gt;).&lt;/p&gt;
+注: 默认生成的可执行文件在项目的target目录, debug下的是debug模式下产生的(&lt;code&gt;cargo build&lt;/code&gt;), release下的是release模式产生的(&lt;code&gt;cargo build --release&lt;/code&gt;).&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;PS C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\m&lt;/span&gt;xo&lt;span class="se"&gt;\D&lt;/span&gt;esktop&lt;span class="se"&gt;\a&lt;/span&gt;p&amp;gt; cargo new app --bin&lt;/span&gt;
 &lt;span class="code-line"&gt;     Created binary &lt;span class="o"&gt;(&lt;/span&gt;application&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;app&lt;span class="sb"&gt;`&lt;/span&gt; project&lt;/span&gt;
 &lt;span class="code-line"&gt;PS C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\m&lt;/span&gt;xo&lt;span class="se"&gt;\D&lt;/span&gt;esktop&lt;span class="se"&gt;\a&lt;/span&gt;p&amp;gt; &lt;span class="nb"&gt;cd&lt;/span&gt; app&lt;/span&gt;
@@ -44,7 +115,7 @@
 &lt;h3&gt;关于link.exe(Linux/Unix不用管这个)&lt;/h3&gt;
 &lt;p&gt;这样安装的是&lt;code&gt;MSVC&lt;/code&gt;版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去&lt;a href="http://landinghub.visualstudio.com/visual-cpp-build-tools"&gt;visual-cpp-build-tools&lt;/a&gt;安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.&lt;/p&gt;
 &lt;h2&gt;Linux/Unix平台&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="unix_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Linux_Rust_Home.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="unix_rust_site" src="http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/Linux_Rust_Home.png"&gt;&lt;/p&gt;
 &lt;p&gt;Linux的安装和windows的大同小异, 主要是第一步运行 &lt;code&gt;curl https://sh.rustup.rs -sSf | sh&lt;/code&gt;, 然后跟着提示走就行(参考上面的windows部分).&lt;/p&gt;
 &lt;p&gt;装好后检查 rustc, cargo , rustup 能否在命令行调用. &lt;/p&gt;
 &lt;p&gt;如果没有就确认环境变量里有没有 &lt;code&gt;~/.cargo/bin&lt;/code&gt;, 没有就自己加.  &lt;/p&gt;
