@@ -9,12 +9,13 @@ Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防�
 
 ## Windows平台
 我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.  
-![windows_rust_site](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_Rust_Home.png)
+![windows_rust_site](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_Rust_Home.png)
 
 
 Windows下载rustup‑init.exe点击运行如图:
 
-![windows_rustup_running](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rustup_running.png)
+![windows_rustup_running](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_rustup_running.png)
+
 
 它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
 但我的建议是安装nightly工具链, 上面你输入`2`回车,   
@@ -24,7 +25,7 @@ Windows下载rustup‑init.exe点击运行如图:
 然后它弹出一个安装清单`current installation options`, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),  
 然后回车即可, 安装结束的画面如下图.
 
-![win8.1_rust_install_finished.png](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/VirtualBox_win8.1_rust_install_finished.png)
+![win8.1_rust_install_finished.png](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/VirtualBox_win8.1_rust_install_finished.png)
 
 ### 如果不出意外, 命令行输入`rustup`, `cargo`, `rustc`等就会输出它们的帮助信息.
 
@@ -41,7 +42,7 @@ Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, �
 ### HelloWorld
 使用`cargo new app --bin`新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).  
 然后cd进入那个app目录, `cargo run`即可Debug模式运行HelloWorld, `cargo run --release`以release模式运行, 此时对于目录下已经生成可执行文件 .  
-注: 默认生成的可执行文件在项目的target的目录, debug下的是debug模式下产生的(`cargo build`), release下的是release模式产生的(`cargo build --release`).
+注: 默认生成的可执行文件在项目的target目录, debug下的是debug模式下产生的(`cargo build`), release下的是release模式产生的(`cargo build --release`).
 
 ```sh
 PS C:\Users\mxo\Desktop\ap> cargo new app --bin
@@ -59,7 +60,7 @@ Hello, world!
 这样安装的是`MSVC`版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去[visual-cpp-build-tools](http://landinghub.visualstudio.com/visual-cpp-build-tools)安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.
 
 ## Linux/Unix平台
-![unix_rust_site](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Linux_Rust_Home.png)
+![unix_rust_site](http://oxi7w27n4.bkt.clouddn.com//qiniu/github/blog/bg/content/images/Rust的安装与配置/Linux_Rust_Home.png)
 
 Linux的安装和windows的大同小异, 主要是第一步运行 `curl https://sh.rustup.rs -sSf | sh`, 然后跟着提示走就行(参考上面的windows部分).
 
