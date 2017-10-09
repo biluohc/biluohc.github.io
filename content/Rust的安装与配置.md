@@ -132,27 +132,28 @@ timeout = 60000
 ### 一些链接
 Rust语言官网  [Rust](https://www.rust-lang.org/) 
 
-一些中文资料
-* [Rust 程序设计语言（第二版）](https://github.com/KaiserY/trpl-zh-cn)
-* [RustPrimer](https://github.com/rustcc/RustPrimer) 给初学者的Rust中文教程
-* [Rust by Example 中文版](https://github.com/rust-lang-cn/rust-by-example-cn)
-* [Rust宏小册](https://github.com/DaseinPhaos/tlborm-chinese)
+一些中文资料  
+* [Rust 程序设计语言（第二版）](https://github.com/KaiserY/trpl-zh-cn)      
+* [RustPrimer](https://github.com/rustcc/RustPrimer) 给初学者的Rust中文教程  
+* [Rust by Example 中文版](https://github.com/rust-lang-cn/rust-by-example-cn)    
+* [Rust宏小册](https://github.com/DaseinPhaos/tlborm-chinese)  
   
-中文社区  [RustChina](https://rust-lang-cn.org/)
+中文社区  [RustChina](https://rust-lang-cn.org/)  
   
-常用的英文文档
-* [The Rust Standard Library](https://doc.rust-lang.org/std/) Rust标准库文档
-* [crates.io](https://crates.io/) Rust Package Registry
-* [docs.rs](https://docs.rs/) 第三方库的文档(爬虫抓取crates.io生成)
-* [doc.crates.io](http://doc.crates.io/index.html) crates.io和cargo的文档
-* [rustup](https://github.com/rust-lang-nursery/rustup.rs) rustup的文档
-  
-可能用到的 
-* [Book](https://doc.rust-lang.org/book/)  Book的英文原版
-* [CookBook](https://github.com/rust-lang-nursery/rust-cookbook)
-* [awesome-rust](https://github.com/rust-unofficial/awesome-rust)
-* [rust-ffi-guide](https://github.com/Michael-F-Bryan/rust-ffi-guide)
-* [rust-ffi-omnibus](https://github.com/shepmaster/rust-ffi-omnibus)
-* [nomicon](https://github.com/rust-lang-nursery/nomicon)
-* [api-guidelines](https://github.com/rust-lang-nursery/api-guidelines)
-* [rust-internals-docs](https://github.com/Manishearth/rust-internals-docs)
+常用的英文文档  
+* [The Rust Standard Library](https://doc.rust-lang.org/std/) Rust标准库文档  
+* [crates.io](https://crates.io/) Rust Package Registry  
+* [docs.rs](https://docs.rs/) 第三方库的文档(爬虫抓取crates.io生成)  
+* [doc.crates.io](http://doc.crates.io/index.html) crates.io和cargo的文档  
+[rustup](https://github.com/rust-lang-nursery/rustup.rs) rustup的文档  
+
+
+可能用到的   
+* [Book](https://doc.rust-lang.org/book/)  Book的英文原版  
+* [CookBook](https://github.com/rust-lang-nursery/rust-cookbook)  
+* [awesome-rust](https://github.com/rust-unofficial/awesome-rust)  
+* [rust-ffi-guide](https://github.com/Michael-F-Bryan/rust-ffi-guide)  
+* [rust-ffi-omnibus](https://github.com/shepmaster/rust-ffi-omnibus)  
+* [nomicon](https://github.com/rust-lang-nursery/nomicon)  
+* [api-guidelines](https://github.com/rust-lang-nursery/api-guidelines)  
+* [rust-internals-docs](https://github.com/Manishearth/rust-internals-docs)  
