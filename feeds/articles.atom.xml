@@ -167,7 +167,32 @@ USTC的帮助里说的很清楚, 在$HOME/.cargo/config 中添加内容就行(�
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[http]&lt;/span&gt;&lt;/span&gt;
 &lt;span class="code-line"&gt;&lt;span class="na"&gt;proxy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;127.0.0.1:1080&amp;quot;&lt;/span&gt;&lt;/span&gt;
 &lt;span class="code-line"&gt;&lt;span class="na"&gt;timeout&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;60000&lt;/span&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="Rust"></category><category term="cargo"></category><category term="rustup"></category></entry><entry><title>转移到 pelican-bootstrap3</title><link href="/articles/zhuan-yi-dao-pelican-bootstrap3.html" rel="alternate"></link><published>2017-09-26T13:25:38+08:00</published><updated>2017-09-26T13:25:38+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-09-26:/articles/zhuan-yi-dao-pelican-bootstrap3.html</id><summary type="html">&lt;h1&gt;安装&lt;/h1&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;一些链接&lt;/h3&gt;
+&lt;p&gt;Rust语言官网  &lt;a href="https://www.rust-lang.org/"&gt;Rust&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;一些中文资料
+&lt;em&gt; &lt;a href="https://github.com/KaiserY/trpl-zh-cn"&gt;Rust 程序设计语言（第二版）&lt;/a&gt;
+&lt;/em&gt; &lt;a href="https://github.com/rustcc/RustPrimer"&gt;RustPrimer&lt;/a&gt; 给初学者的Rust中文教程
+&lt;em&gt; &lt;a href="https://github.com/rust-lang-cn/rust-by-example-cn"&gt;Rust by Example 中文版&lt;/a&gt;
+&lt;/em&gt; &lt;a href="https://github.com/DaseinPhaos/tlborm-chinese"&gt;Rust宏小册&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;中文社区  &lt;a href="https://rust-lang-cn.org/"&gt;RustChina&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;常用的英文文档
+&lt;em&gt; &lt;a href="https://doc.rust-lang.org/std/"&gt;The Rust Standard Library&lt;/a&gt; Rust标准库文档
+&lt;/em&gt; &lt;a href="https://crates.io/"&gt;crates.io&lt;/a&gt; Rust Package Registry
+&lt;em&gt; &lt;a href="https://docs.rs/"&gt;docs.rs&lt;/a&gt; 第三方库的文档(爬虫抓取crates.io生成)
+&lt;/em&gt; &lt;a href="http://doc.crates.io/index.html"&gt;doc.crates.io&lt;/a&gt; crates.io和cargo的文档
+* &lt;a href="https://github.com/rust-lang-nursery/rustup.rs"&gt;rustup&lt;/a&gt; rustup的文档&lt;/p&gt;
+&lt;p&gt;可能用到的 
+&lt;em&gt; &lt;a href="https://doc.rust-lang.org/book/"&gt;Book&lt;/a&gt;  Book的英文原版
+&lt;/em&gt; &lt;a href="https://github.com/rust-lang-nursery/rust-cookbook"&gt;CookBook&lt;/a&gt;
+&lt;em&gt; &lt;a href="https://github.com/rust-unofficial/awesome-rust"&gt;awesome-rust&lt;/a&gt;
+&lt;/em&gt; &lt;a href="https://github.com/Michael-F-Bryan/rust-ffi-guide"&gt;rust-ffi-guide&lt;/a&gt;
+&lt;em&gt; &lt;a href="https://github.com/shepmaster/rust-ffi-omnibus"&gt;rust-ffi-omnibus&lt;/a&gt;
+&lt;/em&gt; &lt;a href="https://github.com/rust-lang-nursery/nomicon"&gt;nomicon&lt;/a&gt;
+&lt;em&gt; &lt;a href="https://github.com/rust-lang-nursery/api-guidelines"&gt;api-guidelines&lt;/a&gt;
+&lt;/em&gt; &lt;a href="https://github.com/Manishearth/rust-internals-docs"&gt;rust-internals-docs&lt;/a&gt;&lt;/p&gt;</content><category term="Rust"></category><category term="cargo"></category><category term="rustup"></category></entry><entry><title>转移到 pelican-bootstrap3</title><link href="/articles/zhuan-yi-dao-pelican-bootstrap3.html" rel="alternate"></link><published>2017-09-26T13:25:38+08:00</published><updated>2017-09-26T13:25:38+08:00</updated><author><name>Wspsxing</name></author><id>tag:None,2017-09-26:/articles/zhuan-yi-dao-pelican-bootstrap3.html</id><summary type="html">&lt;h1&gt;安装&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="code-line"&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
