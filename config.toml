@@ -12,12 +12,18 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-theme = "even"
-taxonomies = [
-    # You can enable/disable RSS
-    {name = "categories", feed = true},
-    {name = "tags", feed = true},
+# 0.15.3: it only works for files in the md's current Dir
+# cd content/posts/xxx; python; import glob; glob.glob("bk.*.png")
+ignored_content = [
+  "bk.*.png",
 ]
+
+taxonomies = [
+  # You can enable/disable RSS
+  {name = "categories", feed = true},
+  {name = "tags", feed = true},
+]
+theme = "even"
 
 [markdown]
 # Whether to do syntax highlighting
@@ -28,13 +34,12 @@ highlight_code = true
 # Put all your custom variables here
 favicon = "/favicon.ico"
 # h1
+even_menu = [
+  {url = "$BASE_URL", name = "Home"},
+  {url = "$BASE_URL/categories", name = "Categories"},
+  {url = "$BASE_URL/tags", name = "Tags"},
+  {url = "$BASE_URL/friends", name = "Friends"},
+  {url = "$BASE_URL/about", name = "About"},
+]
 even_title = "Blog"
 katex_enable = true
-even_menu = [
-    {url = "$BASE_URL", name = "Home"},
-    {url = "$BASE_URL/categories", name = "Categories"},
-    {url = "$BASE_URL/tags", name = "Tags"},
-    {url = "$BASE_URL/friends", name = "Friends"},
-    {url = "$BASE_URL/about", name = "About"},
-]
-

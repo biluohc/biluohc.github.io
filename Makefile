@@ -8,6 +8,7 @@ BASE_URL = https://biluohc.github.io
 GITHUB_REPO = git@github.com:biluohc/biluohc.github.io.git
 GITHUB_PAGES_BRANCH=pages
 
+# https://linuxize.com/post/linux-date-command/
 DATE=$(shell TZ=Hongkong date '+%Y-%m%d-%H%M')
 MSG=$(shell git describe --always --abbrev=6 --dirty=_)
 
