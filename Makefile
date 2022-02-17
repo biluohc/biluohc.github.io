@@ -23,7 +23,7 @@ help h:
 	@echo '   make build/b                          (re)generate the web site          '
 	@echo '   make clean/c                          remove the generated files         '
 	@echo '   make publish/p                        generate using production settings '
-	@echo '   make dev/d              				serve site at http://127.0.0.1:1111'
+	@echo '   make serve/s              		    serve site at http://127.0.0.1:1111'
 	@echo '   make github/g                         deploy the web site via github pages'
 	@echo '                                                                           '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 build   '

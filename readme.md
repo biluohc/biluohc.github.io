@@ -2,6 +2,10 @@
 
 ```sh
 cargo install --git https://github.com/getzola/zola --locked -f --tag v0.15.3
+
+# git clone https://github.com/biluohc/biluohc.github.io
+
+# git submodule update
 ```
 
 https://github.com/getzola/zola
