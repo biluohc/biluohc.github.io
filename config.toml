@@ -1,0 +1,40 @@
+# The URL the site will be built for
+# base_url = "https://biluohc.github.io"
+# fht2p -p 1111 -rv output/gen &
+base_url = "http://127.0.0.1:1111"
+output_dir = "output/gen"
+
+# html's title
+title = "江山雪"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+theme = "even"
+taxonomies = [
+    # You can enable/disable RSS
+    {name = "categories", feed = true},
+    {name = "tags", feed = true},
+]
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+[extra]
+# Put all your custom variables here
+favicon = "/favicon.ico"
+# h1
+even_title = "Blog"
+katex_enable = true
+even_menu = [
+    {url = "$BASE_URL", name = "Home"},
+    {url = "$BASE_URL/categories", name = "Categories"},
+    {url = "$BASE_URL/tags", name = "Tags"},
+    {url = "$BASE_URL/friends", name = "Friends"},
+    {url = "$BASE_URL/about", name = "About"},
+]
+
