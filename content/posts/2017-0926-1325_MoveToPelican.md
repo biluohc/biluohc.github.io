@@ -1,6 +1,7 @@
 +++
 title = "转移到 pelican-bootstrap3"
 date = '2017-09-26 13:25:38'
+slug = "zhuan-yi-dao-pelican-bootstrap3"
 aliases = [ "articles/zhuan-yi-dao-pelican-bootstrap3.html" ]
 
 [taxonomies]

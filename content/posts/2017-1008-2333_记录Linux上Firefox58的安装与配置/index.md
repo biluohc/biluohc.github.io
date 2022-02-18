@@ -1,6 +1,7 @@
 +++
 title = "记录Linux上Firefox58的安装与配置"
 date = '2017-10-08 23:33:07'
+slug = 'ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi'
 aliases = [ "articles/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi.html" ]
 
 [taxonomies]

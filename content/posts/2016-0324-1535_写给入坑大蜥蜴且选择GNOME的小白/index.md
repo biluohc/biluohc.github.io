@@ -1,6 +1,7 @@
 +++
 title = "写给入坑大蜥蜴且选择GNOME的小白"
 date = '2016-03-24 15:35:07'
+slug = 'xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai'
 aliases = [ "articles/xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai.html" ]
 
 [taxonomies]

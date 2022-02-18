@@ -1,6 +1,7 @@
 +++
 title = "准确的来说这才是我的第一篇博客"
 date = '2016-07-29 11:30:07'
+slug = 'zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke'
 aliases = [ "articles/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke.html" ]
 
 [taxonomies]

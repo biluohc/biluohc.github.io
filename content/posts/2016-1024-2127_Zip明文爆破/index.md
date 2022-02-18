@@ -1,6 +1,7 @@
 +++
 title = "Zip明文爆破"
 date = '2016-10-24 21:27:07'
+slug = 'zipming-wen-bao-po'
 aliases = [ "articles/zipming-wen-bao-po.html" ]
 
 [taxonomies]
