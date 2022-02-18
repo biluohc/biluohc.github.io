@@ -46,19 +46,12 @@ f:b
 publish p:
 	zola build --base-url $(BASE_URL)
 
-githubinit: publish
+github g: publish
 	cd $(OUTPUTDIR) && \
 	git init && git checkout -b $(GITHUB_PAGES_BRANCH) && \
 	git add . && git commit -a -m $(DATE)-$(MSG) && \
 	git remote add origin $(GITHUB_REPO) && \
 	git push origin $(GITHUB_PAGES_BRANCH) -f 
-
-github g: publish
-	cd $(OUTPUTDIR) && \
-	git clone --no-checkout --branch $(GITHUB_PAGES_BRANCH) $(GITHUB_REPO) && \
-	git add . && git commit -a -m $(DATE)-$(MSG) && \
-	git remote add origin $(GITHUB_REPO) && \
-	git push origin $(GITHUB_PAGES_BRANCH)
 
 new n:
 	cp -rp content/pages/post_sample  content/posts/$(DATE)_ && \
