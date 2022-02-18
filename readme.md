@@ -1,5 +1,12 @@
 ## My Blog:  https://biluohc.github.io
 
+Zola: https://github.com/getzola/zola
+
+Theme: https://github.com/getzola/even
+
+Tera: https://tera.netlify.app/docs
+
+
 ```sh
 cargo install --git https://github.com/getzola/zola --locked -f --tag v0.15.3
 
@@ -8,15 +15,16 @@ cargo install --git https://github.com/getzola/zola --locked -f --tag v0.15.3
 # git submodule update
 ```
 
-https://github.com/getzola/zola
+## Docs:  https://www.getzola.org/documentation/getting-started/overview
 
-https://www.getzola.org/documentation/getting-started/overview
+config.toml: https://www.getzola.org/documentation/getting-started/configuration
 
-https://github.com/getzola/even
+_index.md: https://www.getzola.org/documentation/content/section
 
-https://tera.netlify.app/docs
+xxx.md: https://www.getzola.org/documentation/content/page
 
 ### References
+
 https://eastfisher.github.io/blg/build-your-own-blog-site-rapidly
 
 https://github.com/eastfisher/blg/
