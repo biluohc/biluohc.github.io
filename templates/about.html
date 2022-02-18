@@ -1,0 +1,14 @@
+{% extends "even/templates/index.html" %}
+
+{% block title %}{{config.title}} - {{page.title}}{% endblock title %}
+
+{% block content %}
+<div class="about">
+  {{ page.content | safe }}
+</div>
+
+{% block page_before_footer %}
+{% include "comment.html" %}
+{% endblock page_before_footer %}
+
+{% endblock content %}

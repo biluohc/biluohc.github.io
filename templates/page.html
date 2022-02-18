@@ -1,13 +1,5 @@
 {% extends "even/templates/page.html" %}
+
 {% block page_before_footer %}
-<div class="post-comment">
-  <script src="https://utteranc.es/client.js"
-    repo="biluohc/biluohc.github.io"
-    issue-term="pathname"
-    label="Comment"
-    theme="github-light"
-    crossorigin="anonymous"
-    async>
-  </script>
-</div>
+{% include "comment.html" %}
 {% endblock page_before_footer %}
