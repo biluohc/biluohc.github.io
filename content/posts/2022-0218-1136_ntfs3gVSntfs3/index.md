@@ -12,7 +12,9 @@ tags = [ "linux", "ntfs3" ]
 
 Linux Kernel 5.15 合并了 Paragon 提供的 NTFS3 内核驱动， 拥有更高的性能和更多的特性
 
-文档： [https://www.kernel.org/doc/html/latest/filesystems/ntfs3.html](https://www.kernel.org/doc/html/latest/filesystems/ntfs3.html)
+内核文档: [https://www.kernel.org/doc/html/latest/filesystems/ntfs3.html](https://www.kernel.org/doc/html/latest/filesystems/ntfs3.html)
+
+驱动对比: [https://www.paragon-software.com/home/ntfs3-driver-faq/](https://www.paragon-software.com/home/ntfs3-driver-faq/)
 
 ## 系统信息
 
