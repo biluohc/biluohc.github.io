@@ -56,3 +56,8 @@ github g: publish
 new n:
 	cp -rp content/pages/post_sample  content/posts/$(DATE)_ && \
 	sed -i "s/^date.*/date = \'$(DATE3339)\'/g" content/posts/$(DATE)_/index.md
+
+list l:
+	ls -lah content
+lp:
+	ls -lah content/posts
