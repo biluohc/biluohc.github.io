@@ -1,6 +1,7 @@
 +++
 title = 'Rust的安装与配置'
 date = '2017-10-08 18:27:07'
+aliases = [ "articles/rustde-an-zhuang-yu-pei-zhi.html" ]
 
 [taxonomies]
 categories = ["articles"]

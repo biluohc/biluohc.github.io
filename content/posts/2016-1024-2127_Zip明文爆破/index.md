@@ -1,6 +1,7 @@
 +++
 title = "Zip明文爆破"
 date = '2016-10-24 21:27:07'
+aliases = [ "articles/zipming-wen-bao-po.html" ]
 
 [taxonomies]
 categories = ["articles"]
