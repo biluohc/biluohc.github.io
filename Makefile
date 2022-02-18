@@ -10,6 +10,7 @@ GITHUB_PAGES_BRANCH=pages
 
 # https://linuxize.com/post/linux-date-command/
 DATE=$(shell TZ=Hongkong date '+%Y-%m%d-%H%M')
+DATE3339=$(shell TZ=Hongkong date --rfc-3339=seconds)
 MSG=$(shell git describe --always --abbrev=6 --dirty=_)
 
 DEBUG ?= 0
@@ -40,7 +41,7 @@ serve s:
 	zola serve -o $(OUTPUTDIR)
 
 f:b
-	fht2p -p 1111 -rv $(OUTPUTDIR)
+	fht2p -p 1112 -rv $(OUTPUTDIR)
 
 publish p:
 	zola build --base-url $(BASE_URL)
@@ -60,4 +61,5 @@ github g: publish
 	git push origin $(GITHUB_PAGES_BRANCH)
 
 new n:
-	cp -rp content/pages/post_sample  content/posts/$(DATE)_
+	cp -rp content/pages/post_sample  content/posts/$(DATE)_ && \
+	sed -i "s/^date.*/date = \'$(DATE3339)\'/g" content/posts/$(DATE)_/index.md
