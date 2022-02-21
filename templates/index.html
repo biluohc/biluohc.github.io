@@ -1,0 +1,25 @@
+{% extends "even/templates/index.html" %}
+
+
+{% block css %}
+<!-- parent content -->
+{{ super() }}
+
+<link rel="stylesheet" href="{{ get_url(path="footer.css", trailing_slash=false) }}">
+
+{% endblock css %}
+
+{% block footer %}
+<footer>
+    <hr style="border:0;background-color: gray;height:3px;">
+    <div class="footer-container">
+        <div>&copy; 2022 Wspsxing &middot; Powered by
+            <a href="https://github.com/getzola/zola" target="_blank">Zola</a>
+            &&
+            <a href="https://github.com/getzola/even" target="_blank">Even</a>
+        </div>
+        <div></div>
+        <div align="right"><a href="#">Back to top</a></div>
+    </div>
+</footer>
+{% endblock footer %}

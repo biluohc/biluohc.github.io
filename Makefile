@@ -42,7 +42,7 @@ serve s:
 
 f:
 	zola build --base-url http://127.0.0.1:1112 && \
-	fht2p -p 1112 -rv $(OUTPUTDIR)
+	fht2p -i 0.0.0.0 -p 1112 -rv $(OUTPUTDIR)
 
 publish p:
 	zola build --base-url $(BASE_URL)
