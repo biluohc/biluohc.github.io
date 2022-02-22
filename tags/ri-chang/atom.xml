@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>江山雪 - 日常</title>
+	<link href="https://biluohc.github.io/tags/ri-chang/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://biluohc.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2016-07-29T11:30:07+00:00</updated>
+	<id>https://biluohc.github.io/tags/ri-chang/atom.xml</id>
+	<entry xml:lang="en">
+		<title>准确的来说这才是我的第一篇博客</title>
+		<published>2016-07-29T11:30:07+00:00</published>
+		<updated>2016-07-29T11:30:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke/</id>
+		<content type="html">&lt;p&gt;上一篇是几个月前写的markown,顺便挂上来,第一次折腾静态博客,花费差不多一天时间,遇到的坑好多,其实是阅读Hexo和next主题的说明不认真的原因,匿...&lt;&#x2F;p&gt;
+&lt;p&gt;以后会写一些日常吧,这应该是个充满希望的开始,期待未来变得美好。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c2.staticflickr.com&#x2F;9&#x2F;8761&#x2F;28028919073_5dd6a9207c_h.jpg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;最后更新于2016-07-29.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

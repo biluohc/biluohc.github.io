@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>江山雪 - ntfs-3g 与 Linux 5.15+ ntfs3 驱动的简单性能测试</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          
+      
+
+      
+<!-- parent content -->
+
+          <link rel="stylesheet" href="https://biluohc.github.io/site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+<link rel="stylesheet" href="https://biluohc.github.io/footer.css">
+
+
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;friends">
+                            Friends
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;biluohc.github.io">Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;friends">
+                                    Friends
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/ntfs3gvsntfs3/#xi-tong-xin-xi" class="toc-link">系统信息</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/ntfs3gvsntfs3/#tong-guo-dd-ming-ling-zai-nei-cun-pan-shang-zuo-de-ce-shi" class="toc-link">通过 dd 命令在内存盘上做的测试</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/ntfs3gvsntfs3/#ntfs-3g" class="toc-link">ntfs-3g</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/ntfs3gvsntfs3/#ntfs3" class="toc-link">ntfs3</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/ntfs3gvsntfs3/#zong-jie" class="toc-link">总结</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;ntfs3gvsntfs3&#x2F;">ntfs-3g 与 Linux 5.15+ ntfs3 驱动的简单性能测试</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2022-02-18</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <p>Linux Kernel 5.15 合并了 Paragon 提供的 NTFS3 内核驱动， 拥有更高的性能和更多的特性</p>
+<p>内核文档: <a href="https://www.kernel.org/doc/html/latest/filesystems/ntfs3.html">https://www.kernel.org/doc/html/latest/filesystems/ntfs3.html</a></p>
+<p>驱动对比: <a href="https://www.paragon-software.com/home/ntfs3-driver-faq/">https://www.paragon-software.com/home/ntfs3-driver-faq/</a></p>
+<h2 id="xi-tong-xin-xi">系统信息</h2>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">OS:</span><span> openSUSE 20220126
+</span><span style="color:#bf616a;">Kernel:</span><span> x86_64 Linux 5.16.2-1-default
+</span></code></pre>
+<h2 id="tong-guo-dd-ming-ling-zai-nei-cun-pan-shang-zuo-de-ce-shi">通过 dd 命令在内存盘上做的测试</h2>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">~/D/cache</span><span> $ mkdir</span><span style="color:#bf616a;"> -p</span><span> z                                                                                                              
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=/dev/zero of=out bs=1M count=5200                                                                                 
+</span><span style="color:#bf616a;">记录了5200+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了5200+0</span><span> 的写出
+</span><span style="color:#bf616a;">5452595200字节（5.5</span><span> GB，5.1 GiB）已复制，1.05791 s，5.2 GB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ mkfs.ntfs</span><span style="color:#bf616a;"> -F</span><span> out                                                                                               1s 363ms 
+</span><span style="color:#bf616a;">out</span><span> is not a block device.
+</span><span style="color:#bf616a;">mkntfs</span><span> forced anyway.
+</span><span style="color:#bf616a;">Initializing</span><span> device with zeroes: 100% - Done.
+</span><span style="color:#bf616a;">Creating</span><span> NTFS volume structures.
+</span><span style="color:#bf616a;">mkntfs</span><span> completed successfully. Have a nice day.
+</span><span style="color:#bf616a;">~/D/cache</span><span> $                                                                                                                2s 804ms
+</span></code></pre>
+<h3 id="ntfs-3g">ntfs-3g</h3>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">~/D/cache</span><span> $ sudo mount</span><span style="color:#bf616a;"> -t</span><span> ntfs-3g out</span><span style="color:#bf616a;"> -o</span><span> loop z                                                                                     
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ rm z/out                                                                                                                
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=/dev/zero of=z/out bs=1M count=4800                                                                               
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，16.5307 s，304 MB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=/dev/zero of=z/out bs=1M count=4800                                                                     16s 550ms 
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，16.7989 s，300 MB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=z/out of=/dev/null bs=1M                                                                                16s 934ms 
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，2.72367 s，1.8 GB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=z/out of=/dev/null bs=1M                                                                                 2s 731ms 
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，2.80592 s，1.8 GB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $                                                                                                                2s 817ms
+</span></code></pre>
+<p>写入占用有一点高, 读取时还好:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span> </span><span style="color:#bf616a;">4424</span><span> root      20   0   10.5m   2.6m   1.9m R 88.24 0.008   0:18.63 mount.ntfs-3g                                                  
+</span><span>  </span><span style="color:#bf616a;">160</span><span> root      20   0    0.0m   0.0m   0.0m S 27.94 0.000   0:52.20 kswapd0  
+</span></code></pre>
+<h3 id="ntfs3">ntfs3</h3>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">~/D/cache</span><span> $ sudo mount</span><span style="color:#bf616a;"> -t</span><span> ntfs3 out</span><span style="color:#bf616a;"> -o</span><span> loop z                                                                                 314ms 
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ rm z/out                                                                                                                
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=/dev/zero of=z/out bs=1M count=4800                                                                      1s 592ms 
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，1.98633 s，2.5 GB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=/dev/zero of=z/out bs=1M count=4800                                                                      1s 996ms 
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，2.03256 s，2.5 GB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=z/out of=/dev/null bs=1M                                                                                 2s 306ms 
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，1.73642 s，2.9 GB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $ dd if=z/out of=/dev/null bs=1M                                                                                 1s 739ms 
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的读入
+</span><span style="color:#bf616a;">记录了4800+0</span><span> 的写出
+</span><span style="color:#bf616a;">5033164800字节（5.0</span><span> GB，4.7 GiB）已复制，1.59989 s，3.1 GB/s
+</span><span style="color:#bf616a;">~/D/cache</span><span> $                                                                                                                1s 609ms 
+</span></code></pre>
+<p>写入占用比 ntfs-3g 低一些:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">30202</span><span> root      20   0    0.0m   0.0m   0.0m R 48.50 0.000   0:07.87 kworker/u32:1+loop0
+</span><span>  </span><span style="color:#bf616a;">160</span><span> root      20   0    0.0m   0.0m   0.0m R 25.91 0.000   1:13.72 kswapd0     
+</span></code></pre>
+<h2 id="zong-jie">总结</h2>
+<p>内核驱动开销变低, 读取性能有所提升，写入性能大幅提升，不考虑硬盘速度的话，写入速度接近10x</p>
+
+    </div>
+
+    
+<div class="post-comment">
+  <script src="https://utteranc.es/client.js" repo="biluohc/biluohc.github.io" issue-term="pathname" label="Comment"
+    theme="github-light" crossorigin="anonymous" async>
+    </script>
+</div>
+
+
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https://biluohc.github.io/tags/linux/">#linux</a>
+                    
+                        <a href="https://biluohc.github.io/tags/ntfs3/">#ntfs3</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi&#x2F;">‹ 记录Linux上Firefox58的安装与配置</a>
+                    
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+<footer>
+    <hr style="border:0;background-color: gray;height:3px;">
+    <div class="footer-container">
+        <div>&copy; 2022 Wspsxing &middot; Powered by
+            <a href="https://github.com/getzola/zola" target="_blank">Zola</a>
+            &&
+            <a href="https://github.com/getzola/even" target="_blank">Even</a>
+        </div>
+        <div id="top"><a href="#">Back to top</a></div>
+    </div>
+</footer>
+
+        </div>
+
+      
+          <script type="text/javascript" src="https://biluohc.github.io/even.js" ></script>
+      
+    </body>
+
+</html>

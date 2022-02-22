@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>江山雪 - 记录Linux上Firefox58的安装与配置</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          
+      
+
+      
+<!-- parent content -->
+
+          <link rel="stylesheet" href="https://biluohc.github.io/site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+<link rel="stylesheet" href="https://biluohc.github.io/footer.css">
+
+
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;friends">
+                            Friends
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;biluohc.github.io">Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;friends">
+                                    Friends
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/#xia-zai" class="toc-link">下载</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/#tu-biao" class="toc-link">图标</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/#kuo-zhan" class="toc-link">扩展</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/#zui-hou-fu-shang-liang-zhang-nei-cun-zhan-yong" class="toc-link">最后附上两张内存占用</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi&#x2F;">记录Linux上Firefox58的安装与配置</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2017-10-08</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <p>由于用的OpenSUSE, 源里的Fiefox一直是Stable版, 目前才52, 但是我已经习惯了新版的速度.</p>
+<p>新版无论是启动速度还是页面打开速度都和52不是一个时代的, 多窗口多标签下也流畅了太多, 毕竟是由原来的多线程变成现在的多进程, Stylo并行加载CSS.</p>
+<h2 id="xia-zai">下载</h2>
+<p>从<a href="https://www.mozilla.org/zh-CN/firefox/nightly/all/">Firefox Nightly</a>下载简体中文版的二进制版压缩包, 解压到本地点击可执行文件就能用.</p>
+<h2 id="tu-biao">图标</h2>
+<p>然后在本地新建个.desktop文件, 路径 <code>~/.local/share/applications/Firefox.desktop</code>, 你需要把里面的<code>Exec=/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox</code> 换成你自己的路径. </p>
+<pre data-lang="desktop" style="background-color:#2b303b;color:#c0c5ce;" class="language-desktop "><code class="language-desktop" data-lang="desktop"><span>[Desktop Entry]
+</span><span>Name=Nightly
+</span><span>GenericName=Web Browser
+</span><span>GenericName[zh_CN]=网络浏览器
+</span><span>Comment=Browse the World Wide Web
+</span><span>Comment[zh_CN]=浏览互联网
+</span><span>Exec=/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox %u
+</span><span>Terminal=false
+</span><span>Type=Application
+</span><span>Icon=firefox-nightly
+</span><span>Categories=Network;WebBrowser;
+</span><span>MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
+</span><span>StartupNotify=true
+</span><span>Actions=NewTab;NewWindow;NewPrivateWindow;
+</span><span>
+</span><span>Name[zh_CN]=Nightly
+</span><span>
+</span><span>[Desktop Action NewTab]
+</span><span>Name=Open new tab
+</span><span>Name[zh_CN]=打开新标签页
+</span><span>Exec=/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox -new-tab
+</span><span>
+</span><span>[Desktop Action NewWindow]
+</span><span>Name=Open new window
+</span><span>Name[zh_CN]=打开新窗口
+</span><span>Exec=/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox -new-window
+</span><span>
+</span><span>[Desktop Action NewPrivateWindow]
+</span><span>Name=New private window
+</span><span>Name[zh_CN]=新建隐私浏览窗口
+</span><span>Exec=/home/mxo/bin/firefox-nightly.zh-CN.linux-x86_64/firefox/firefox -private-window
+</span></code></pre>
+<p>注: 这里的可执行文件路径一定要和原文件相同, 我原来自做聪明用了一个软链接, 结果新建的窗口的图标不归属于原图标, 由于系统里还有个Stable版的Firefox, 就归属到它的图标上去了,233.</p>
+<h2 id="kuo-zhan">扩展</h2>
+<p>我使用的扩展
+<img src="%E6%89%A9%E5%B1%950.png" alt="扩展0" />
+<img src="%E6%89%A9%E5%B1%951.png" alt="扩展1" /></p>
+<p>由于57以来Firefox彻底废除XUL, 迁移到WebExtension, 所以最近新扩展的出现和扩展的更新都比较频繁, 可以多关注下, 也许日后就得到了满意的呢.</p>
+<p>原来纠结于没有好的Proxy扩展可以用, 最后发现<code>SwitchyOmega</code>测试版在Nightly上可用了.
+由于好久没用过它, 还去找了找教程...</p>
+<p>先是情景模式的proxy里选择你的代理协议,地址,端口.
+<img src="SwitchyOmegaProxy.png" alt="SwitchyOmegaProxy" /></p>
+<p>然后在auto switch勾上规则列表规则, 后面的情景模式选择proxy(符合规则的就是被Q了的网站), 下一行的默认情景模式选择直接连接(没被Q的网站).<br />
+规则列表设置里选 AutoProxy, 
+网址填 <code>https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</code></p>
+<p><img src="SwitchyOmegaAutoSwitch.png" alt="SwitchyOmegaAutoSwitch" /></p>
+<p>最后点击左侧的应用选项即可.</p>
+<h2 id="zui-hou-fu-shang-liang-zhang-nei-cun-zhan-yong">最后附上两张内存占用</h2>
+<p>单窗口几个标签页
+<img src="mem.png" alt="内存占用" /></p>
+<p>三窗口一堆图片/视频标签页
+<img src="mem3windows.png" alt="内存占用" /></p>
+<p>你可能需要的:</p>
+<ul>
+<li>
+<p><a href="https://zhuanlan.zhihu.com/ilovefirefox">Firefox 信仰充值中心</a></p>
+</li>
+<li>
+<p><a href="http://tieba.baidu.com/f?kw=firefox&amp;fr=home">狐吧</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+<div class="post-comment">
+  <script src="https://utteranc.es/client.js" repo="biluohc/biluohc.github.io" issue-term="pathname" label="Comment"
+    theme="github-light" crossorigin="anonymous" async>
+    </script>
+</div>
+
+
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https://biluohc.github.io/tags/firefox/">#Firefox</a>
+                    
+                        <a href="https://biluohc.github.io/tags/nightly/">#Nightly</a>
+                    
+                        <a href="https://biluohc.github.io/tags/opensuse/">#OpenSUSE</a>
+                    
+                        <a href="https://biluohc.github.io/tags/linux/">#Linux</a>
+                    
+                        <a href="https://biluohc.github.io/tags/liu-lan-qi/">#浏览器</a>
+                    
+                        <a href="https://biluohc.github.io/tags/proxy/">#Proxy</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;rustde-an-zhuang-yu-pei-zhi&#x2F;">‹ Rust的安装与配置</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;ntfs3gvsntfs3&#x2F;">ntfs-3g 与 Linux 5.15+ ntfs3 驱动的简单性能测试 ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+<footer>
+    <hr style="border:0;background-color: gray;height:3px;">
+    <div class="footer-container">
+        <div>&copy; 2022 Wspsxing &middot; Powered by
+            <a href="https://github.com/getzola/zola" target="_blank">Zola</a>
+            &&
+            <a href="https://github.com/getzola/even" target="_blank">Even</a>
+        </div>
+        <div id="top"><a href="#">Back to top</a></div>
+    </div>
+</footer>
+
+        </div>
+
+      
+          <script type="text/javascript" src="https://biluohc.github.io/even.js" ></script>
+      
+    </body>
+
+</html>

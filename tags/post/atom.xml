@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>江山雪 - post</title>
+	<link href="https://biluohc.github.io/tags/post/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://biluohc.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2022-01-01T00:00:00+00:00</updated>
+	<id>https://biluohc.github.io/tags/post/atom.xml</id>
+	<entry xml:lang="en">
+		<title>sample</title>
+		<published>2022-01-01T00:00:00+00:00</published>
+		<updated>2022-01-01T00:00:00+00:00</updated>
+		<link href="https://biluohc.github.io/pages/post-sample/" type="text/html"/>
+		<id>https://biluohc.github.io/pages/post-sample/</id>
+		<content type="html">&lt;h1 id=&quot;sample&quot;&gt;Sample&lt;&#x2F;h1&gt;
+</content>
+	</entry>
+</feed>

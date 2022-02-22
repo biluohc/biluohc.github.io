@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>江山雪 - Rust的安装与配置</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          
+      
+
+      
+<!-- parent content -->
+
+          <link rel="stylesheet" href="https://biluohc.github.io/site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+<link rel="stylesheet" href="https://biluohc.github.io/footer.css">
+
+
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;friends">
+                            Friends
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;biluohc.github.io">Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;friends">
+                                    Friends
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#windowsping-tai" class="toc-link">Windows平台</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#ru-guo-bu-chu-yi-wai-ming-ling-xing-shu-ru-rustup-cargo-rustcdeng-jiu-hui-shu-chu-ta-men-de-bang-zhu-xin-xi" class="toc-link">如果不出意外, 命令行输入rustup, cargo, rustc等就会输出它们的帮助信息.</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#helloworld" class="toc-link">HelloWorld</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#guan-yu-link-exe-linux-unixbu-yong-guan-zhe-ge" class="toc-link">关于link.exe(Linux&#x2F;Unix不用管这个)</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#linux-unixping-tai" class="toc-link">Linux&#x2F;Unix平台</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#guan-yu-rlshuo-racerde-gao-liang-bu-quan-ding-yi-tiao-zhuan-yu-fa-jian-cha-dai-ma-ge-shi-hua-shi-yao-de" class="toc-link">关于RLS或racer的高亮, 补全, 定义跳转, 语法检查, 代码格式化什么的</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#guan-yu-di-san-fang-ku-cong-crates-iohuo-github-gitlabxia-zai-huan-man-de-wen-ti" class="toc-link">关于第三方库从crates.io或Github&#x2F;GitLab下载缓慢的问题</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#shi-yong-ustcjing-xiang" class="toc-link">使用USTC镜像</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#shi-yong-dai-li" class="toc-link">使用代理</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/#yi-xie-lian-jie" class="toc-link">一些链接</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;rustde-an-zhuang-yu-pei-zhi&#x2F;">Rust的安装与配置</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2017-10-08</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <p>title: 
+date: 
+tags: Rust, cargo, rustup
+Category: articles</p>
+<p>Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 </p>
+<p>首先访问<a href="https://www.rust-lang.org/zh-CN/install.html">Rust官网</a>的install页面, 它会根据你的UA显示不同的内容.</p>
+<h2 id="windowsping-tai">Windows平台</h2>
+<p>我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.<br />
+<img src="VirtualBox_win8.1_Rust_Home.png" alt="windows_rust_site" /></p>
+<p>Windows下载rustup‑init.exe点击运行如图:</p>
+<p><img src="VirtualBox_win8.1_rustup_running.png" alt="windows_rustup_running" /></p>
+<p>它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
+但我的建议是安装nightly工具链, 上面你输入<code>2</code>回车,<br />
+接下来它问你第一个<code>Default host triple?</code>, 这是些平台信息, 不用管它, 回车即可,<br />
+第二个是<code>Default toolchain?(stable,beta,nightly)</code>, 即安装的工具链版本, 这里你输入nightly回车即可,<br />
+第三个是<code>Modify PATH variable? (y/n)</code>, 即修改环境变量, 输入<code>y</code>表示同意回车即可,<br />
+然后它弹出一个安装清单<code>current installation options</code>, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),<br />
+然后回车即可, 安装结束的画面如下图.</p>
+<p><img src="VirtualBox_win8.1_rust_install_finished.png" alt="win8.1_rust_install_finished.png" /></p>
+<h3 id="ru-guo-bu-chu-yi-wai-ming-ling-xing-shu-ru-rustup-cargo-rustcdeng-jiu-hui-shu-chu-ta-men-de-bang-zhu-xin-xi">如果不出意外, 命令行输入<code>rustup</code>, <code>cargo</code>, <code>rustc</code>等就会输出它们的帮助信息.</h3>
+<p>Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, 包括:</p>
+<ul>
+<li>.cargo    包含了你的cargo的配置, 默认的工具链, 通过cargo安装的小工具等等</li>
+<li>.rustup   包含了实际的工具链以及从<a href="https://crates.io/crates/">crates.io</a>或GitHub下载的包等</li>
+<li>.multirust  是.rustup的一个软链接, 据说是为了兼容, 不用管它</li>
+</ul>
+<p>如果出了意外,<br />
+首先看看家目录里有没有那些目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了).<br />
+有就去看看系统环境变量里有没有<code>C:\Users\你的用户名\.cargo\bin</code>这个路径, 没有就添加环境变量.</p>
+<h3 id="helloworld">HelloWorld</h3>
+<p>使用<code>cargo new app --bin</code>新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).<br />
+然后cd进入那个app目录, <code>cargo run</code>即可Debug模式运行HelloWorld, <code>cargo run --release</code>以release模式运行, 此时对于目录下已经生成可执行文件 .<br />
+注: 默认生成的可执行文件在项目的target目录, debug下的是debug模式下产生的(<code>cargo build</code>), release下的是release模式产生的(<code>cargo build --release</code>).</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">PS</span><span> C:</span><span style="color:#96b5b4;">\U</span><span>sers</span><span style="color:#96b5b4;">\m</span><span>xo</span><span style="color:#96b5b4;">\D</span><span>esktop</span><span style="color:#96b5b4;">\a</span><span>p&gt; cargo new app</span><span style="color:#bf616a;"> --bin
+</span><span>     </span><span style="color:#bf616a;">Created</span><span> binary (application) `</span><span style="color:#bf616a;">app</span><span>` project
+</span><span style="color:#bf616a;">PS</span><span> C:</span><span style="color:#96b5b4;">\U</span><span>sers</span><span style="color:#96b5b4;">\m</span><span>xo</span><span style="color:#96b5b4;">\D</span><span>esktop</span><span style="color:#96b5b4;">\a</span><span>p&gt; cd app
+</span><span style="color:#bf616a;">PS</span><span> C:</span><span style="color:#96b5b4;">\U</span><span>sers</span><span style="color:#96b5b4;">\m</span><span>xo</span><span style="color:#96b5b4;">\D</span><span>esktop</span><span style="color:#96b5b4;">\a</span><span>p</span><span style="color:#96b5b4;">\a</span><span>pp&gt; cargo run
+</span><span>   </span><span style="color:#bf616a;">Compiling</span><span> app v0.1.0 (file:///C:/Users/mxo/Desktop/ap/app)
+</span><span>    </span><span style="color:#bf616a;">Finished</span><span> dev </span><span style="color:#b48ead;">[</span><span>unoptimized + debuginfo</span><span style="color:#b48ead;">]</span><span> target(s) </span><span style="color:#bf616a;">in</span><span> 0.82 secs
+</span><span>     </span><span style="color:#bf616a;">Running </span><span>`</span><span style="color:#bf616a;">target</span><span style="color:#96b5b4;">\d</span><span style="color:#bf616a;">ebug</span><span style="color:#96b5b4;">\a</span><span style="color:#bf616a;">pp.exe</span><span>`
+</span><span style="color:#bf616a;">Hello,</span><span> world!
+</span></code></pre>
+<h3 id="guan-yu-link-exe-linux-unixbu-yong-guan-zhe-ge">关于link.exe(Linux/Unix不用管这个)</h3>
+<p>这样安装的是<code>MSVC</code>版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去<a href="http://landinghub.visualstudio.com/visual-cpp-build-tools">visual-cpp-build-tools</a>安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.</p>
+<h2 id="linux-unixping-tai">Linux/Unix平台</h2>
+<p><img src="Linux_Rust_Home.png" alt="unix_rust_site" /></p>
+<p>Linux的安装和windows的大同小异, 主要是第一步运行 <code>curl https://sh.rustup.rs -sSf | sh</code>, 然后跟着提示走就行(参考上面的windows部分).</p>
+<p>装好后检查 rustc, cargo , rustup 能否在命令行调用. </p>
+<p>如果没有就确认环境变量里有没有 <code>~/.cargo/bin</code>, 没有就自己加.</p>
+<p>检查家目录里有没有那三个目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了). </p>
+<p>HelloWorld和windows一样的.</p>
+<h2 id="guan-yu-rlshuo-racerde-gao-liang-bu-quan-ding-yi-tiao-zhuan-yu-fa-jian-cha-dai-ma-ge-shi-hua-shi-yao-de">关于RLS或racer的高亮, 补全, 定义跳转, 语法检查, 代码格式化什么的</h2>
+<p>ide, 编辑器添加rust扩展(或者说插件?)后可以调用RLS或racer.</p>
+<p>RLS的分析速度比racer快很多, 所以推荐RLS</p>
+<p>目前的RLS还在预览版, 只支持 nightly , <code>--toolchain nightly</code>指定的工具链, 日后稳定了应该可以把 --preview去掉.</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">rustup</span><span> component add rls-preview</span><span style="color:#bf616a;"> --toolchain</span><span> nightly
+</span></code></pre>
+<p>rust-analysis RLS分析需要它</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">rustup</span><span> component add rust-analysis
+</span></code></pre>
+<p>rust-src 源码跳转需要源码</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">rustup</span><span> component add rust-src
+</span></code></pre>
+<p>rustfmt 如果你没有安装RLS, 也可以用rustfmt<br />
+注: 你可以自己调用(<code>cargo fmt</code>).</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">cargo</span><span> install rustfmt
+</span></code></pre>
+<p>clippy 它会提醒你某些代码的更好的写法, 可以纠正些你的错误, 是初学者一个很好的老师.<br />
+注: 需要自己调用(<code>cargo clippy</code>).</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">cargo</span><span> install clippy
+</span></code></pre>
+<p>安装完上面这些, 然后再打开VSocde安装Rust扩展, 然后再随便打开个.rs后缀的文本文件, VScode就会问你用哪个, 选RLS就行.</p>
+<p>另外这是racer的安装</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">cargo</span><span> install racer
+</span></code></pre>
+<h2 id="guan-yu-di-san-fang-ku-cong-crates-iohuo-github-gitlabxia-zai-huan-man-de-wen-ti">关于第三方库从<a href="https://crates.io/crates/">crates.io</a>或Github/GitLab下载缓慢的问题</h2>
+<h3 id="shi-yong-ustcjing-xiang">使用USTC镜像</h3>
+<p><a href="http://mirrors.ustc.edu.cn/help/rust-crates.html">ustc-rust-crates</a>
+USTC的帮助里说的很清楚, 在$HOME/.cargo/config 中添加内容就行(如果没有就新建), 它的不足就是更新的可能不是很及时(多少小时同步一次来着).</p>
+<h3 id="shi-yong-dai-li">使用代理</h3>
+<p>在$HOME/.cargo/config添加下面三行, 其中<code>127.0.0.1:1080</code>是你代理的地址和端口, timeout是超时时间.<br />
+官方文档在这里 <a href="http://doc.crates.io/config.html">config.html</a>. </p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[http]
+</span><span style="color:#bf616a;">proxy </span><span>= &quot;</span><span style="color:#a3be8c;">127.0.0.1:1080</span><span>&quot;
+</span><span style="color:#bf616a;">timeout </span><span>= </span><span style="color:#d08770;">60000
+</span></code></pre>
+<h3 id="yi-xie-lian-jie">一些链接</h3>
+<p>Rust语言官网  <a href="https://www.rust-lang.org/">Rust</a> </p>
+<p>一些中文资料</p>
+<ul>
+<li><a href="https://github.com/KaiserY/trpl-zh-cn">Rust 程序设计语言（第二版）</a></li>
+<li><a href="https://github.com/rustcc/RustPrimer">RustPrimer</a> 给初学者的Rust中文教程</li>
+<li><a href="https://github.com/rust-lang-cn/rust-by-example-cn">Rust by Example 中文版</a></li>
+<li><a href="https://github.com/DaseinPhaos/tlborm-chinese">Rust宏小册</a></li>
+</ul>
+<p>中文社区  <a href="https://rust-lang-cn.org/">RustChina</a></p>
+<p>常用的英文文档</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/">The Rust Standard Library</a> Rust标准库文档</li>
+<li><a href="https://crates.io/">crates.io</a> Rust Package Registry</li>
+<li><a href="https://docs.rs/">docs.rs</a> 第三方库的文档(爬虫抓取crates.io生成)</li>
+<li><a href="http://doc.crates.io/index.html">doc.crates.io</a> crates.io和cargo的文档<br />
+<a href="https://github.com/rust-lang-nursery/rustup.rs">rustup</a> rustup的文档</li>
+</ul>
+<p>可能用到的</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/">Book</a>  Book的英文原版</li>
+<li><a href="https://github.com/rust-lang-nursery/rust-cookbook">CookBook</a></li>
+<li><a href="https://github.com/rust-unofficial/awesome-rust">awesome-rust</a></li>
+<li><a href="https://github.com/Michael-F-Bryan/rust-ffi-guide">rust-ffi-guide</a></li>
+<li><a href="https://github.com/shepmaster/rust-ffi-omnibus">rust-ffi-omnibus</a></li>
+<li><a href="https://github.com/rust-lang-nursery/nomicon">nomicon</a></li>
+<li><a href="https://github.com/rust-lang-nursery/api-guidelines">api-guidelines</a></li>
+<li><a href="https://github.com/Manishearth/rust-internals-docs">rust-internals-docs</a>  </li>
+</ul>
+
+    </div>
+
+    
+<div class="post-comment">
+  <script src="https://utteranc.es/client.js" repo="biluohc/biluohc.github.io" issue-term="pathname" label="Comment"
+    theme="github-light" crossorigin="anonymous" async>
+    </script>
+</div>
+
+
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https://biluohc.github.io/tags/rust/">#Rust</a>
+                    
+                        <a href="https://biluohc.github.io/tags/cargo/">#cargo</a>
+                    
+                        <a href="https://biluohc.github.io/tags/rustup/">#rustup</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;zhuan-yi-dao-pelican-bootstrap3&#x2F;">‹ 转移到 pelican-bootstrap3</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;biluohc.github.io&#x2F;posts&#x2F;ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi&#x2F;">记录Linux上Firefox58的安装与配置 ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+<footer>
+    <hr style="border:0;background-color: gray;height:3px;">
+    <div class="footer-container">
+        <div>&copy; 2022 Wspsxing &middot; Powered by
+            <a href="https://github.com/getzola/zola" target="_blank">Zola</a>
+            &&
+            <a href="https://github.com/getzola/even" target="_blank">Even</a>
+        </div>
+        <div id="top"><a href="#">Back to top</a></div>
+    </div>
+</footer>
+
+        </div>
+
+      
+          <script type="text/javascript" src="https://biluohc.github.io/even.js" ></script>
+      
+    </body>
+
+</html>

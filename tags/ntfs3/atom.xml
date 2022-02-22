@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>江山雪 - ntfs3</title>
+	<link href="https://biluohc.github.io/tags/ntfs3/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://biluohc.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2022-02-18T11:36:14+08:00</updated>
+	<id>https://biluohc.github.io/tags/ntfs3/atom.xml</id>
+	<entry xml:lang="en">
+		<title>ntfs-3g 与 Linux 5.15+ ntfs3 驱动的简单性能测试</title>
+		<published>2022-02-18T11:36:14+08:00</published>
+		<updated>2022-02-18T11:36:14+08:00</updated>
+		<link href="https://biluohc.github.io/posts/ntfs3gvsntfs3/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/ntfs3gvsntfs3/</id>
+		<content type="html">&lt;p&gt;Linux Kernel 5.15 合并了 Paragon 提供的 NTFS3 内核驱动， 拥有更高的性能和更多的特性&lt;&#x2F;p&gt;
+&lt;p&gt;内核文档: &lt;a href=&quot;https:&#x2F;&#x2F;www.kernel.org&#x2F;doc&#x2F;html&#x2F;latest&#x2F;filesystems&#x2F;ntfs3.html&quot;&gt;https:&#x2F;&#x2F;www.kernel.org&#x2F;doc&#x2F;html&#x2F;latest&#x2F;filesystems&#x2F;ntfs3.html&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;驱动对比: &lt;a href=&quot;https:&#x2F;&#x2F;www.paragon-software.com&#x2F;home&#x2F;ntfs3-driver-faq&#x2F;&quot;&gt;https:&#x2F;&#x2F;www.paragon-software.com&#x2F;home&#x2F;ntfs3-driver-faq&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;xi-tong-xin-xi&quot;&gt;系统信息&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;OS:&lt;&#x2F;span&gt;&lt;span&gt; openSUSE 20220126
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Kernel:&lt;&#x2F;span&gt;&lt;span&gt; x86_64 Linux 5.16.2-1-default
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;tong-guo-dd-ming-ling-zai-nei-cun-pan-shang-zuo-de-ce-shi&quot;&gt;通过 dd 命令在内存盘上做的测试&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ mkdir&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -p&lt;&#x2F;span&gt;&lt;span&gt; z                                                                                                              
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=out bs=1M count=5200                                                                                 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了5200+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了5200+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5452595200字节（5.5&lt;&#x2F;span&gt;&lt;span&gt; GB，5.1 GiB）已复制，1.05791 s，5.2 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ mkfs.ntfs&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -F&lt;&#x2F;span&gt;&lt;span&gt; out                                                                                               1s 363ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;out&lt;&#x2F;span&gt;&lt;span&gt; is not a block device.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mkntfs&lt;&#x2F;span&gt;&lt;span&gt; forced anyway.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Initializing&lt;&#x2F;span&gt;&lt;span&gt; device with zeroes: 100% - Done.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Creating&lt;&#x2F;span&gt;&lt;span&gt; NTFS volume structures.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mkntfs&lt;&#x2F;span&gt;&lt;span&gt; completed successfully. Have a nice day.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $                                                                                                                2s 804ms
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;ntfs-3g&quot;&gt;ntfs-3g&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ sudo mount&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -t&lt;&#x2F;span&gt;&lt;span&gt; ntfs-3g out&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -o&lt;&#x2F;span&gt;&lt;span&gt; loop z                                                                                     
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ rm z&#x2F;out                                                                                                                
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                               
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，16.5307 s，304 MB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                     16s 550ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，16.7989 s，300 MB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                16s 934ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，2.72367 s，1.8 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                 2s 731ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，2.80592 s，1.8 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $                                                                                                                2s 817ms
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;写入占用有一点高, 读取时还好:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span&gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;4424&lt;&#x2F;span&gt;&lt;span&gt; root      20   0   10.5m   2.6m   1.9m R 88.24 0.008   0:18.63 mount.ntfs-3g                                                  
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;160&lt;&#x2F;span&gt;&lt;span&gt; root      20   0    0.0m   0.0m   0.0m S 27.94 0.000   0:52.20 kswapd0  
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;ntfs3&quot;&gt;ntfs3&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ sudo mount&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -t&lt;&#x2F;span&gt;&lt;span&gt; ntfs3 out&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -o&lt;&#x2F;span&gt;&lt;span&gt; loop z                                                                                 314ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ rm z&#x2F;out                                                                                                                
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                      1s 592ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，1.98633 s，2.5 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                      1s 996ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，2.03256 s，2.5 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                 2s 306ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，1.73642 s，2.9 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                 1s 739ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，1.59989 s，3.1 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $                                                                                                                1s 609ms 
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;写入占用比 ntfs-3g 低一些:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;30202&lt;&#x2F;span&gt;&lt;span&gt; root      20   0    0.0m   0.0m   0.0m R 48.50 0.000   0:07.87 kworker&#x2F;u32:1+loop0
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;160&lt;&#x2F;span&gt;&lt;span&gt; root      20   0    0.0m   0.0m   0.0m R 25.91 0.000   1:13.72 kswapd0     
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;zong-jie&quot;&gt;总结&lt;&#x2F;h2&gt;
+&lt;p&gt;内核驱动开销变低, 读取性能有所提升，写入性能大幅提升，不考虑硬盘速度的话，写入速度接近10x&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

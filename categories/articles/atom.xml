@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>江山雪 - articles</title>
+	<link href="https://biluohc.github.io/categories/articles/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://biluohc.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2022-02-18T11:36:14+08:00</updated>
+	<id>https://biluohc.github.io/categories/articles/atom.xml</id>
+	<entry xml:lang="en">
+		<title>ntfs-3g 与 Linux 5.15+ ntfs3 驱动的简单性能测试</title>
+		<published>2022-02-18T11:36:14+08:00</published>
+		<updated>2022-02-18T11:36:14+08:00</updated>
+		<link href="https://biluohc.github.io/posts/ntfs3gvsntfs3/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/ntfs3gvsntfs3/</id>
+		<content type="html">&lt;p&gt;Linux Kernel 5.15 合并了 Paragon 提供的 NTFS3 内核驱动， 拥有更高的性能和更多的特性&lt;&#x2F;p&gt;
+&lt;p&gt;内核文档: &lt;a href=&quot;https:&#x2F;&#x2F;www.kernel.org&#x2F;doc&#x2F;html&#x2F;latest&#x2F;filesystems&#x2F;ntfs3.html&quot;&gt;https:&#x2F;&#x2F;www.kernel.org&#x2F;doc&#x2F;html&#x2F;latest&#x2F;filesystems&#x2F;ntfs3.html&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;驱动对比: &lt;a href=&quot;https:&#x2F;&#x2F;www.paragon-software.com&#x2F;home&#x2F;ntfs3-driver-faq&#x2F;&quot;&gt;https:&#x2F;&#x2F;www.paragon-software.com&#x2F;home&#x2F;ntfs3-driver-faq&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;xi-tong-xin-xi&quot;&gt;系统信息&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;OS:&lt;&#x2F;span&gt;&lt;span&gt; openSUSE 20220126
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Kernel:&lt;&#x2F;span&gt;&lt;span&gt; x86_64 Linux 5.16.2-1-default
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;tong-guo-dd-ming-ling-zai-nei-cun-pan-shang-zuo-de-ce-shi&quot;&gt;通过 dd 命令在内存盘上做的测试&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ mkdir&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -p&lt;&#x2F;span&gt;&lt;span&gt; z                                                                                                              
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=out bs=1M count=5200                                                                                 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了5200+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了5200+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5452595200字节（5.5&lt;&#x2F;span&gt;&lt;span&gt; GB，5.1 GiB）已复制，1.05791 s，5.2 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ mkfs.ntfs&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -F&lt;&#x2F;span&gt;&lt;span&gt; out                                                                                               1s 363ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;out&lt;&#x2F;span&gt;&lt;span&gt; is not a block device.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mkntfs&lt;&#x2F;span&gt;&lt;span&gt; forced anyway.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Initializing&lt;&#x2F;span&gt;&lt;span&gt; device with zeroes: 100% - Done.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Creating&lt;&#x2F;span&gt;&lt;span&gt; NTFS volume structures.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mkntfs&lt;&#x2F;span&gt;&lt;span&gt; completed successfully. Have a nice day.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $                                                                                                                2s 804ms
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;ntfs-3g&quot;&gt;ntfs-3g&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ sudo mount&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -t&lt;&#x2F;span&gt;&lt;span&gt; ntfs-3g out&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -o&lt;&#x2F;span&gt;&lt;span&gt; loop z                                                                                     
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ rm z&#x2F;out                                                                                                                
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                               
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，16.5307 s，304 MB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                     16s 550ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，16.7989 s，300 MB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                16s 934ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，2.72367 s，1.8 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                 2s 731ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，2.80592 s，1.8 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $                                                                                                                2s 817ms
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;写入占用有一点高, 读取时还好:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span&gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;4424&lt;&#x2F;span&gt;&lt;span&gt; root      20   0   10.5m   2.6m   1.9m R 88.24 0.008   0:18.63 mount.ntfs-3g                                                  
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;160&lt;&#x2F;span&gt;&lt;span&gt; root      20   0    0.0m   0.0m   0.0m S 27.94 0.000   0:52.20 kswapd0  
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;ntfs3&quot;&gt;ntfs3&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ sudo mount&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -t&lt;&#x2F;span&gt;&lt;span&gt; ntfs3 out&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -o&lt;&#x2F;span&gt;&lt;span&gt; loop z                                                                                 314ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ rm z&#x2F;out                                                                                                                
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                      1s 592ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，1.98633 s，2.5 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=&#x2F;dev&#x2F;zero of=z&#x2F;out bs=1M count=4800                                                                      1s 996ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，2.03256 s，2.5 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                 2s 306ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，1.73642 s，2.9 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $ dd if=z&#x2F;out of=&#x2F;dev&#x2F;null bs=1M                                                                                 1s 739ms 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的读入
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;记录了4800+0&lt;&#x2F;span&gt;&lt;span&gt; 的写出
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;5033164800字节（5.0&lt;&#x2F;span&gt;&lt;span&gt; GB，4.7 GiB）已复制，1.59989 s，3.1 GB&#x2F;s
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&#x2F;D&#x2F;cache&lt;&#x2F;span&gt;&lt;span&gt; $                                                                                                                1s 609ms 
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;写入占用比 ntfs-3g 低一些:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;30202&lt;&#x2F;span&gt;&lt;span&gt; root      20   0    0.0m   0.0m   0.0m R 48.50 0.000   0:07.87 kworker&#x2F;u32:1+loop0
+&lt;&#x2F;span&gt;&lt;span&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;160&lt;&#x2F;span&gt;&lt;span&gt; root      20   0    0.0m   0.0m   0.0m R 25.91 0.000   1:13.72 kswapd0     
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;zong-jie&quot;&gt;总结&lt;&#x2F;h2&gt;
+&lt;p&gt;内核驱动开销变低, 读取性能有所提升，写入性能大幅提升，不考虑硬盘速度的话，写入速度接近10x&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>sample</title>
+		<published>2022-01-01T00:00:00+00:00</published>
+		<updated>2022-01-01T00:00:00+00:00</updated>
+		<link href="https://biluohc.github.io/pages/post-sample/" type="text/html"/>
+		<id>https://biluohc.github.io/pages/post-sample/</id>
+		<content type="html">&lt;h1 id=&quot;sample&quot;&gt;Sample&lt;&#x2F;h1&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>记录Linux上Firefox58的安装与配置</title>
+		<published>2017-10-08T23:33:07+00:00</published>
+		<updated>2017-10-08T23:33:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/</id>
+		<content type="html">&lt;p&gt;由于用的OpenSUSE, 源里的Fiefox一直是Stable版, 目前才52, 但是我已经习惯了新版的速度.&lt;&#x2F;p&gt;
+&lt;p&gt;新版无论是启动速度还是页面打开速度都和52不是一个时代的, 多窗口多标签下也流畅了太多, 毕竟是由原来的多线程变成现在的多进程, Stylo并行加载CSS.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;xia-zai&quot;&gt;下载&lt;&#x2F;h2&gt;
+&lt;p&gt;从&lt;a href=&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;zh-CN&#x2F;firefox&#x2F;nightly&#x2F;all&#x2F;&quot;&gt;Firefox Nightly&lt;&#x2F;a&gt;下载简体中文版的二进制版压缩包, 解压到本地点击可执行文件就能用.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tu-biao&quot;&gt;图标&lt;&#x2F;h2&gt;
+&lt;p&gt;然后在本地新建个.desktop文件, 路径 &lt;code&gt;~&#x2F;.local&#x2F;share&#x2F;applications&#x2F;Firefox.desktop&lt;&#x2F;code&gt;, 你需要把里面的&lt;code&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox&lt;&#x2F;code&gt; 换成你自己的路径. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;desktop&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-desktop &quot;&gt;&lt;code class=&quot;language-desktop&quot; data-lang=&quot;desktop&quot;&gt;&lt;span&gt;[Desktop Entry]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=Nightly
+&lt;&#x2F;span&gt;&lt;span&gt;GenericName=Web Browser
+&lt;&#x2F;span&gt;&lt;span&gt;GenericName[zh_CN]=网络浏览器
+&lt;&#x2F;span&gt;&lt;span&gt;Comment=Browse the World Wide Web
+&lt;&#x2F;span&gt;&lt;span&gt;Comment[zh_CN]=浏览互联网
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox %u
+&lt;&#x2F;span&gt;&lt;span&gt;Terminal=false
+&lt;&#x2F;span&gt;&lt;span&gt;Type=Application
+&lt;&#x2F;span&gt;&lt;span&gt;Icon=firefox-nightly
+&lt;&#x2F;span&gt;&lt;span&gt;Categories=Network;WebBrowser;
+&lt;&#x2F;span&gt;&lt;span&gt;MimeType=text&#x2F;html;text&#x2F;xml;application&#x2F;xhtml+xml;application&#x2F;vnd.mozilla.xul+xml;text&#x2F;mml;x-scheme-handler&#x2F;http;x-scheme-handler&#x2F;https;x-scheme-handler&#x2F;ftp;
+&lt;&#x2F;span&gt;&lt;span&gt;StartupNotify=true
+&lt;&#x2F;span&gt;&lt;span&gt;Actions=NewTab;NewWindow;NewPrivateWindow;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=Nightly
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Desktop Action NewTab]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=Open new tab
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=打开新标签页
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox -new-tab
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Desktop Action NewWindow]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=Open new window
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=打开新窗口
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox -new-window
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Desktop Action NewPrivateWindow]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=New private window
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=新建隐私浏览窗口
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox -private-window
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;注: 这里的可执行文件路径一定要和原文件相同, 我原来自做聪明用了一个软链接, 结果新建的窗口的图标不归属于原图标, 由于系统里还有个Stable版的Firefox, 就归属到它的图标上去了,233.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kuo-zhan&quot;&gt;扩展&lt;&#x2F;h2&gt;
+&lt;p&gt;我使用的扩展
+&lt;img src=&quot;%E6%89%A9%E5%B1%950.png&quot; alt=&quot;扩展0&quot; &#x2F;&gt;
+&lt;img src=&quot;%E6%89%A9%E5%B1%951.png&quot; alt=&quot;扩展1&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;由于57以来Firefox彻底废除XUL, 迁移到WebExtension, 所以最近新扩展的出现和扩展的更新都比较频繁, 可以多关注下, 也许日后就得到了满意的呢.&lt;&#x2F;p&gt;
+&lt;p&gt;原来纠结于没有好的Proxy扩展可以用, 最后发现&lt;code&gt;SwitchyOmega&lt;&#x2F;code&gt;测试版在Nightly上可用了.
+由于好久没用过它, 还去找了找教程...&lt;&#x2F;p&gt;
+&lt;p&gt;先是情景模式的proxy里选择你的代理协议,地址,端口.
+&lt;img src=&quot;SwitchyOmegaProxy.png&quot; alt=&quot;SwitchyOmegaProxy&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;然后在auto switch勾上规则列表规则, 后面的情景模式选择proxy(符合规则的就是被Q了的网站), 下一行的默认情景模式选择直接连接(没被Q的网站).&lt;br &#x2F;&gt;
+规则列表设置里选 AutoProxy, 
+网址填 &lt;code&gt;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gfwlist&#x2F;gfwlist&#x2F;master&#x2F;gfwlist.txt&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;SwitchyOmegaAutoSwitch.png&quot; alt=&quot;SwitchyOmegaAutoSwitch&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;最后点击左侧的应用选项即可.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zui-hou-fu-shang-liang-zhang-nei-cun-zhan-yong&quot;&gt;最后附上两张内存占用&lt;&#x2F;h2&gt;
+&lt;p&gt;单窗口几个标签页
+&lt;img src=&quot;mem.png&quot; alt=&quot;内存占用&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;三窗口一堆图片&#x2F;视频标签页
+&lt;img src=&quot;mem3windows.png&quot; alt=&quot;内存占用&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;你可能需要的:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;ilovefirefox&quot;&gt;Firefox 信仰充值中心&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;tieba.baidu.com&#x2F;f?kw=firefox&amp;amp;fr=home&quot;&gt;狐吧&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Rust的安装与配置</title>
+		<published>2017-10-08T18:27:07+00:00</published>
+		<updated>2017-10-08T18:27:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/</id>
+		<content type="html">&lt;p&gt;title: 
+date: 
+tags: Rust, cargo, rustup
+Category: articles&lt;&#x2F;p&gt;
+&lt;p&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 &lt;&#x2F;p&gt;
+&lt;p&gt;首先访问&lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;zh-CN&#x2F;install.html&quot;&gt;Rust官网&lt;&#x2F;a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;windowsping-tai&quot;&gt;Windows平台&lt;&#x2F;h2&gt;
+&lt;p&gt;我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.&lt;br &#x2F;&gt;
+&lt;img src=&quot;VirtualBox_win8.1_Rust_Home.png&quot; alt=&quot;windows_rust_site&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Windows下载rustup‑init.exe点击运行如图:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;VirtualBox_win8.1_rustup_running.png&quot; alt=&quot;windows_rustup_running&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
+但我的建议是安装nightly工具链, 上面你输入&lt;code&gt;2&lt;&#x2F;code&gt;回车,&lt;br &#x2F;&gt;
+接下来它问你第一个&lt;code&gt;Default host triple?&lt;&#x2F;code&gt;, 这是些平台信息, 不用管它, 回车即可,&lt;br &#x2F;&gt;
+第二个是&lt;code&gt;Default toolchain?(stable,beta,nightly)&lt;&#x2F;code&gt;, 即安装的工具链版本, 这里你输入nightly回车即可,&lt;br &#x2F;&gt;
+第三个是&lt;code&gt;Modify PATH variable? (y&#x2F;n)&lt;&#x2F;code&gt;, 即修改环境变量, 输入&lt;code&gt;y&lt;&#x2F;code&gt;表示同意回车即可,&lt;br &#x2F;&gt;
+然后它弹出一个安装清单&lt;code&gt;current installation options&lt;&#x2F;code&gt;, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),&lt;br &#x2F;&gt;
+然后回车即可, 安装结束的画面如下图.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;VirtualBox_win8.1_rust_install_finished.png&quot; alt=&quot;win8.1_rust_install_finished.png&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ru-guo-bu-chu-yi-wai-ming-ling-xing-shu-ru-rustup-cargo-rustcdeng-jiu-hui-shu-chu-ta-men-de-bang-zhu-xin-xi&quot;&gt;如果不出意外, 命令行输入&lt;code&gt;rustup&lt;&#x2F;code&gt;, &lt;code&gt;cargo&lt;&#x2F;code&gt;, &lt;code&gt;rustc&lt;&#x2F;code&gt;等就会输出它们的帮助信息.&lt;&#x2F;h3&gt;
+&lt;p&gt;Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, 包括:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;.cargo    包含了你的cargo的配置, 默认的工具链, 通过cargo安装的小工具等等&lt;&#x2F;li&gt;
+&lt;li&gt;.rustup   包含了实际的工具链以及从&lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;&quot;&gt;crates.io&lt;&#x2F;a&gt;或GitHub下载的包等&lt;&#x2F;li&gt;
+&lt;li&gt;.multirust  是.rustup的一个软链接, 据说是为了兼容, 不用管它&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;如果出了意外,&lt;br &#x2F;&gt;
+首先看看家目录里有没有那些目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了).&lt;br &#x2F;&gt;
+有就去看看系统环境变量里有没有&lt;code&gt;C:\Users\你的用户名\.cargo\bin&lt;&#x2F;code&gt;这个路径, 没有就添加环境变量.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;helloworld&quot;&gt;HelloWorld&lt;&#x2F;h3&gt;
+&lt;p&gt;使用&lt;code&gt;cargo new app --bin&lt;&#x2F;code&gt;新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).&lt;br &#x2F;&gt;
+然后cd进入那个app目录, &lt;code&gt;cargo run&lt;&#x2F;code&gt;即可Debug模式运行HelloWorld, &lt;code&gt;cargo run --release&lt;&#x2F;code&gt;以release模式运行, 此时对于目录下已经生成可执行文件 .&lt;br &#x2F;&gt;
+注: 默认生成的可执行文件在项目的target目录, debug下的是debug模式下产生的(&lt;code&gt;cargo build&lt;&#x2F;code&gt;), release下的是release模式产生的(&lt;code&gt;cargo build --release&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PS&lt;&#x2F;span&gt;&lt;span&gt; C:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\U&lt;&#x2F;span&gt;&lt;span&gt;sers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\m&lt;&#x2F;span&gt;&lt;span&gt;xo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\D&lt;&#x2F;span&gt;&lt;span&gt;esktop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;p&amp;gt; cargo new app&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --bin
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Created&lt;&#x2F;span&gt;&lt;span&gt; binary (application) `&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;app&lt;&#x2F;span&gt;&lt;span&gt;` project
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PS&lt;&#x2F;span&gt;&lt;span&gt; C:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\U&lt;&#x2F;span&gt;&lt;span&gt;sers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\m&lt;&#x2F;span&gt;&lt;span&gt;xo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\D&lt;&#x2F;span&gt;&lt;span&gt;esktop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;p&amp;gt; cd app
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PS&lt;&#x2F;span&gt;&lt;span&gt; C:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\U&lt;&#x2F;span&gt;&lt;span&gt;sers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\m&lt;&#x2F;span&gt;&lt;span&gt;xo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\D&lt;&#x2F;span&gt;&lt;span&gt;esktop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;p&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;pp&amp;gt; cargo run
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Compiling&lt;&#x2F;span&gt;&lt;span&gt; app v0.1.0 (file:&#x2F;&#x2F;&#x2F;C:&#x2F;Users&#x2F;mxo&#x2F;Desktop&#x2F;ap&#x2F;app)
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Finished&lt;&#x2F;span&gt;&lt;span&gt; dev &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span&gt;unoptimized + debuginfo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span&gt; target(s) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;in&lt;&#x2F;span&gt;&lt;span&gt; 0.82 secs
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Running &lt;&#x2F;span&gt;&lt;span&gt;`&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ebug&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;pp.exe&lt;&#x2F;span&gt;&lt;span&gt;`
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Hello,&lt;&#x2F;span&gt;&lt;span&gt; world!
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;guan-yu-link-exe-linux-unixbu-yong-guan-zhe-ge&quot;&gt;关于link.exe(Linux&#x2F;Unix不用管这个)&lt;&#x2F;h3&gt;
+&lt;p&gt;这样安装的是&lt;code&gt;MSVC&lt;&#x2F;code&gt;版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去&lt;a href=&quot;http:&#x2F;&#x2F;landinghub.visualstudio.com&#x2F;visual-cpp-build-tools&quot;&gt;visual-cpp-build-tools&lt;&#x2F;a&gt;安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;linux-unixping-tai&quot;&gt;Linux&#x2F;Unix平台&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;Linux_Rust_Home.png&quot; alt=&quot;unix_rust_site&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Linux的安装和windows的大同小异, 主要是第一步运行 &lt;code&gt;curl https:&#x2F;&#x2F;sh.rustup.rs -sSf | sh&lt;&#x2F;code&gt;, 然后跟着提示走就行(参考上面的windows部分).&lt;&#x2F;p&gt;
+&lt;p&gt;装好后检查 rustc, cargo , rustup 能否在命令行调用. &lt;&#x2F;p&gt;
+&lt;p&gt;如果没有就确认环境变量里有没有 &lt;code&gt;~&#x2F;.cargo&#x2F;bin&lt;&#x2F;code&gt;, 没有就自己加.&lt;&#x2F;p&gt;
+&lt;p&gt;检查家目录里有没有那三个目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了). &lt;&#x2F;p&gt;
+&lt;p&gt;HelloWorld和windows一样的.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;guan-yu-rlshuo-racerde-gao-liang-bu-quan-ding-yi-tiao-zhuan-yu-fa-jian-cha-dai-ma-ge-shi-hua-shi-yao-de&quot;&gt;关于RLS或racer的高亮, 补全, 定义跳转, 语法检查, 代码格式化什么的&lt;&#x2F;h2&gt;
+&lt;p&gt;ide, 编辑器添加rust扩展(或者说插件?)后可以调用RLS或racer.&lt;&#x2F;p&gt;
+&lt;p&gt;RLS的分析速度比racer快很多, 所以推荐RLS&lt;&#x2F;p&gt;
+&lt;p&gt;目前的RLS还在预览版, 只支持 nightly , &lt;code&gt;--toolchain nightly&lt;&#x2F;code&gt;指定的工具链, 日后稳定了应该可以把 --preview去掉.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rustup&lt;&#x2F;span&gt;&lt;span&gt; component add rls-preview&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --toolchain&lt;&#x2F;span&gt;&lt;span&gt; nightly
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;rust-analysis RLS分析需要它&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rustup&lt;&#x2F;span&gt;&lt;span&gt; component add rust-analysis
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;rust-src 源码跳转需要源码&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rustup&lt;&#x2F;span&gt;&lt;span&gt; component add rust-src
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;rustfmt 如果你没有安装RLS, 也可以用rustfmt&lt;br &#x2F;&gt;
+注: 你可以自己调用(&lt;code&gt;cargo fmt&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;span&gt; install rustfmt
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;clippy 它会提醒你某些代码的更好的写法, 可以纠正些你的错误, 是初学者一个很好的老师.&lt;br &#x2F;&gt;
+注: 需要自己调用(&lt;code&gt;cargo clippy&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;span&gt; install clippy
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;安装完上面这些, 然后再打开VSocde安装Rust扩展, 然后再随便打开个.rs后缀的文本文件, VScode就会问你用哪个, 选RLS就行.&lt;&#x2F;p&gt;
+&lt;p&gt;另外这是racer的安装&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;span&gt; install racer
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;guan-yu-di-san-fang-ku-cong-crates-iohuo-github-gitlabxia-zai-huan-man-de-wen-ti&quot;&gt;关于第三方库从&lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;&quot;&gt;crates.io&lt;&#x2F;a&gt;或Github&#x2F;GitLab下载缓慢的问题&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;shi-yong-ustcjing-xiang&quot;&gt;使用USTC镜像&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;help&#x2F;rust-crates.html&quot;&gt;ustc-rust-crates&lt;&#x2F;a&gt;
+USTC的帮助里说的很清楚, 在$HOME&#x2F;.cargo&#x2F;config 中添加内容就行(如果没有就新建), 它的不足就是更新的可能不是很及时(多少小时同步一次来着).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;shi-yong-dai-li&quot;&gt;使用代理&lt;&#x2F;h3&gt;
+&lt;p&gt;在$HOME&#x2F;.cargo&#x2F;config添加下面三行, 其中&lt;code&gt;127.0.0.1:1080&lt;&#x2F;code&gt;是你代理的地址和端口, timeout是超时时间.&lt;br &#x2F;&gt;
+官方文档在这里 &lt;a href=&quot;http:&#x2F;&#x2F;doc.crates.io&#x2F;config.html&quot;&gt;config.html&lt;&#x2F;a&gt;. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[http]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;proxy &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;127.0.0.1:1080&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;timeout &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;60000
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;yi-xie-lian-jie&quot;&gt;一些链接&lt;&#x2F;h3&gt;
+&lt;p&gt;Rust语言官网  &lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;&quot;&gt;Rust&lt;&#x2F;a&gt; &lt;&#x2F;p&gt;
+&lt;p&gt;一些中文资料&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;KaiserY&#x2F;trpl-zh-cn&quot;&gt;Rust 程序设计语言（第二版）&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rustcc&#x2F;RustPrimer&quot;&gt;RustPrimer&lt;&#x2F;a&gt; 给初学者的Rust中文教程&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-cn&#x2F;rust-by-example-cn&quot;&gt;Rust by Example 中文版&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;DaseinPhaos&#x2F;tlborm-chinese&quot;&gt;Rust宏小册&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;中文社区  &lt;a href=&quot;https:&#x2F;&#x2F;rust-lang-cn.org&#x2F;&quot;&gt;RustChina&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;常用的英文文档&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;&quot;&gt;The Rust Standard Library&lt;&#x2F;a&gt; Rust标准库文档&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;&quot;&gt;crates.io&lt;&#x2F;a&gt; Rust Package Registry&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;&quot;&gt;docs.rs&lt;&#x2F;a&gt; 第三方库的文档(爬虫抓取crates.io生成)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;doc.crates.io&#x2F;index.html&quot;&gt;doc.crates.io&lt;&#x2F;a&gt; crates.io和cargo的文档&lt;br &#x2F;&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;rustup.rs&quot;&gt;rustup&lt;&#x2F;a&gt; rustup的文档&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;可能用到的&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;&quot;&gt;Book&lt;&#x2F;a&gt;  Book的英文原版&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;rust-cookbook&quot;&gt;CookBook&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-unofficial&#x2F;awesome-rust&quot;&gt;awesome-rust&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Michael-F-Bryan&#x2F;rust-ffi-guide&quot;&gt;rust-ffi-guide&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;shepmaster&#x2F;rust-ffi-omnibus&quot;&gt;rust-ffi-omnibus&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;nomicon&quot;&gt;nomicon&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;api-guidelines&quot;&gt;api-guidelines&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Manishearth&#x2F;rust-internals-docs&quot;&gt;rust-internals-docs&lt;&#x2F;a&gt;  &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>转移到 pelican-bootstrap3</title>
+		<published>2017-09-26T13:25:38+00:00</published>
+		<updated>2017-09-26T13:25:38+00:00</updated>
+		<link href="https://biluohc.github.io/posts/zhuan-yi-dao-pelican-bootstrap3/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/zhuan-yi-dao-pelican-bootstrap3/</id>
+		<content type="html">&lt;h1 id=&quot;an-zhuang&quot;&gt;安装&lt;&#x2F;h1&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;pip&lt;&#x2F;span&gt;&lt;span&gt; install pelican markdown
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;jie-xi-mdbi-xu-yao-pythonde-markdownku-fou-ze-bu-hui-shi-bie-mdwen-jian-you-bu-bao-cuo&quot;&gt;解析md必须要python的markdown库, 否则不会识别md文件(又不报错).&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;D&#x2F;c&#x2F;bg&lt;&#x2F;span&gt;&lt;span&gt; pelican
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;WARNING:&lt;&#x2F;span&gt;&lt;span&gt; No valid files found in content.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Done:&lt;&#x2F;span&gt;&lt;span&gt; Processed 0 articles, 0 drafts, 0 pages and 0 hidden pages in 0.05 seconds.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;kuai-su-kai-shi&quot;&gt;快速开始&lt;&#x2F;h2&gt;
+&lt;p&gt;新建目录用于放置站点文件,终端进入前面创建的目录运行&lt;code&gt;pelican-quickstart&lt;&#x2F;code&gt;后按提示操作, 那些配置也可以不管,后期再改配置文件.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;an-zhuang-zhu-ti-yu-cha-jian&quot;&gt;安装主题与插件&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;git&lt;&#x2F;span&gt;&lt;span&gt; clone https:&#x2F;&#x2F;github.com&#x2F;getpelican&#x2F;pelican-themes.git   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 主题
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;git&lt;&#x2F;span&gt;&lt;span&gt; clone git:&#x2F;&#x2F;github.com&#x2F;getpelican&#x2F;pelican-plugins.git    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 插件
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;xiu-gai-pei-zhi-wen-jian-pelicanconf-py&quot;&gt;修改配置文件(&lt;code&gt;pelicanconf.py&lt;&#x2F;code&gt;)&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;py&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-py &quot;&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 添加这些
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 主题路径
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;THEME &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;pelican-themes&#x2F;pelican-bootstrap3&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 上面那个主题的需要.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;JINJA_ENVIRONMENT &lt;&#x2F;span&gt;&lt;span&gt;= {&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;extensions&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;: [&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;jinja2.ext.i18n&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#插件路径,启用的插件
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PLUGIN_PATHS &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;pelican-plugins&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;] 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PLUGINS &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;i18n_subsites&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;sheng-cheng-html&quot;&gt;生成html&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;markdown&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span&gt;Title: My First Review
+&lt;&#x2F;span&gt;&lt;span&gt;Date: 2010-12-03 10:20
+&lt;&#x2F;span&gt;&lt;span&gt;Category: Review
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Following is a review of my favorite mechanical keyboard.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;把上面的保存到 &lt;code&gt;content&#x2F;MyFistReview.md&lt;&#x2F;code&gt;, 再运行 &lt;code&gt;pelican&lt;&#x2F;code&gt; 就会在 &lt;code&gt;output&lt;&#x2F;code&gt;文件夹生成html等.&lt;br &#x2F;&gt;
+现在就可以启动个http服务器, 就能在 http:&#x2F;&#x2F;127.0.0.1:8080&#x2F; 看到博客了.&lt;&#x2F;p&gt;
+&lt;p&gt;比如Py3自带的, 注意一定要以&lt;code&gt;output&lt;&#x2F;code&gt;为根目录, 否则js, css等资源加载不到, 就是html元素堆成一团浆糊.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span&gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;D&#x2F;c&#x2F;bg&lt;&#x2F;span&gt;&lt;span&gt; cd output&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;D&#x2F;c&#x2F;b&#x2F;output&lt;&#x2F;span&gt;&lt;span&gt; python3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -m&lt;&#x2F;span&gt;&lt;span&gt; http.server 8080
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Serving&lt;&#x2F;span&gt;&lt;span&gt; HTTP on 0.0.0.0 port 8080 ...
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;pelicansuo-xu-de-xin-xi&quot;&gt;Pelican所需的信息&lt;&#x2F;h2&gt;
+&lt;p&gt;如下按顺序为标题, 创建日期, 修改日期, 分类, 标签, 链接, 作者, 摘要, 其中标题,日期不可缺.&lt;&#x2F;p&gt;
+&lt;p&gt;Status的 draft&#x2F;published&#x2F;hidden 可以控制是否发布.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Title: My super title
+&lt;&#x2F;span&gt;&lt;span&gt;Date: 2010-12-03 10:20
+&lt;&#x2F;span&gt;&lt;span&gt;Modified: 2010-12-05 19:30
+&lt;&#x2F;span&gt;&lt;span&gt;Category: Python
+&lt;&#x2F;span&gt;&lt;span&gt;Tags: pelican, publishing
+&lt;&#x2F;span&gt;&lt;span&gt;Slug: my-super-post
+&lt;&#x2F;span&gt;&lt;span&gt;Author: Alexis Metaireau
+&lt;&#x2F;span&gt;&lt;span&gt;Summary: Short version for index and feeds
+&lt;&#x2F;span&gt;&lt;span&gt;Status: published
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Zip明文爆破</title>
+		<published>2016-10-24T21:27:07+00:00</published>
+		<updated>2016-10-24T21:27:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/zipming-wen-bao-po/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/zipming-wen-bao-po/</id>
+		<content type="html">&lt;h2 id=&quot;shi-yong-advanced-archive-zip-password-recovery-ming-wen-po-jie-known-plaintext-attackf-zip-xiang-xi-guo-cheng&quot;&gt;使用 Advanced Archive&#x2F;Zip Password Recovery 明文破解(Known plaintext attackf) Zip 详细过程&lt;&#x2F;h2&gt;
+&lt;p&gt;条件： 拥有zip包内一个或以上的文件。&lt;&#x2F;p&gt;
+&lt;p&gt;下载安装Advanced Archive&#x2F;Zip Password Recovery ，程序自行搜索。&lt;&#x2F;p&gt;
+&lt;p&gt;使用 windows 平台的 7zip (或者其它，实测 Linux下压缩的不行，估计编码不同的原因)压缩一个已知文件为&lt;strong&gt;不加密的 zip&lt;&#x2F;strong&gt;。&lt;&#x2F;p&gt;
+&lt;p&gt;U&lt;img src=&quot;http:&#x2F;&#x2F;i.imgur.com&#x2F;uy9IgZJ.png&quot; alt=&quot;UI-Settings&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;如图，加密的zip文件选择你要解密的目标zip，&lt;&#x2F;p&gt;
+&lt;p&gt;攻击类型选择明文&#x2F;plaintext（如果已知文件是二进制文件，勾选允许使用二进制文件作为明文 zip 档案文件），&lt;&#x2F;p&gt;
+&lt;p&gt;明文文件路径选择 已知文件压缩的 zip 文件。&lt;&#x2F;p&gt;
+&lt;p&gt;然后，点击 start&#x2F;开始（如果报错程序则重新压缩打开文件）,,等待 5-10 分钟，点击 stop&#x2F;停止（程序得到口令才停止，然而我们只需要文件），&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;http:&#x2F;&#x2F;i.imgur.com&#x2F;B8OLJGe.png&quot; alt=&quot;UI-Stop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;然后在其弹出窗口中，点击&lt;strong&gt;确定&lt;&#x2F;strong&gt;，，会弹出窗口保存一个 file-name_decrypted.zip（如果没有，请重来，多等待..），你选择目录保存
+，保存成功后会弹出 &amp;quot;文档成功解密&amp;quot;的通知。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;http:&#x2F;&#x2F;i.imgur.com&#x2F;cBcpRoa.png&quot; alt=&quot;UI-Succeed&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;此 file-name_decrypted.zip 是未加密的，可以直接打开，取得其中的文件。
+至于 口令&#x2F;密码，有了内容还要它？&lt;&#x2F;p&gt;
+&lt;p&gt;速度非常快，实测两三分钟（搜索秘钥完成,进度超过0%,4710MQ）即可，比起暴力破解强到哪里去了，密码是接近20位，可惜不能用于 rar,郁。&lt;&#x2F;p&gt;
+&lt;p&gt;至于原理，感兴趣的自己搜索即可。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;update-on-2022&quot;&gt;Update on 2022&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;kimci86&#x2F;bkcrack&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;kimci86&#x2F;bkcrack&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Aloxaf&#x2F;rbkcrack&quot;&gt;https:&#x2F;&#x2F;github.com&#x2F;Aloxaf&#x2F;rbkcrack&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.aloxaf.com&#x2F;2019&#x2F;04&#x2F;zip_plaintext_attack&quot;&gt;https:&#x2F;&#x2F;www.aloxaf.com&#x2F;2019&#x2F;04&#x2F;zip_plaintext_attack&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>准确的来说这才是我的第一篇博客</title>
+		<published>2016-07-29T11:30:07+00:00</published>
+		<updated>2016-07-29T11:30:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/zhun-que-de-lai-shuo-zhe-cai-shi-wo-de-di-yi-pian-bo-ke/</id>
+		<content type="html">&lt;p&gt;上一篇是几个月前写的markown,顺便挂上来,第一次折腾静态博客,花费差不多一天时间,遇到的坑好多,其实是阅读Hexo和next主题的说明不认真的原因,匿...&lt;&#x2F;p&gt;
+&lt;p&gt;以后会写一些日常吧,这应该是个充满希望的开始,期待未来变得美好。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c2.staticflickr.com&#x2F;9&#x2F;8761&#x2F;28028919073_5dd6a9207c_h.jpg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;最后更新于2016-07-29.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>写给入坑大蜥蜴且选择GNOME的小白</title>
+		<published>2016-03-24T15:35:07+00:00</published>
+		<updated>2016-03-24T15:35:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/xie-gei-ru-keng-da-xi-yi-qie-xuan-ze-gnomede-xiao-bai/</id>
+		<content type="html">&lt;p&gt;&lt;em&gt;作者: wspsxing @ &lt;a href=&quot;mailto:biluohc@outlook.com&quot;&gt;biluohc@outlook.com&lt;&#x2F;a&gt;&lt;&#x2F;em&gt;&lt;br&gt;
+&lt;em&gt;原贴地址: &lt;a href=&quot;http:&#x2F;&#x2F;tieba.baidu.com&#x2F;p&#x2F;4245902487&quot;&gt;http:&#x2F;&#x2F;tieba.baidu.com&#x2F;p&#x2F;4245902487&lt;&#x2F;a&gt;&lt;&#x2F;em&gt;&lt;br&gt;
+&lt;em&gt;update_log-v1.3: 改善排版,修复细节,更多有待发现. ---2016.03.24&lt;&#x2F;em&gt;
+由** wspsxing** 最后编辑于* 2016.03.24 *。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;qian-yan&quot;&gt;前言:&lt;&#x2F;h2&gt;
+&lt;p&gt;从Win 转 Linux 已经大半年,期间用过众多发行版,也感受过各种桌面环境,最终选用 &lt;strong&gt;openSUSE+GNOME3&lt;&#x2F;strong&gt;。&lt;br&gt;
+依稀记得,刚转过来时,遇到不少坑,故写个笔记，供小白们参考。&lt;&#x2F;p&gt;
+&lt;p&gt;桌面镇楼:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c3.staticflickr.com&#x2F;9&#x2F;8566&#x2F;28027857274_188b124712_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;ps,仅供小白参考,大神请轻喷.&lt;&#x2F;p&gt;
+&lt;p&gt;这张图发上来玩玩:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c7.staticflickr.com&#x2F;8&#x2F;7586&#x2F;28612610566_f9e4861dc8_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;yi-gnome3-di-yi-keng-lian-wang&quot;&gt;一： GNOME3 第一坑,联网。&lt;&#x2F;h2&gt;
+&lt;p&gt;当初刚从 deepin 转过来时,系统和桌面环境是什么关系都不知道。&lt;br&gt;
+百度: openSUSE 怎么连接宽带。你可以想象这有多坑**......**&lt;br&gt;
+方法是打开终端 输入: &lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;nm-connection-editor&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c1.staticflickr.com&#x2F;8&#x2F;7602&#x2F;28027856464_966f73602e_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;再选择添加,类型 DSL,输入帐号密码保存就好了。&lt;br&gt;再打开顶栏右侧那个有线设置,选择你刚刚新建的 dsl
+就行了。&lt;br&gt;
+其实不用记得全部,输入 nm 按两次 Tab 就可以自动补全(如果有多个,它会都列出来,让你手动补全)。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;er-gnome-you-hua-gong-ju-gnome-tweak-tool&quot;&gt;二:GNOME 优化工具(GNOME Tweak Tool)&lt;&#x2F;h2&gt;
+&lt;p&gt;蜥蜴的 GNOME 貌似已经预装了.&lt;br&gt;
+打开优化工具,有许多可以设置的,如图:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c1.staticflickr.com&#x2F;9&#x2F;8829&#x2F;28360609120_8969dc0580_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;br&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;1-da-kai-biao-ti-lan-zui-da-hua-zui-xiao-hua-an-niu-shuang-ji-biao-ti-lan-zui-da-hua-mo-ren-jiu-you&quot;&gt;1.打开标题栏最大化,最小化按钮。双击标题栏最大化,默认就有.&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c1.staticflickr.com&#x2F;8&#x2F;7522&#x2F;28612610816_a510fa95ae_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;br&gt;&lt;&#x2F;p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;GNOME Shell 扩展(GNOME Shell Extensions).&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;如图:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c3.staticflickr.com&#x2F;9&#x2F;8208&#x2F;28027856634_5a328b1376_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;点击下面的“&lt;strong&gt;获取更多扩展&lt;&#x2F;strong&gt;”,就可以跳转到 &lt;a href=&quot;https:&#x2F;&#x2F;extensions.gnome.org&quot;&gt;GNOME Shell Extensions 官
+网&lt;&#x2F;a&gt;&lt;br&gt;
+打开这个网站后,火狐会给你个询问,同意就是了.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;2-1-an-zhuang-dash-to-dock&quot;&gt;2.1 安装 Dash to dock .&lt;&#x2F;h2&gt;
+&lt;p&gt;该扩展将 Dash 移出应用程序概览,并将它转变为相当标准的停靠栏。
+你可以在上面那个网站搜,也可以直接点击&lt;a href=&quot;https:&#x2F;&#x2F;extensions.gnome.org&#x2F;extension&#x2F;307&#x2F;dash-to-dock&#x2F;&quot;&gt;它&lt;&#x2F;a&gt; ,如图：&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c7.staticflickr.com&#x2F;9&#x2F;8837&#x2F;28612611006_61be050cc6_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;点开 &lt;strong&gt;OFF&lt;&#x2F;strong&gt; ,稍后火狐就会提示你安装个东西。你同意就好了。&lt;br&gt;
+&lt;strong&gt;(注:GNOME Shell 扩展都是这么安装的)&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dash-to-dock-she-zhi&quot;&gt;Dash to dock 设置:&lt;&#x2F;h2&gt;
+&lt;p&gt;打开优化工具--扩展,如图:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c7.staticflickr.com&#x2F;9&#x2F;8810&#x2F;28027856734_f00eb150cb_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;br&gt;
+&lt;img src=&quot;https:&#x2F;&#x2F;c5.staticflickr.com&#x2F;9&#x2F;8714&#x2F;28612611156_c2076d5ceb_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;br&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;2-2-ge-ren-bi-bei-de-gnome-shell-kuo-zhan-an-zhuang-hou-ke-neng-xu-yao-zi-ji-she-zhi-yi-xia&quot;&gt;2.2 个人必备的 GNOME Shell 扩展:(安装后可能需要自己设置一下)&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hide top bar ——全屏自动隐藏顶栏,缺少这个 GNOME3 没法用&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Clipboard Indicator —— 剪切板&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Media player indicator —— 显示音乐播放器的状态&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Battery status —— 显示电池电量的百分比&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Netspeed ——在顶栏上显示网速&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Workspace indicator —— 在顶栏显示当前示工作区的序号&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Activities-configurator  ——活动，顶栏颜色，透明等&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;User themes ——启用自定义的 shell 主题&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Lunar Calendar ——阴历(依赖 typelib-1_0-LunarDate-2_0)&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Openweather ——天气&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;System-monitor ——资源监控 (依赖 NetworkManager-devel libgtop-devel)&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;你们应该自己找扩展......&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;3-zi-ti&quot;&gt;3 字体.&lt;&#x2F;h2&gt;
+&lt;p&gt;默认字体丑爆了有木有,我的是这样的:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c6.staticflickr.com&#x2F;9&#x2F;8019&#x2F;28028759933_3b567fbb4a_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;字体可以去 Win 的那里拷贝(*自己找也行,注意字体是有版权的,多谢某位吧友提醒 *)一份&lt;br&gt;
+单独放在一个文件夹里(fonts),然后sudo cp -r 连着文件夹复制到&#x2F;usr&#x2F;share&#x2F;fonts,&lt;br&gt;
+(**sudo cp -r xxx&#x2F;fonts &#x2F;usr&#x2F;share&#x2F;fonts **(xxx请换为路径))&lt;br&gt;
+再 &lt;strong&gt;chmod 755 -R &#x2F;usr&#x2F;share&#x2F;fonts&#x2F;fonts&lt;&#x2F;strong&gt; , 最后依次执行:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sudo mkfontscale&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;sudo mkfontdir&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;sudo fc-cache&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;然后就可以在上面那个界面选择字体了。请确保每个命令都成功,如果报错请直接 &lt;strong&gt;su&lt;&#x2F;strong&gt;.&lt;br&gt;
+&lt;em&gt;ps&lt;&#x2F;em&gt;,当然,你也可以双击打开字体(文件管理器里),再安装(这有可能会显示安装失败,多试几次就好了)&lt;br&gt;
+备注:仅支持后缀为 tff,tcc 的,fon 的不能用&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;4-wai-guan&quot;&gt;4 外观&lt;&#x2F;h2&gt;
+&lt;p&gt;GNOME 3 的外观与其各部分的外观有关,而其各部分可分别设定主题:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c3.staticflickr.com&#x2F;9&#x2F;8847&#x2F;28612611226_de50d2b399_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th align=&quot;left&quot;&gt;&lt;&#x2F;th&gt;&lt;th align=&quot;left&quot;&gt;&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;GTK+主题&lt;&#x2F;td&gt;&lt;td align=&quot;left&quot;&gt;GTK+应用程序的显示样式&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;图标主题(Icon theme)&lt;&#x2F;td&gt;&lt;td align=&quot;left&quot;&gt;图标主题&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;光标主题(Cursor theme)&lt;&#x2F;td&gt;&lt;td align=&quot;left&quot;&gt;鼠标光标的主题&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;GNOME Shell 主题(Shell theme)&lt;&#x2F;td&gt;&lt;td align=&quot;left&quot;&gt;Shell 的整体外观,如顶栏的样式等,依赖于 User Themes 扩展&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;这几种主题,都可以去 GNOME-Look.org 网站 &lt;a href=&quot;http:&#x2F;&#x2F;gnome-look.org&quot;&gt;http:&#x2F;&#x2F;gnome-look.org&lt;&#x2F;a&gt;去搜,下载安装就可以用了。&lt;br&gt;
+我只需安装一个图标主题 numix-icon-theme-circle ,openSUSE 官网下载 dvd &lt;br&gt;那里(&lt;a href=&quot;https:&#x2F;&#x2F;software.opensuse.org&#x2F;421&#x2F;zh_CN&quot;&gt;https:&#x2F;&#x2F;software.opensuse.org&#x2F;421&#x2F;zh_CN&lt;&#x2F;a&gt;)搜（搜不到请减少关键字）就行
+(推荐这样,最方便了。)&lt;br&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;如图,这些图标都是 numix-icon-theme-circle 的:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c3.staticflickr.com&#x2F;9&#x2F;8676&#x2F;28612611426_0162a3ce0b_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;另外 arc-theme 是个不错的 gtk+主题,推荐。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;5-hide-top-bar&quot;&gt;5 Hide top bar&lt;&#x2F;h2&gt;
+&lt;p&gt;就是前面说的那个很重要的扩展。可以隐藏顶栏,实现真正的全屏.&lt;br&gt;
+这上面的两个开了后就可以把鼠标移到顶栏,然后鼠标中键滚动就可以切换工作区,&lt;br&gt;一个鼠标就可以在工作区窗口之间滚来滚去,而且只要微动作的移动鼠标,
+不能更爽了。注意:下面的智能隐藏要开。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c8.staticflickr.com&#x2F;9&#x2F;8871&#x2F;28028760223_320fcab044_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;san-kuai-jie-jian&quot;&gt;三 :快捷键&lt;&#x2F;h2&gt;
+&lt;p&gt;全部设置---键盘,如图&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c3.staticflickr.com&#x2F;9&#x2F;8755&#x2F;28612611506_28ee0703df_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;它这里说了,选中某项左键单击就会等你输入按键组合。&lt;br&gt;
+如果不想改,或是错误点击什么的(这很常见),再随便按一个键(我习惯空格)就行了,因为不支持一个键的快捷键。&lt;&#x2F;p&gt;
+&lt;p&gt;我一般设置一个 Alt+d ,隐藏所有窗口--就是回到桌面的意思
+&lt;br&gt;还可以自定义快捷键:点击+后,名称和命令大可一样,主要是命令,就是软件的名字什么的。&lt;br&gt;如图,我这是个打开终端的快捷键(大蜥蜴默认没有):&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c5.staticflickr.com&#x2F;9&#x2F;8571&#x2F;28612611556_1799c222de_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;si-guan-yu-yast-yi-jian-an-zhuang-qia-bao-de-wen-ti&quot;&gt;四:关于 yast 一键安装卡爆的问题&lt;&#x2F;h2&gt;
+&lt;p&gt;软件源可能会有依赖或者更新,最好不要直接下载 rpm 包。
+点开那个 &lt;strong&gt;1 Click Instal&lt;&#x2F;strong&gt; ,我这里用 &lt;em&gt;imagewriter&lt;&#x2F;em&gt; 作例子。&lt;br&gt;
+打开或者保存到本地再用 gedit 或其它编辑器打开。&lt;br&gt;
+如图:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c7.staticflickr.com&#x2F;9&#x2F;8605&#x2F;28360609270_2d55e430ea_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;看到软件源的链接了吧然后(**zypper 多数命令须 sudo   **,以下请自行添加)：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;zypper ar -f http:&#x2F;&#x2F;download.opensuse.org&#x2F;distribution&#x2F;leap&#x2F;42.1&#x2F;repo&#x2F;oss&#x2F;  imagewriter  添加自命名源&lt;&#x2F;li&gt;
+&lt;li&gt;zypper ref   刷新软件源，中间可能会提示你是否现任该源,信任就是了。&lt;&#x2F;li&gt;
+&lt;li&gt;zypper in imagewriter    安装软件包，提示你会安装些什么，输入y就好。&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;guan-yu-zypper-de-shi-yong-zhong-duan-shu-ru-zypper-jiu-hui-xian-shi-shi-yong-bang-zhu-yi-ban-shi-ruan-jian-ming-helphuo-ruan-jian-ming-h&quot;&gt;关于 zypper 的使用：终端输入 zypper 就会显示使用帮助,一般是软件名+--help或软件名+-h)&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;zypper  ref       刷新软件源&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  in  xxx   安装xxx软件&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  rm  xxx   移除xxx软件，加 -u 可卸载相关依赖，但你要&lt;strong&gt;看清楚有什么&lt;&#x2F;strong&gt;,否则&lt;strong&gt;桌面&lt;&#x2F;strong&gt;都可能一起卸载了&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  lr        列出软件源，后加 -u 可显示源地址，加 -e 只显示已启用软件源&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  rr N      删除软件源, N 是上条命令显示的源的编号（&lt;strong&gt;请明白自己删的是什么&lt;&#x2F;strong&gt;）&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  ar -f URL 添加软件源， URL 是源的网址&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  mr -d  N  禁用软件源 N&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  mr -e  N  启用软件源 N&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  al xxx    添加锁定软件包xxx状态（版本或是否安装）因为你有时发现一更新，原来卸载的又回来了&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  rl xxx    移除锁定&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  up        更新软件包&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;wu-guan-yu-jie-ma-qi&quot;&gt;五:关于解码器&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;1-zhe-teng-zhi-nan&quot;&gt;1 折腾指南&lt;&#x2F;h2&gt;
+&lt;p&gt;若是按照 &lt;a href=&quot;https:&#x2F;&#x2F;lug.ustc.edu.cn&#x2F;sites&#x2F;opensuse-guide&#x2F;codecs.php&quot;&gt;折腾指南 https:&#x2F;&#x2F;lug.ustc.edu.cn&#x2F;sites&#x2F;opensuse-guide&#x2F;codecs.php&lt;&#x2F;a&gt;&lt;br&gt;
+(当初我就不知道它的存在)一键安装后还不能用。请尝试:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;zypper dup -r packman  前提是你已经添加 packman 源,并且源的名字叫 packman .&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;2-shou-dong-an-zhuang&quot;&gt;2 手动安装&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;zypper ar -f http:&#x2F;&#x2F;packman.inode.at&#x2F;suse&#x2F;openSUSE_Leap_42.1&#x2F;  packman &lt;&#x2F;li&gt;
+&lt;li&gt;zypper ar -f http:&#x2F;&#x2F;opensuse-guide.org&#x2F;repo&#x2F;openSUSE_Leap_42.1&#x2F;  dvd&lt;&#x2F;li&gt;
+&lt;li&gt;zypper  in libdvdcss2  flash-player  ffmpeg  lame  gstreamer-plugins-base  gstreamer-plugins-good  gstreamer-plugins-good-extra  gstreamer-plugins-bad  gstreamer-plugins-bad-orig-addon  gstreamer-plugins-ugly  gstreamer-plugins-ugly-orig-addon  gstreamer-plugins-libav  dvdauthor07 &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;若安装好后也不能播放视频&#x2F;音频,请尝试 sudo zypper dup -r packman&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;liu-chang-yong-ruan-jian&quot;&gt;六 :常用软件&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;1-lie-biao-qing-dan&quot;&gt;1 列表清单&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;axel ——多线程下载工具&lt;&#x2F;li&gt;
+&lt;li&gt;alipay ——支付宝控件&lt;&#x2F;li&gt;
+&lt;li&gt;baka-mplayer ——视频播放器&lt;&#x2F;li&gt;
+&lt;li&gt;cherytree ——笔记(树形结点,富文本)&lt;&#x2F;li&gt;
+&lt;li&gt;deadbeef&#x2F;audacious ——音乐播放器&lt;&#x2F;li&gt;
+&lt;li&gt;dia —— 流程图&lt;&#x2F;li&gt;
+&lt;li&gt;fbterm ——tty 显示中文&lt;&#x2F;li&gt;
+&lt;li&gt;FireFox ——浏览器&lt;&#x2F;li&gt;
+&lt;li&gt;ffmpeg ——音频视频转格式,录屏等等,本身就是解码器&lt;&#x2F;li&gt;
+&lt;li&gt;fuse-exfat    —— exfat支持&lt;&#x2F;li&gt;
+&lt;li&gt;geany ——一个轻量的 ide&lt;&#x2F;li&gt;
+&lt;li&gt;gimp ——图片编辑&lt;&#x2F;li&gt;
+&lt;li&gt;gparted ——分区工具 gparted-lang 后面这是中文的支持,很多程序都这样(xxx-lang)&lt;&#x2F;li&gt;
+&lt;li&gt;imagewriter ——制作U盘启动盘(dd 不显示进度很烦人)&lt;&#x2F;li&gt;
+&lt;li&gt;mlocate —— 搜索文件用 &lt;strong&gt;locate&lt;&#x2F;strong&gt; 安装完后&#x2F;文件变动后 &lt;strong&gt;sudo updatedb&lt;&#x2F;strong&gt;(更新数据库)&lt;&#x2F;li&gt;
+&lt;li&gt;mkvtoolnix   ——视频tool&lt;&#x2F;li&gt;
+&lt;li&gt;okular ——電子書（有一堆kde的依赖，自己取舍）&lt;&#x2F;li&gt;
+&lt;li&gt;osdlyrics ——显示歌词&lt;&#x2F;li&gt;
+&lt;li&gt;qbittorrent  ——bt下载&lt;&#x2F;li&gt;
+&lt;li&gt;redshift-gtk ——降低屏幕蓝光 &lt;&#x2F;li&gt;
+&lt;li&gt;ReText ——markdown&lt;&#x2F;li&gt;
+&lt;li&gt;spek  —— 音乐频谱&lt;&#x2F;li&gt;
+&lt;li&gt;screenfetch ——不解释&lt;&#x2F;li&gt;
+&lt;li&gt;shadowsocks-qt5&lt;&#x2F;li&gt;
+&lt;li&gt;testdisk 和 phtorec ——文件恢复（教程请搜索）&lt;&#x2F;li&gt;
+&lt;li&gt;uget —— 一个像样的下载管理&lt;&#x2F;li&gt;
+&lt;li&gt;variety ——壁纸(国产也有个爱壁纸 lovewallpaper )&lt;&#x2F;li&gt;
+&lt;li&gt;VirtualBox ——虚拟机&lt;&#x2F;li&gt;
+&lt;li&gt;wine ——运行 qq&lt;&#x2F;li&gt;
+&lt;li&gt;wps-office ——office&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;2-mou-xie-yuan-li-mei-you-de-ruan-jian&quot;&gt;2 某些源里没有的软件&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;1-vivaldiliu-lan-qi&quot;&gt;1 vivaldi浏览器&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;zypper ar  -f https:&#x2F;&#x2F;repo.fdzh.org&#x2F;vivaldi&#x2F;rpm&#x2F;x86_64&#x2F;  vivaldi-beta&lt;&#x2F;li&gt;
+&lt;li&gt;zypper in vivaldi-beta  chromium-pepper-flash&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;2-chromeliu-lan-qi&quot;&gt;2 chrome浏览器&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;zypper ar -f  http:&#x2F;&#x2F;repo.fdzh.org&#x2F;chrome&#x2F;rpm&#x2F;x86_64&#x2F;  chrome&lt;&#x2F;li&gt;
+&lt;li&gt;zypper in  google-chrome-stable&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;删除源或软件请参考** 关于 zypper 的使用**&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;qi-guan-yu-nei-cun-pan-yu-fstab&quot;&gt;七 :关于内存盘与 fstab&lt;&#x2F;h2&gt;
+&lt;p&gt;如果你的 RAM 富足,内存盘会给你带来更好的体验.
+内存盘可以做浏览器的缓存,存放自己的临时文件,保护硬盘等。&lt;br&gt;
+linux 下的内存盘有三种格式:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;ramdisk 不支持自动调整大小,貌似以淘汰。&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;ramfs 有缺陷,设置大小完全无效。&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;设置个大小为 1M 的分区,你可以写入几个 G 乃至比你内存更多的数据,我坚信卡不死大蜥蜴,你可以试试&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;mkdir mm  挂载事先要有目录,创建&lt;&#x2F;li&gt;
+&lt;li&gt;sudo mount -t ramfs -o size=50M ramfs .&#x2F;mm  其中50M是指定的大小,可改&lt;&#x2F;li&gt;
+&lt;li&gt;sudo chmod 777 .&#x2F;mm    改权限,以便自己帐号可以完全控制
+不想用了可以sudo umount .&#x2F;mm (卸载) ,不管它也没事,内存盘关机&#x2F;重启就没有了，只是目录还在，删除就好.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;tmpfs 会把 swap 也用上,其它完胜前二者(动态,大小可指定)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;使用方法:xxx 是目录名,你也可以输入完整路径 .&#x2F;指的是当前目录&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;mkdir xxx&lt;&#x2F;li&gt;
+&lt;li&gt;sudo mount -t tmpfs -o size=50M tmpfs .&#x2F;xxx&lt;&#x2F;li&gt;
+&lt;li&gt;sudo chmod 777 .&#x2F;xxx
+卸载及删除请参考上一条&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;4-1-etc-fstab&quot;&gt;4.1 &#x2F;etc&#x2F;fstab&lt;&#x2F;h2&gt;
+&lt;p&gt;这是开机时管理分区挂载的配置文件,写入了你的分区信息等。&lt;br&gt;
+上面的 tmpfs 内存盘,你总不能要用再创建一个吧(当然你也可以这么做.你可以把它写入 fstab,然后开机就能自动挂载了.)&lt;br&gt;
+修改 &#x2F;etc&#x2F;fstab 时请&lt;strong&gt;务必小心,错了就开机不能进入图形界面&lt;&#x2F;strong&gt;了.&lt;br&gt;
+不建议小白修改。。,一时激动写了出来
+我曾经不小心写了个中文标点 —— 逗号 &lt;strong&gt;......&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;cat &#x2F;etc&#x2F;fstab 可以查看它,这是只读的,不要担心。&lt;&#x2F;li&gt;
+&lt;li&gt;gedit &#x2F;etc&#x2F;fstab 就要小心了,如果没有修改,就不要保存。
+如图,我的是这样的,一行一个分区。&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c7.staticflickr.com&#x2F;9&#x2F;8522&#x2F;28612611646_78113b4209_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;br&gt;
+#是注释,我注释了一个交换文件。&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一项 UUID 是机器码(相当于身份证号),
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sudo lsblk -f   查看机器码&lt;&#x2F;strong&gt; 
+使用机器码则设备路径变动也不会影响启动(前提是这个分区没有动,比如被切了一部分,或者加了一部分)
+也可以写设备路径,如&#x2F;dev&#x2F;sda1&lt;&#x2F;li&gt;
+&lt;li&gt;sudo fdisk -l 查看硬盘分区状况(l是小写 list,列出的意思)。&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;第二项是挂载路径,是个存在的目录。&lt;&#x2F;li&gt;
+&lt;li&gt;第三项是挂载格式,ntfs 是只读的,ntfs-3g 是支持读写的(ntfs)。&lt;&#x2F;li&gt;
+&lt;li&gt;第四项是挂载选项, auto 是开机自动挂载, fstab 默认就是,defaults:rw ro:read-only rw:read-write,size 是大小(一般分区不需要),中间用&lt;strong&gt;英文逗号&lt;&#x2F;strong&gt;隔开。&lt;&#x2F;li&gt;
+&lt;li&gt;第五项为 dump 选项,设置是否让备份程序 dump 备份文件系统,0 为忽略,1 为备份。选 0    .&lt;&#x2F;li&gt;
+&lt;li&gt;第六项为 fsck 选项,告诉 fsck 程序以什么顺序检查文件系统,0 为忽略。选 0  .&lt;br&gt;
+注意,每两项之间都有&lt;strong&gt;空格&lt;&#x2F;strong&gt;(多几个更直观)隔开.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;4-2-ba-tmpfs-xie-ru-fstab&quot;&gt;4.2 把 tmpfs 写入 fstab&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;1-huo-qu-firefoxde-huan-cun-lu-jing&quot;&gt;1:获取FireFox的缓存路径&lt;&#x2F;h2&gt;
+&lt;p&gt;firefox 地址栏输入 &lt;strong&gt;about:cache&lt;&#x2F;strong&gt; 回车即可得,&lt;br&gt;如图：&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c4.staticflickr.com&#x2F;9&#x2F;8565&#x2F;28028760483_6494cc2cc6_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;就是中间 disk --&amp;gt;storage disk locatin 后面的:&lt;br&gt;
+&#x2F;home&#x2F;viw&#x2F;.cache&#x2F;mozilla&#x2F;firefox&#x2F;51t50ppu.default&#x2F;cache2    &lt;strong&gt;注意这路径重装系统就会变，所以不能直接复制窝的&lt;&#x2F;strong&gt;&lt;br&gt;
+注: 可以清空该目录，里面只是缓存文件&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo gedit &#x2F;etc&#x2F;fstab   用gedit打开fstab文件
+然后把下面这一行写到fstab最后面，注意换成&lt;strong&gt;自己的路径。&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;tmpfs &#x2F;home&#x2F;viw&#x2F;.cache&#x2F;mozilla&#x2F;firefox&#x2F;51t50ppu.default&#x2F;cache2 tmpfs    auto,size=280M 0 0&lt;br &#x2F;&gt;
+&lt;br&gt;这是一行,千万不要变成两行,size=大小自己设置,和后面那图设置成一样就行。&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c1.staticflickr.com&#x2F;9&#x2F;8011&#x2F;28612611776_6efeee210e_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;其它浏览器也是这样,先找出缓存位置,再写入 fstab 就好
+设置完后&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sudo mount -a&lt;&#x2F;strong&gt; 看看有无错误,如果有,请在关机之前修改好。&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;2-liu-lan-qi-huan-cun-gao-ding-xian-zai-lai-she-zhi-zi-ji-yong-de&quot;&gt;2 :浏览器缓存搞定,现在来设置自己用的&lt;&#x2F;h2&gt;
+&lt;p&gt;我 8g 内存,设置 6g(6144M),根据你的情况自己设置。至少保证系统运行内存 2G 到 3G(你自己的占用自己清楚,我除了虚拟机,内存很少使用上 3g)。&lt;br&gt;
+选定路径,我选择&#x2F;home&#x2F;viw&#x2F;Download&#x2F;cache (还未创建,注意替换用户名)&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;mkdir &#x2F;home&#x2F;viw&#x2F;Download&#x2F;cache      先创建文件&lt;&#x2F;li&gt;
+&lt;li&gt;sudo gedit &#x2F;etc&#x2F;fstab       用gedit打开fstab文件&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;写入一行:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;tmpfs &#x2F;home&#x2F;viw&#x2F;Downloads&#x2F;cache tmpfs auto,size=6144M 0 0 
+&lt;br&gt;保存。
+照样, &lt;strong&gt;sudo mount -a&lt;&#x2F;strong&gt; 检查 (如果有错误,它会输出,一般是那个文件夹(目录)不存在
+如果比较卡,请清除&#x2F;home&#x2F;viw&#x2F;Download&#x2F;cache(你自己设置的位置)目录里的文件,注意把**.Trash-1000** 文件夹清除(这就是所谓的回收站)
+如图:&lt;strong&gt;显示隐藏&lt;&#x2F;strong&gt;文件,,或者终端 ls -a&#x2F;la (openSUSE 设置的 alias)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c1.staticflickr.com&#x2F;9&#x2F;8755&#x2F;28027857424_5d2693a5d1_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;如图： &lt;strong&gt;.Trash-1000&lt;&#x2F;strong&gt; &lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c1.staticflickr.com&#x2F;9&#x2F;8361&#x2F;28360609360_8973538385_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;4-3-ba-qi-ta-fen-qu-ye-xie-ru-fstab-kai-ji-zi-dong-gua-zai&quot;&gt;4.3 把其它分区也写入 fstab,开机自动挂载 。&lt;&#x2F;h2&gt;
+&lt;p&gt;写入 fstab 的格式和前面一样.&lt;br&gt;
+先找到设备路径:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo fdisk -l (不是 1 而是 list)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;就会显示所有分区,第一个磁盘是 sda,二是 sdb,......,依此类推;&lt;br&gt;
+sda1 是第一个磁盘第一个分区,2,3......依此类推。也可以用 blkid + 分区路径得到 UUID(如 blkid dev&#x2F;sda5)。&lt;&#x2F;p&gt;
+&lt;p&gt;挂载路径挂载前要先创建,自己设置(mkdir 创建空目录)&lt;br&gt;
+我的是 &#x2F;home&#x2F;viw&#x2F;i 雷雨 你要换成你自己设置的&#x2F;dev&#x2F;sda5 要换成你自己的分区路径&lt;br&gt;
+写入 fstab 就行：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&#x2F;dev&#x2F;sdb5               &#x2F;home&#x2F;viw&#x2F;i雷雨  ntfs-3g auto    0  0&lt;&#x2F;li&gt;
+&lt;li&gt;UUID=744676BA46767CA4   &#x2F;home&#x2F;viw&#x2F;i雷雨  ntfs-3g auto    0  0&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;这两都种都是对的,选一种就行了。前面也说了,ntfs 是只读的,ntfs-3g 才是读写的。&lt;&#x2F;p&gt;
+&lt;p&gt;小白建议用后面的那个磁盘管理。&lt;br&gt;
+GNOME 的磁盘&#x2F;disk 也可以做到。&lt;br&gt;
+不过比较烦,每动一个选项就要输入一次密码.&lt;br&gt;
+我就用它取消 Win C 盘的用户界面显示,也可以设置挂载点,启动时挂载等......&lt;br&gt;
+如图:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;c8.staticflickr.com&#x2F;9&#x2F;8585&#x2F;28028760623_e8cf0bf35d_b.jpg&quot; alt=&quot;&quot; title=&quot;desktop&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;至此,完结撒花。&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;另外,我参考了网络上的一些博客什么的(主要是名词,概念等),在此深表谢意。&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;linux-zhi-lu-shang-yu-jun-gong-mian&quot;&gt;Linux 之路上,与君共勉。&lt;&#x2F;h2&gt;
+</content>
+	</entry>
+</feed>

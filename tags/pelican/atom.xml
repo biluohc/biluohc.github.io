@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>江山雪 -  Pelican</title>
+	<link href="https://biluohc.github.io/tags/pelican/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://biluohc.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-09-26T13:25:38+00:00</updated>
+	<id>https://biluohc.github.io/tags/pelican/atom.xml</id>
+	<entry xml:lang="en">
+		<title>转移到 pelican-bootstrap3</title>
+		<published>2017-09-26T13:25:38+00:00</published>
+		<updated>2017-09-26T13:25:38+00:00</updated>
+		<link href="https://biluohc.github.io/posts/zhuan-yi-dao-pelican-bootstrap3/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/zhuan-yi-dao-pelican-bootstrap3/</id>
+		<content type="html">&lt;h1 id=&quot;an-zhuang&quot;&gt;安装&lt;&#x2F;h1&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;pip&lt;&#x2F;span&gt;&lt;span&gt; install pelican markdown
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;jie-xi-mdbi-xu-yao-pythonde-markdownku-fou-ze-bu-hui-shi-bie-mdwen-jian-you-bu-bao-cuo&quot;&gt;解析md必须要python的markdown库, 否则不会识别md文件(又不报错).&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;D&#x2F;c&#x2F;bg&lt;&#x2F;span&gt;&lt;span&gt; pelican
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;WARNING:&lt;&#x2F;span&gt;&lt;span&gt; No valid files found in content.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Done:&lt;&#x2F;span&gt;&lt;span&gt; Processed 0 articles, 0 drafts, 0 pages and 0 hidden pages in 0.05 seconds.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;kuai-su-kai-shi&quot;&gt;快速开始&lt;&#x2F;h2&gt;
+&lt;p&gt;新建目录用于放置站点文件,终端进入前面创建的目录运行&lt;code&gt;pelican-quickstart&lt;&#x2F;code&gt;后按提示操作, 那些配置也可以不管,后期再改配置文件.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;an-zhuang-zhu-ti-yu-cha-jian&quot;&gt;安装主题与插件&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;git&lt;&#x2F;span&gt;&lt;span&gt; clone https:&#x2F;&#x2F;github.com&#x2F;getpelican&#x2F;pelican-themes.git   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 主题
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;git&lt;&#x2F;span&gt;&lt;span&gt; clone git:&#x2F;&#x2F;github.com&#x2F;getpelican&#x2F;pelican-plugins.git    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 插件
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;xiu-gai-pei-zhi-wen-jian-pelicanconf-py&quot;&gt;修改配置文件(&lt;code&gt;pelicanconf.py&lt;&#x2F;code&gt;)&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;py&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-py &quot;&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 添加这些
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 主题路径
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;THEME &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;pelican-themes&#x2F;pelican-bootstrap3&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# 上面那个主题的需要.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;JINJA_ENVIRONMENT &lt;&#x2F;span&gt;&lt;span&gt;= {&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;extensions&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;: [&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;jinja2.ext.i18n&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#插件路径,启用的插件
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PLUGIN_PATHS &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;pelican-plugins&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;] 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PLUGINS &lt;&#x2F;span&gt;&lt;span&gt;= [&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;i18n_subsites&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;sheng-cheng-html&quot;&gt;生成html&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;markdown&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span&gt;Title: My First Review
+&lt;&#x2F;span&gt;&lt;span&gt;Date: 2010-12-03 10:20
+&lt;&#x2F;span&gt;&lt;span&gt;Category: Review
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Following is a review of my favorite mechanical keyboard.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;把上面的保存到 &lt;code&gt;content&#x2F;MyFistReview.md&lt;&#x2F;code&gt;, 再运行 &lt;code&gt;pelican&lt;&#x2F;code&gt; 就会在 &lt;code&gt;output&lt;&#x2F;code&gt;文件夹生成html等.&lt;br &#x2F;&gt;
+现在就可以启动个http服务器, 就能在 http:&#x2F;&#x2F;127.0.0.1:8080&#x2F; 看到博客了.&lt;&#x2F;p&gt;
+&lt;p&gt;比如Py3自带的, 注意一定要以&lt;code&gt;output&lt;&#x2F;code&gt;为根目录, 否则js, css等资源加载不到, 就是html元素堆成一团浆糊.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span&gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;D&#x2F;c&#x2F;bg&lt;&#x2F;span&gt;&lt;span&gt; cd output&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;D&#x2F;c&#x2F;b&#x2F;output&lt;&#x2F;span&gt;&lt;span&gt; python3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -m&lt;&#x2F;span&gt;&lt;span&gt; http.server 8080
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Serving&lt;&#x2F;span&gt;&lt;span&gt; HTTP on 0.0.0.0 port 8080 ...
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;pelicansuo-xu-de-xin-xi&quot;&gt;Pelican所需的信息&lt;&#x2F;h2&gt;
+&lt;p&gt;如下按顺序为标题, 创建日期, 修改日期, 分类, 标签, 链接, 作者, 摘要, 其中标题,日期不可缺.&lt;&#x2F;p&gt;
+&lt;p&gt;Status的 draft&#x2F;published&#x2F;hidden 可以控制是否发布.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Title: My super title
+&lt;&#x2F;span&gt;&lt;span&gt;Date: 2010-12-03 10:20
+&lt;&#x2F;span&gt;&lt;span&gt;Modified: 2010-12-05 19:30
+&lt;&#x2F;span&gt;&lt;span&gt;Category: Python
+&lt;&#x2F;span&gt;&lt;span&gt;Tags: pelican, publishing
+&lt;&#x2F;span&gt;&lt;span&gt;Slug: my-super-post
+&lt;&#x2F;span&gt;&lt;span&gt;Author: Alexis Metaireau
+&lt;&#x2F;span&gt;&lt;span&gt;Summary: Short version for index and feeds
+&lt;&#x2F;span&gt;&lt;span&gt;Status: published
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+</feed>

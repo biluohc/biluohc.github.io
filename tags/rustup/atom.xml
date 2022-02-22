@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>江山雪 - rustup</title>
+	<link href="https://biluohc.github.io/tags/rustup/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://biluohc.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-10-08T18:27:07+00:00</updated>
+	<id>https://biluohc.github.io/tags/rustup/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Rust的安装与配置</title>
+		<published>2017-10-08T18:27:07+00:00</published>
+		<updated>2017-10-08T18:27:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/rustde-an-zhuang-yu-pei-zhi/</id>
+		<content type="html">&lt;p&gt;title: 
+date: 
+tags: Rust, cargo, rustup
+Category: articles&lt;&#x2F;p&gt;
+&lt;p&gt;Rust 是一种系统编程语言。 它有着惊人的运行速度，能够防止段错误，并保证线程安全。 &lt;&#x2F;p&gt;
+&lt;p&gt;首先访问&lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;zh-CN&#x2F;install.html&quot;&gt;Rust官网&lt;&#x2F;a&gt;的install页面, 它会根据你的UA显示不同的内容.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;windowsping-tai&quot;&gt;Windows平台&lt;&#x2F;h2&gt;
+&lt;p&gt;我这里是32位的虚拟机,由于学校教务处只兼容360, 故虚拟机里只装了360浏览器, 我的主力是Firefox.&lt;br &#x2F;&gt;
+&lt;img src=&quot;VirtualBox_win8.1_Rust_Home.png&quot; alt=&quot;windows_rust_site&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Windows下载rustup‑init.exe点击运行如图:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;VirtualBox_win8.1_rustup_running.png&quot; alt=&quot;windows_rustup_running&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;它询问你安装配置, 你可以一路回车,它会使用默认的配置给你安装好稳定(stable)版
+但我的建议是安装nightly工具链, 上面你输入&lt;code&gt;2&lt;&#x2F;code&gt;回车,&lt;br &#x2F;&gt;
+接下来它问你第一个&lt;code&gt;Default host triple?&lt;&#x2F;code&gt;, 这是些平台信息, 不用管它, 回车即可,&lt;br &#x2F;&gt;
+第二个是&lt;code&gt;Default toolchain?(stable,beta,nightly)&lt;&#x2F;code&gt;, 即安装的工具链版本, 这里你输入nightly回车即可,&lt;br &#x2F;&gt;
+第三个是&lt;code&gt;Modify PATH variable? (y&#x2F;n)&lt;&#x2F;code&gt;, 即修改环境变量, 输入&lt;code&gt;y&lt;&#x2F;code&gt;表示同意回车即可,&lt;br &#x2F;&gt;
+然后它弹出一个安装清单&lt;code&gt;current installation options&lt;&#x2F;code&gt;, 就是上面那三个选项的内容(注意, 由于我这是32位虚拟机, 所以架构是i386, 大多数应该是x86-64, 反正不会影响使用就是了),&lt;br &#x2F;&gt;
+然后回车即可, 安装结束的画面如下图.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;VirtualBox_win8.1_rust_install_finished.png&quot; alt=&quot;win8.1_rust_install_finished.png&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ru-guo-bu-chu-yi-wai-ming-ling-xing-shu-ru-rustup-cargo-rustcdeng-jiu-hui-shu-chu-ta-men-de-bang-zhu-xin-xi&quot;&gt;如果不出意外, 命令行输入&lt;code&gt;rustup&lt;&#x2F;code&gt;, &lt;code&gt;cargo&lt;&#x2F;code&gt;, &lt;code&gt;rustc&lt;&#x2F;code&gt;等就会输出它们的帮助信息.&lt;&#x2F;h3&gt;
+&lt;p&gt;Rust安装在你家目录(C:\Users\你的用户名), 它使用了三个目录, 包括:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;.cargo    包含了你的cargo的配置, 默认的工具链, 通过cargo安装的小工具等等&lt;&#x2F;li&gt;
+&lt;li&gt;.rustup   包含了实际的工具链以及从&lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;&quot;&gt;crates.io&lt;&#x2F;a&gt;或GitHub下载的包等&lt;&#x2F;li&gt;
+&lt;li&gt;.multirust  是.rustup的一个软链接, 据说是为了兼容, 不用管它&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;如果出了意外,&lt;br &#x2F;&gt;
+首先看看家目录里有没有那些目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了).&lt;br &#x2F;&gt;
+有就去看看系统环境变量里有没有&lt;code&gt;C:\Users\你的用户名\.cargo\bin&lt;&#x2F;code&gt;这个路径, 没有就添加环境变量.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;helloworld&quot;&gt;HelloWorld&lt;&#x2F;h3&gt;
+&lt;p&gt;使用&lt;code&gt;cargo new app --bin&lt;&#x2F;code&gt;新建一个名为app的可执行项目(cargo新建一个app目录,并把相关文件放入), 不加--bin建立的是库项目(默认不能运行).&lt;br &#x2F;&gt;
+然后cd进入那个app目录, &lt;code&gt;cargo run&lt;&#x2F;code&gt;即可Debug模式运行HelloWorld, &lt;code&gt;cargo run --release&lt;&#x2F;code&gt;以release模式运行, 此时对于目录下已经生成可执行文件 .&lt;br &#x2F;&gt;
+注: 默认生成的可执行文件在项目的target目录, debug下的是debug模式下产生的(&lt;code&gt;cargo build&lt;&#x2F;code&gt;), release下的是release模式产生的(&lt;code&gt;cargo build --release&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PS&lt;&#x2F;span&gt;&lt;span&gt; C:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\U&lt;&#x2F;span&gt;&lt;span&gt;sers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\m&lt;&#x2F;span&gt;&lt;span&gt;xo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\D&lt;&#x2F;span&gt;&lt;span&gt;esktop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;p&amp;gt; cargo new app&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --bin
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Created&lt;&#x2F;span&gt;&lt;span&gt; binary (application) `&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;app&lt;&#x2F;span&gt;&lt;span&gt;` project
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PS&lt;&#x2F;span&gt;&lt;span&gt; C:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\U&lt;&#x2F;span&gt;&lt;span&gt;sers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\m&lt;&#x2F;span&gt;&lt;span&gt;xo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\D&lt;&#x2F;span&gt;&lt;span&gt;esktop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;p&amp;gt; cd app
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PS&lt;&#x2F;span&gt;&lt;span&gt; C:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\U&lt;&#x2F;span&gt;&lt;span&gt;sers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\m&lt;&#x2F;span&gt;&lt;span&gt;xo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\D&lt;&#x2F;span&gt;&lt;span&gt;esktop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;p&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span&gt;pp&amp;gt; cargo run
+&lt;&#x2F;span&gt;&lt;span&gt;   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Compiling&lt;&#x2F;span&gt;&lt;span&gt; app v0.1.0 (file:&#x2F;&#x2F;&#x2F;C:&#x2F;Users&#x2F;mxo&#x2F;Desktop&#x2F;ap&#x2F;app)
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Finished&lt;&#x2F;span&gt;&lt;span&gt; dev &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span&gt;unoptimized + debuginfo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span&gt; target(s) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;in&lt;&#x2F;span&gt;&lt;span&gt; 0.82 secs
+&lt;&#x2F;span&gt;&lt;span&gt;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Running &lt;&#x2F;span&gt;&lt;span&gt;`&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;target&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ebug&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;pp.exe&lt;&#x2F;span&gt;&lt;span&gt;`
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Hello,&lt;&#x2F;span&gt;&lt;span&gt; world!
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;guan-yu-link-exe-linux-unixbu-yong-guan-zhe-ge&quot;&gt;关于link.exe(Linux&#x2F;Unix不用管这个)&lt;&#x2F;h3&gt;
+&lt;p&gt;这样安装的是&lt;code&gt;MSVC&lt;&#x2F;code&gt;版的工具链, 如果编译第三方库需要Cpp的 link.exe 的话, 可以去&lt;a href=&quot;http:&#x2F;&#x2F;landinghub.visualstudio.com&#x2F;visual-cpp-build-tools&quot;&gt;visual-cpp-build-tools&lt;&#x2F;a&gt;安装VS的cpp工具链, 如果这个链接失效, 也可以直接用搜索引擎搜索visual-cpp-build-tools.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;linux-unixping-tai&quot;&gt;Linux&#x2F;Unix平台&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;Linux_Rust_Home.png&quot; alt=&quot;unix_rust_site&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Linux的安装和windows的大同小异, 主要是第一步运行 &lt;code&gt;curl https:&#x2F;&#x2F;sh.rustup.rs -sSf | sh&lt;&#x2F;code&gt;, 然后跟着提示走就行(参考上面的windows部分).&lt;&#x2F;p&gt;
+&lt;p&gt;装好后检查 rustc, cargo , rustup 能否在命令行调用. &lt;&#x2F;p&gt;
+&lt;p&gt;如果没有就确认环境变量里有没有 &lt;code&gt;~&#x2F;.cargo&#x2F;bin&lt;&#x2F;code&gt;, 没有就自己加.&lt;&#x2F;p&gt;
+&lt;p&gt;检查家目录里有没有那三个目录, 没有就重新安装(一般不会, 下载不下来应该在安装时就报错了). &lt;&#x2F;p&gt;
+&lt;p&gt;HelloWorld和windows一样的.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;guan-yu-rlshuo-racerde-gao-liang-bu-quan-ding-yi-tiao-zhuan-yu-fa-jian-cha-dai-ma-ge-shi-hua-shi-yao-de&quot;&gt;关于RLS或racer的高亮, 补全, 定义跳转, 语法检查, 代码格式化什么的&lt;&#x2F;h2&gt;
+&lt;p&gt;ide, 编辑器添加rust扩展(或者说插件?)后可以调用RLS或racer.&lt;&#x2F;p&gt;
+&lt;p&gt;RLS的分析速度比racer快很多, 所以推荐RLS&lt;&#x2F;p&gt;
+&lt;p&gt;目前的RLS还在预览版, 只支持 nightly , &lt;code&gt;--toolchain nightly&lt;&#x2F;code&gt;指定的工具链, 日后稳定了应该可以把 --preview去掉.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rustup&lt;&#x2F;span&gt;&lt;span&gt; component add rls-preview&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --toolchain&lt;&#x2F;span&gt;&lt;span&gt; nightly
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;rust-analysis RLS分析需要它&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rustup&lt;&#x2F;span&gt;&lt;span&gt; component add rust-analysis
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;rust-src 源码跳转需要源码&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;rustup&lt;&#x2F;span&gt;&lt;span&gt; component add rust-src
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;rustfmt 如果你没有安装RLS, 也可以用rustfmt&lt;br &#x2F;&gt;
+注: 你可以自己调用(&lt;code&gt;cargo fmt&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;span&gt; install rustfmt
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;clippy 它会提醒你某些代码的更好的写法, 可以纠正些你的错误, 是初学者一个很好的老师.&lt;br &#x2F;&gt;
+注: 需要自己调用(&lt;code&gt;cargo clippy&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;span&gt; install clippy
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;安装完上面这些, 然后再打开VSocde安装Rust扩展, 然后再随便打开个.rs后缀的文本文件, VScode就会问你用哪个, 选RLS就行.&lt;&#x2F;p&gt;
+&lt;p&gt;另外这是racer的安装&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cargo&lt;&#x2F;span&gt;&lt;span&gt; install racer
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;guan-yu-di-san-fang-ku-cong-crates-iohuo-github-gitlabxia-zai-huan-man-de-wen-ti&quot;&gt;关于第三方库从&lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;&quot;&gt;crates.io&lt;&#x2F;a&gt;或Github&#x2F;GitLab下载缓慢的问题&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;shi-yong-ustcjing-xiang&quot;&gt;使用USTC镜像&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;help&#x2F;rust-crates.html&quot;&gt;ustc-rust-crates&lt;&#x2F;a&gt;
+USTC的帮助里说的很清楚, 在$HOME&#x2F;.cargo&#x2F;config 中添加内容就行(如果没有就新建), 它的不足就是更新的可能不是很及时(多少小时同步一次来着).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;shi-yong-dai-li&quot;&gt;使用代理&lt;&#x2F;h3&gt;
+&lt;p&gt;在$HOME&#x2F;.cargo&#x2F;config添加下面三行, 其中&lt;code&gt;127.0.0.1:1080&lt;&#x2F;code&gt;是你代理的地址和端口, timeout是超时时间.&lt;br &#x2F;&gt;
+官方文档在这里 &lt;a href=&quot;http:&#x2F;&#x2F;doc.crates.io&#x2F;config.html&quot;&gt;config.html&lt;&#x2F;a&gt;. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;toml&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-toml &quot;&gt;&lt;code class=&quot;language-toml&quot; data-lang=&quot;toml&quot;&gt;&lt;span&gt;[http]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;proxy &lt;&#x2F;span&gt;&lt;span&gt;= &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;127.0.0.1:1080&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;timeout &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;60000
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;yi-xie-lian-jie&quot;&gt;一些链接&lt;&#x2F;h3&gt;
+&lt;p&gt;Rust语言官网  &lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;&quot;&gt;Rust&lt;&#x2F;a&gt; &lt;&#x2F;p&gt;
+&lt;p&gt;一些中文资料&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;KaiserY&#x2F;trpl-zh-cn&quot;&gt;Rust 程序设计语言（第二版）&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rustcc&#x2F;RustPrimer&quot;&gt;RustPrimer&lt;&#x2F;a&gt; 给初学者的Rust中文教程&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-cn&#x2F;rust-by-example-cn&quot;&gt;Rust by Example 中文版&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;DaseinPhaos&#x2F;tlborm-chinese&quot;&gt;Rust宏小册&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;中文社区  &lt;a href=&quot;https:&#x2F;&#x2F;rust-lang-cn.org&#x2F;&quot;&gt;RustChina&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;常用的英文文档&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;&quot;&gt;The Rust Standard Library&lt;&#x2F;a&gt; Rust标准库文档&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;&quot;&gt;crates.io&lt;&#x2F;a&gt; Rust Package Registry&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;docs.rs&#x2F;&quot;&gt;docs.rs&lt;&#x2F;a&gt; 第三方库的文档(爬虫抓取crates.io生成)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;doc.crates.io&#x2F;index.html&quot;&gt;doc.crates.io&lt;&#x2F;a&gt; crates.io和cargo的文档&lt;br &#x2F;&gt;
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;rustup.rs&quot;&gt;rustup&lt;&#x2F;a&gt; rustup的文档&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;可能用到的&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;book&#x2F;&quot;&gt;Book&lt;&#x2F;a&gt;  Book的英文原版&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;rust-cookbook&quot;&gt;CookBook&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-unofficial&#x2F;awesome-rust&quot;&gt;awesome-rust&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Michael-F-Bryan&#x2F;rust-ffi-guide&quot;&gt;rust-ffi-guide&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;shepmaster&#x2F;rust-ffi-omnibus&quot;&gt;rust-ffi-omnibus&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;nomicon&quot;&gt;nomicon&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang-nursery&#x2F;api-guidelines&quot;&gt;api-guidelines&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Manishearth&#x2F;rust-internals-docs&quot;&gt;rust-internals-docs&lt;&#x2F;a&gt;  &lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+</feed>

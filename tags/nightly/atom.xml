@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>江山雪 - Nightly</title>
+	<link href="https://biluohc.github.io/tags/nightly/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://biluohc.github.io"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-10-08T23:33:07+00:00</updated>
+	<id>https://biluohc.github.io/tags/nightly/atom.xml</id>
+	<entry xml:lang="en">
+		<title>记录Linux上Firefox58的安装与配置</title>
+		<published>2017-10-08T23:33:07+00:00</published>
+		<updated>2017-10-08T23:33:07+00:00</updated>
+		<link href="https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/" type="text/html"/>
+		<id>https://biluohc.github.io/posts/ji-lu-linuxshang-firefox58de-an-zhuang-yu-pei-zhi/</id>
+		<content type="html">&lt;p&gt;由于用的OpenSUSE, 源里的Fiefox一直是Stable版, 目前才52, 但是我已经习惯了新版的速度.&lt;&#x2F;p&gt;
+&lt;p&gt;新版无论是启动速度还是页面打开速度都和52不是一个时代的, 多窗口多标签下也流畅了太多, 毕竟是由原来的多线程变成现在的多进程, Stylo并行加载CSS.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;xia-zai&quot;&gt;下载&lt;&#x2F;h2&gt;
+&lt;p&gt;从&lt;a href=&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;zh-CN&#x2F;firefox&#x2F;nightly&#x2F;all&#x2F;&quot;&gt;Firefox Nightly&lt;&#x2F;a&gt;下载简体中文版的二进制版压缩包, 解压到本地点击可执行文件就能用.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tu-biao&quot;&gt;图标&lt;&#x2F;h2&gt;
+&lt;p&gt;然后在本地新建个.desktop文件, 路径 &lt;code&gt;~&#x2F;.local&#x2F;share&#x2F;applications&#x2F;Firefox.desktop&lt;&#x2F;code&gt;, 你需要把里面的&lt;code&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox&lt;&#x2F;code&gt; 换成你自己的路径. &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;desktop&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-desktop &quot;&gt;&lt;code class=&quot;language-desktop&quot; data-lang=&quot;desktop&quot;&gt;&lt;span&gt;[Desktop Entry]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=Nightly
+&lt;&#x2F;span&gt;&lt;span&gt;GenericName=Web Browser
+&lt;&#x2F;span&gt;&lt;span&gt;GenericName[zh_CN]=网络浏览器
+&lt;&#x2F;span&gt;&lt;span&gt;Comment=Browse the World Wide Web
+&lt;&#x2F;span&gt;&lt;span&gt;Comment[zh_CN]=浏览互联网
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox %u
+&lt;&#x2F;span&gt;&lt;span&gt;Terminal=false
+&lt;&#x2F;span&gt;&lt;span&gt;Type=Application
+&lt;&#x2F;span&gt;&lt;span&gt;Icon=firefox-nightly
+&lt;&#x2F;span&gt;&lt;span&gt;Categories=Network;WebBrowser;
+&lt;&#x2F;span&gt;&lt;span&gt;MimeType=text&#x2F;html;text&#x2F;xml;application&#x2F;xhtml+xml;application&#x2F;vnd.mozilla.xul+xml;text&#x2F;mml;x-scheme-handler&#x2F;http;x-scheme-handler&#x2F;https;x-scheme-handler&#x2F;ftp;
+&lt;&#x2F;span&gt;&lt;span&gt;StartupNotify=true
+&lt;&#x2F;span&gt;&lt;span&gt;Actions=NewTab;NewWindow;NewPrivateWindow;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=Nightly
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Desktop Action NewTab]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=Open new tab
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=打开新标签页
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox -new-tab
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Desktop Action NewWindow]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=Open new window
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=打开新窗口
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox -new-window
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;[Desktop Action NewPrivateWindow]
+&lt;&#x2F;span&gt;&lt;span&gt;Name=New private window
+&lt;&#x2F;span&gt;&lt;span&gt;Name[zh_CN]=新建隐私浏览窗口
+&lt;&#x2F;span&gt;&lt;span&gt;Exec=&#x2F;home&#x2F;mxo&#x2F;bin&#x2F;firefox-nightly.zh-CN.linux-x86_64&#x2F;firefox&#x2F;firefox -private-window
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;注: 这里的可执行文件路径一定要和原文件相同, 我原来自做聪明用了一个软链接, 结果新建的窗口的图标不归属于原图标, 由于系统里还有个Stable版的Firefox, 就归属到它的图标上去了,233.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kuo-zhan&quot;&gt;扩展&lt;&#x2F;h2&gt;
+&lt;p&gt;我使用的扩展
+&lt;img src=&quot;%E6%89%A9%E5%B1%950.png&quot; alt=&quot;扩展0&quot; &#x2F;&gt;
+&lt;img src=&quot;%E6%89%A9%E5%B1%951.png&quot; alt=&quot;扩展1&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;由于57以来Firefox彻底废除XUL, 迁移到WebExtension, 所以最近新扩展的出现和扩展的更新都比较频繁, 可以多关注下, 也许日后就得到了满意的呢.&lt;&#x2F;p&gt;
+&lt;p&gt;原来纠结于没有好的Proxy扩展可以用, 最后发现&lt;code&gt;SwitchyOmega&lt;&#x2F;code&gt;测试版在Nightly上可用了.
+由于好久没用过它, 还去找了找教程...&lt;&#x2F;p&gt;
+&lt;p&gt;先是情景模式的proxy里选择你的代理协议,地址,端口.
+&lt;img src=&quot;SwitchyOmegaProxy.png&quot; alt=&quot;SwitchyOmegaProxy&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;然后在auto switch勾上规则列表规则, 后面的情景模式选择proxy(符合规则的就是被Q了的网站), 下一行的默认情景模式选择直接连接(没被Q的网站).&lt;br &#x2F;&gt;
+规则列表设置里选 AutoProxy, 
+网址填 &lt;code&gt;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;gfwlist&#x2F;gfwlist&#x2F;master&#x2F;gfwlist.txt&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;SwitchyOmegaAutoSwitch.png&quot; alt=&quot;SwitchyOmegaAutoSwitch&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;最后点击左侧的应用选项即可.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zui-hou-fu-shang-liang-zhang-nei-cun-zhan-yong&quot;&gt;最后附上两张内存占用&lt;&#x2F;h2&gt;
+&lt;p&gt;单窗口几个标签页
+&lt;img src=&quot;mem.png&quot; alt=&quot;内存占用&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;三窗口一堆图片&#x2F;视频标签页
+&lt;img src=&quot;mem3windows.png&quot; alt=&quot;内存占用&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;你可能需要的:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;ilovefirefox&quot;&gt;Firefox 信仰充值中心&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;tieba.baidu.com&#x2F;f?kw=firefox&amp;amp;fr=home&quot;&gt;狐吧&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+</feed>
