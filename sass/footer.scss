@@ -1,4 +1,19 @@
-.footer-container {
-    display: grid;
-    grid-template-columns: 75% 5% 20%;
-  }
+
+// https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html
+// .footer-container {
+//     display: grid;
+//     grid-template-columns: 75% 5% 20%;
+//   }
+
+// https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+// https://www.cnblogs.com/bobo1/p/12295828.html
+// https://zhuanlan.zhihu.com/p/21938048
+  .footer-container {
+    display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+    display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+
+    #top {
+      margin-left: auto;
+      white-space: nowrap;
+    }
+}
